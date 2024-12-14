@@ -1,0 +1,65 @@
+
+* 
+{
+  font-family: "Manrope", sans-serif;
+}
+
+body
+{
+  background: url("../../assets/background.svg");
+  background-repeat: no-repeat;
+  margin: 0 0 0 0;
+}
+
+
+
+nav
+{
+  padding: 2rem 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a
+{
+  color: #F6F6F6;
+  text-decoration: none;
+  font-size: 1.3rem;
+}
+
+
+.navigation-options a
+{
+  margin-right: 3rem;
+  transition: opacity .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+
+.navigation-options a:hover
+{
+  opacity: 0.7;
+}
+
+
+footer
+{
+  margin-top: 7rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #5D13E7;
+}
+
+footer, address 
+{
+  text-align: center;
+  color: #F6F6F6;
+}
+
+
+address a
+{
+  text-decoration: none;
+  margin-left: .5rem;
+  color: #F6F6F6;
+}

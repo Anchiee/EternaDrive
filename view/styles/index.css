@@ -1,0 +1,41 @@
+section
+{
+  font-weight: light;
+  color: #3b3939; 
+}
+
+.header-section
+{
+  margin: 10rem 10rem 4rem 10rem;
+  display: flex;
+}
+
+.header-section img
+{
+  filter: drop-shadow(.4rem .4rem 3rem #3b3939);
+  margin-left:10rem;
+}
+
+
+.text-container
+{
+  padding-top: 7rem;
+}
+
+
+.text-container button {
+  display: block;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  color: #fff;
+  background-color: #5D13E7;
+  text-decoration: none;
+  border-radius: .3rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.text-container button:hover {
+  background-color: #4810b8;
+}

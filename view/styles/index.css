@@ -30,6 +30,7 @@ section
   color: #fff;
   background-color: #5D13E7;
   text-decoration: none;
+  border:none;
   border-radius: .3rem;
   font-size: 1.3rem;
   cursor: pointer;

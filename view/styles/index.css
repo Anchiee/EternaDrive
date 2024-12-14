@@ -40,3 +40,42 @@ section
 .text-container button:hover {
   background-color: #4810b8;
 }
+
+.about-section
+{
+  text-align: center;
+}
+
+.about-section h2
+{
+  border-bottom: .1rem solid #3b3939;
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: .2rem;
+}
+
+
+.container
+{
+  display: flex;
+  margin-top:3rem;
+  
+}
+
+.info-container
+{
+  text-align: left;
+  display: inline;
+  color: #F6F6F6;
+  padding: .5rem 1rem;
+  border-radius: 1rem;
+  background-color: #5D13E7;
+  margin: 0 5rem
+}
+
+.info-container ul
+{
+  padding: 0;
+  margin-left:1rem;
+  padding-right: 3rem;
+}

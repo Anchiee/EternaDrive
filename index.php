@@ -27,6 +27,7 @@
   <main>
     <section class="header-section">
       <div class="text-container">
+        <p class="important">File sharing platform that you've never seen before</p>
         <h1>Your files, your way. Forever.</h1>
         <p>
           keep your files safely using <strong>Eterna</strong>Drive
@@ -34,10 +35,41 @@
         </p>
 
         <button>Get started</button>
-        
-        
       </div>
       <img src="assets/logo.png" alt="logo" width="400">
+    </section>
+
+
+
+      <section class="container">
+        <div class="info-container">
+          <h3>What is Eternadrive?</h3>
+          <ul>
+            <li>A secure, open-source file-sharing platform.</li>
+            <li>Store, share, and access your files anytime, anywhere.</li>
+          </ul>
+        </div>
+
+        <div class="info-container">
+          <h3>Functions</h3>
+          <ul>
+            <li>Fast and reliable uploads/downloads.</li>
+            <li>Share files securely with anyone.</li>
+            <li>Organized storage with easy access.</li>
+          </ul>
+        </div>
+
+        <div class="info-container">
+          <h3>Why Us and Not Anyone Else?</h3>
+          <ul>
+            <li>Open-source, transparent, and secure.</li>
+            <li>Privacy-first approach with encryption.</li>
+            <li>Organized storage with easy access.</li>
+          </ul>
+        </div>
+
+
+      </section>
   </main>
 
   <footer>

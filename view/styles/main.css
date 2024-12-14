@@ -47,6 +47,11 @@ footer
   margin-top: 7rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  
+}
+
+footer, .important
+{
   background-color: #5D13E7;
 }
 
@@ -62,4 +67,13 @@ address a
   text-decoration: none;
   margin-left: .5rem;
   color: #F6F6F6;
+}
+
+
+.important
+{
+  display: inline;
+  color: #F6F6F6;
+  padding: .5rem 1rem;
+  border-radius: 1rem;
 }

@@ -13,7 +13,7 @@
 </head>
 <body>
   
-<nav>
+  <nav>
     <a href="#"><strong>Eterna</strong>Drive</a>
     
     <div class="navigation-options">

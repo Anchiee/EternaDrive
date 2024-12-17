@@ -4,6 +4,7 @@
   font-family: "Manrope", sans-serif;
 }
 
+
 body
 {
   background: url("../../assets/background.svg");
@@ -46,8 +47,7 @@ footer
 {
   margin-top: 7rem;
   padding-top: 1rem;
-  padding-bottom: 1rem;
-  
+  padding-bottom: 1rem;  
 }
 
 footer, .important
@@ -69,6 +69,19 @@ address a
   color: #F6F6F6;
 }
 
+form
+{
+  background-color: #EEEEEE;
+  padding: 0 8rem;
+}
+
+
+form input
+{
+  display: block;
+  margin-bottom: 2rem;
+}
+
 
 .important
 {
@@ -76,4 +89,23 @@ address a
   color: #F6F6F6;
   padding: .5rem 1rem;
   border-radius: 1rem;
+}
+
+button 
+{
+  display: block;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  color: #fff;
+  background-color: #5f2ac2;
+  text-decoration: none;
+  border:none;
+  border-radius: .3rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #4810b8;
 }

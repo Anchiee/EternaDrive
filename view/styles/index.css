@@ -23,24 +23,6 @@ section
 }
 
 
-.text-container button {
-  display: block;
-  margin-top: 1.5rem;
-  padding: 1rem 2rem;
-  color: #fff;
-  background-color: #5f2ac2;
-  text-decoration: none;
-  border:none;
-  border-radius: .3rem;
-  font-size: 1.3rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.text-container button:hover {
-  background-color: #4810b8;
-}
-
 .about-section
 {
   text-align: center;

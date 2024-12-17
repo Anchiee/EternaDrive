@@ -1,0 +1,33 @@
+
+body, html
+{
+  height:100%;
+}
+
+body
+{
+  background: none;
+  background-color: #EEEEEE;
+}
+
+main
+{
+  height: 100%;
+  display: flex;
+}
+
+.input-section, .info-section
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.info-section
+{
+  background-color: #5f2ac2;
+  color: #EEEEEE;
+  width:100%;
+}

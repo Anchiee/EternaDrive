@@ -31,11 +31,14 @@ main
 }
 
 
+.input-section a
+{
+  text-decoration: none;
+
+}
 
 .input-section input
 {
-
-  margin-top: .4rem;
   border: .01rem solid #999999;
   background-color: #ffffff01;
   padding: .3rem 1.5rem .3rem 1.2rem;
@@ -58,7 +61,6 @@ main
 .socials
 {
   width: 100%;
-  margin-bottom: .4rem;
 }
 
 .socials address

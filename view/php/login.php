@@ -33,16 +33,10 @@
 
         <label for="password">Password</label>
         <input type="password" name="password" id="password" placeholder="Enter your passsword">
-        
-        <label for="confirmPassword">Confirm password</label>
-        <input type="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="Confirm your password">
-        
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="Enter your email">
 
         <button>Sign-in</button>
       </form>
-      <p>Already have an account? <a href="login.php"><strong>Log-in</strong></a></p>
+      <p>Already have an account? <a href="register.php"><strong>Sign-in</strong></a></p>
     </section>
 
     <section class="info-section">

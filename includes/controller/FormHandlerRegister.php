@@ -5,6 +5,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
   require_once "../model/ReadData.php";
   require_once "../model/AddData.php";
+  require_once "../../config/config.php";
 
   $username = htmlspecialchars($_POST["username"]);
   $password = htmlspecialchars($_POST["password"]);
@@ -32,7 +33,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     die();
   }
 
+  $_SESSION["username"] = $username;
   AddUser($username, $password, $email);
+  
 
 
 }

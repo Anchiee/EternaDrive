@@ -34,7 +34,7 @@
           and stop worrying about your storage.
         </p>
 
-        <button>Get started</button>
+        <button onclick="redirect()">Get started</button>
       </div>
       <img src="assets/logo.png" alt="logo" width="400">
     </section>
@@ -86,5 +86,6 @@
     
   </footer>
   
+<script src="view/js/redirect.js"></script>
 </body>
 </html>

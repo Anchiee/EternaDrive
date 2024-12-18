@@ -27,18 +27,18 @@
       </div>
 
       <h2>Sign-in</h2>
-      <form action="#" method="post">
+      <form action="../../includes/controller/FormHandlerRegister.php" method="post">
         <label for="username">Username</label>
-        <input type="text" name="username" id="username" placeholder="Enter your username">
+        <input type="text" name="username" id="username" placeholder="Enter your username" required>
 
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="Enter your passsword">
+        <input type="password" name="password" id="password" placeholder="Enter your passsword" minlength="6" required>
         
         <label for="confirmPassword">Confirm password</label>
-        <input type="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="Confirm your password">
+        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm your password" minlength="6" required>
         
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="Enter your email">
+        <input type="email" name="email" id="email" placeholder="Enter your email" required>
 
         <button>Sign-in</button>
       </form>

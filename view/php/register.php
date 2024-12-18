@@ -42,6 +42,7 @@
 
         <button>Sign-in</button>
       </form>
+      <p>Already have an account? <a href="#"><strong>Log-in</strong></a></p>
     </section>
 
     <section class="info-section">

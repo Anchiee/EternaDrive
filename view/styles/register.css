@@ -2,6 +2,7 @@
 body, html
 {
   height:100%;
+  color: #444444;
 }
 
 body
@@ -24,10 +25,59 @@ main
   flex-direction: column;
 }
 
+.input-section form, .input-section input
+{
+  font-size: 1.3rem;
+}
+
+
+
+.input-section input
+{
+
+  margin-top: .4rem;
+  border: .01rem solid #999999;
+  background-color: #ffffff01;
+  padding: .3rem 1.5rem .3rem 1.2rem;
+  border-radius: .5rem;
+  outline: none;
+}
+
+
 
 .info-section
 {
+
   background-color: #5f2ac2;
   color: #EEEEEE;
+  width:100%;
+  font-size:1.2rem;
+}
+
+
+.socials
+{
+  width: 100%;
+  margin-bottom: .4rem;
+}
+
+.socials address
+{
+  display:flex;
+  justify-content: space-around;
+  border-bottom: .1rem solid #444444;
+  padding-bottom: 1.2rem;
+  width:53%;
+  margin: 0 auto;
+}
+
+h1
+{
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+button
+{
   width:100%;
 }

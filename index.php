@@ -18,7 +18,7 @@
     
     <div class="navigation-options">
       <a href="view/php/register.php">Sign-in</a>
-      <a href="view/php/login.php">Log-in</a>
+      <a href="includes/controller/UserRedirection.php">Log-in</a>
       <a href="#">Contact</a>
       <a href="#">About us</a>
     </div>

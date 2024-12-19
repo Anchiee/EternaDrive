@@ -40,7 +40,7 @@
         <label for="email">Email</label>
         <input type="email" name="email" id="email" placeholder="Enter your email" required>
 
-        <button>Sign-in</button>
+        <button>Next</button>
       </form>
       <p>Already have an account? <a href="login.php"><strong>Log-in</strong></a></p>
     </section>

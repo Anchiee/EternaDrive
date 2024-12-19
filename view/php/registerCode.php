@@ -1,3 +1,8 @@
+<?php require "../../config/config.php";
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,34 +21,25 @@
   <main>
     
     <section class="input-section">
-      <div class="socials">
-          <h1>Use other socials</h1>
 
-          <address>
-            <a href="#"><i class="fa-brands fa-google fa-xl" style="color: #444444;"></i></a>
-            <a href="#"><i class="fa-brands fa-github fa-xl" style="color: #444444;"></i></i></a>
+      <form action="../../includes/controller/FormHandlerCodeVerify.php" method="post">
 
-          </address>
-      </div>
+        <h1>Verify email</h1>
+        <p>We've sent a verification code to your email. Please check your spam in case it's not there. </p>
 
-      <h2>Sign-in</h2>
-      <form action="../../includes/controller/FormHandlerLogin.php" method="post">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" placeholder="Enter your username">
-
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="Enter your passsword">
-
+        <input type="number" name="digit1" class="opt" maxlength="1" autofocus required>
+        <input type="number" name="digit2" class="opt" maxlength="1" required>
+        <input type="number" name="digit3" class="opt" maxlength="1" required>
+        <input type="number" name="digit4" class="opt" maxlength="1" required>
         <button>Sign-in</button>
       </form>
-      <p>Already have an account? <a href="register.php"><strong>Sign-in</strong></a></p>
     </section>
 
     <section class="info-section">
       
       <img src="../../assets/cloud.png" width="300" alt="cloud image">
       <h3><strong>Your files, your way. Forever.</strong></h3>
-      <p><strong>Eterna</strong>Drive is free for everyone, all it takes is a few clicks! Join to the wide community of people.</p>
+      <p class="eterna-text"><strong>Eterna</strong>Drive is free for everyone, all it takes is a few clicks! Join to the wide community of people.</p>
     </section>
   
   </main>

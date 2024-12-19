@@ -5,7 +5,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
   require_once "../model/ReadData.php";
   require_once "../model/AddData.php";
+  require_once "../model/Code.php";
   require_once "../../config/config.php";
+  require_once "SendEmail.php";
 
   $username = htmlspecialchars($_POST["username"]);
   $password = htmlspecialchars($_POST["password"]);
@@ -34,7 +36,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   }
 
   $_SESSION["username"] = $username;
+  $code = createCode();
+
+  $_SESSION["code"] = $code;
+
+  header("Location: ../../view/php/registerCode.php");
   AddUser($username, $password, $email);
+  sendEmail($email, $username, $code);
+  die();
   
 
 

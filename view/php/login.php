@@ -26,7 +26,7 @@
           </address>
       </div>
 
-      <h2>Sign-in</h2>
+      <h2>Log-in</h2>
       <form action="../../includes/controller/FormHandlerLogin.php" method="post">
         <label for="username">Username</label>
         <input type="text" name="username" id="username" placeholder="Enter your username">
@@ -34,7 +34,7 @@
         <label for="password">Password</label>
         <input type="password" name="password" id="password" placeholder="Enter your passsword">
 
-        <button>Sign-in</button>
+        <button>Log-in</button>
       </form>
       <p>Already have an account? <a href="register.php"><strong>Sign-in</strong></a></p>
     </section>

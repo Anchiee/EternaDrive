@@ -32,6 +32,7 @@
         <input type="number" name="digit3" class="opt" maxlength="1" required>
         <input type="number" name="digit4" class="opt" maxlength="1" required>
         <button>Sign-in</button>
+        <p class="send-again">Code didn't arrive? <a href="../../includes/controller/SendEmailAgain.php"><strong>Send again</strong></a></p>
       </form>
     </section>
 

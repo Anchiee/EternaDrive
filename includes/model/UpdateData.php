@@ -2,7 +2,7 @@
 
 function verifyUser($username)
 {
-  require_once "dbh.php";
+  require "dbh.php";
 
   try {
     $query = "UPDATE users SET verified = 1 WHERE username = :username";

@@ -24,7 +24,7 @@
             <a href="#">
               <i class="fa-brands fa-discord fa-xl" style="color: #444444;"></i>
             </a>
-            <a href="https://github.com/login/oauth/authorize?client_id=Ov23liIdfbnrRJ7k2SYU&scope=user:read"><i class="fa-brands fa-github fa-xl" style="color: #444444;"></i></i></a>
+            <a href="https://github.com/login/oauth/authorize?client_id=Ov23liIdfbnrRJ7k2SYU&scope=user:read++user:email"><i class="fa-brands fa-github fa-xl" style="color: #444444;"></i></i></a>
 
           </address>
       </div>

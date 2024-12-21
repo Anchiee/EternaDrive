@@ -32,6 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   }
 
   verifyUser($_SESSION["username"]);
+  header("Location: ../../view/php/main.php");
   die();
 
 }

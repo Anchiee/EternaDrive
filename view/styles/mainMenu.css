@@ -1,0 +1,35 @@
+* 
+{
+  font-family: "Manrope", sans-serif;
+}
+
+
+nav
+{
+  display: flex;
+}
+
+
+.horizontal-nav
+{
+  flex-direction: row;
+}
+
+form
+{
+  background-color: aqua;
+}
+
+
+.horizontal-nav button
+{
+  background: transparent;
+  border: none;
+}
+
+.horizontal-nav input
+{
+  border: none;
+  background: transparent;
+  outline: none;
+}

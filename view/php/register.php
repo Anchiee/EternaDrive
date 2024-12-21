@@ -19,7 +19,7 @@
           <h1>Use other socials</h1>
 
           <address>
-            <a href="#"><i class="fa-brands fa-google fa-xl" style="color: #444444;"></i></a>
+            <a href="#"><i class="fa-brands fa-discord fa-xl" style="color: #444444;"></i></a>
             <a href="#"><i class="fa-brands fa-github fa-xl" style="color: #444444;"></i></i></a>
 
           </address>

@@ -69,7 +69,7 @@ function isVerified($username)
     $stmt = null;
     $pdo = null;
 
-    return $result;
+    return $result["verified"];
 
   } catch(PDOException $e) {
     return "Query failed:" . $e->getMessage();

@@ -10,13 +10,11 @@ if(empty($username)) {
   die();
 }
 
-else if(!isVerified($username) || !empty($username)) {
+else if(isVerified($username) == 0) {
   header("Location: ../../view/php/registerCode.php");
   die();
-
 }
 
-else {
-  header("Location: ../../view/php/account.php");
-  die();
-}
+header("Location: ../../view/php/main.php");
+die();
+

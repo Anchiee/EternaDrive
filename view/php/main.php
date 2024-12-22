@@ -14,16 +14,20 @@
 <body>
 
   <nav class="horizontal-nav">
-    <a href="#"><strong>Eterna</strong>Drive</a>
+    <a href="#" class="logo"><strong>Eterna</strong>Drive</a>
     
     <form action="#" method="post">
       <input type="text" placeholder="Search your file" name="file-name">
       <button>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #EEEEEE; cursor:pointer;"></i>
       </button>
     </form>
 
-    <a href="#"></a>
+    <a href="#" class="profile-picture">
+      <img src="../../assets/profiles/defaultProfile.png" alt="profile picture" width="60">
+    </a>
+
+    </a>
   </nav>
   
 </body>

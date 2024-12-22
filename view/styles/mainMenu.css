@@ -3,6 +3,11 @@
   font-family: "Manrope", sans-serif;
 }
 
+body, form
+{
+  background-color: #EEEEEE;
+}
+
 
 nav
 {
@@ -12,24 +17,56 @@ nav
 
 .horizontal-nav
 {
+  margin-top:2.5rem;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.horizontal-nav a
+{
+  text-decoration: none;
+  color:#5f2ac2;
+  margin-left: 5rem;
+}
+
+
+
+form input, .horizontal-nav a
+{
+  font-size: 1.5rem;
+}
+
 
 form
 {
-  background-color: aqua;
+  display: flex;
+  align-items: center;
+  background-color: #5f2ac2;
+  border-radius: 2rem;
+  padding: .4rem 1rem .4rem 2rem;
 }
 
-
-.horizontal-nav button
-{
-  background: transparent;
-  border: none;
-}
-
-.horizontal-nav input
+form input, form button
 {
   border: none;
   background: transparent;
+}
+
+form input
+{
   outline: none;
+  color: #EEEEEE;
+}
+
+form input::placeholder
+{
+  color: #EEEEEE; 
+}
+
+
+
+.profile-picture
+{
+  margin-right: 5rem;
 }

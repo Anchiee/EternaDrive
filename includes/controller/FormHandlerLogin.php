@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     echo "Wrong username/password. Try again.";
     die();
   }
-  else if(isVerified($username)) {
+  else if(isVerified($username) == 0) {
     $code = createCode();
     $_SESSION["code"] = $code;
     $_SESSION["username"] = $username;

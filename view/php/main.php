@@ -1,3 +1,21 @@
+<?php
+
+require_once "../../config/config.php";
+require_once "../../includes/model/ReadData.php";
+
+if(empty($_SESSION["username"])) {
+  echo "You are not logged in!";
+  die();
+}
+
+$userData = returnUser($_SESSION["username"]);
+$profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +42,7 @@
     </form>
 
     <a href="#" class="profile-picture">
-      <img src="../../assets/profiles/defaultProfile.png" alt="profile picture" width="60">
+      <img src="<?php echo $profilePictureDir ?>" alt="profile picture" width="60">
     </a>
 
     </a>

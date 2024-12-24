@@ -47,6 +47,19 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
 
     </a>
   </nav>
+
+  <section class="container">
+    <nav class="vertical-nav">
+        <button>Create</button>
+
+        <a href="#">Main</a>
+        <a href="#">Favorite</a>
+        <a href="#">Recent</a>
+        <a href="#">Spam</a>
+        <a href="#">Trash</a>
+        <a href="#">Stats</a>
+    </nav>
+  </section>
   
 </body>
 </html>

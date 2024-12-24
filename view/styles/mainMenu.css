@@ -70,3 +70,15 @@ form input::placeholder
 {
   margin-right: 5rem;
 }
+
+.vertical-nav
+{
+  display: flex;
+  flex-direction: column;
+  padding-left: 5rem;
+}
+
+.container
+{
+  display: flex;
+}

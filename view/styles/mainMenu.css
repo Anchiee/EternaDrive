@@ -5,6 +5,7 @@
 
 body, form
 {
+  margin: 0 0 0 0;
   background-color: #EEEEEE;
 }
 
@@ -17,16 +18,17 @@ nav
 
 .horizontal-nav
 {
-  margin-top:2.5rem;
+  padding: 1.3rem 0;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.horizontal-nav a
+
+.logo
 {
   text-decoration: none;
-  color:#5f2ac2;
+  color:#EEEEEE;
   margin-left: 5rem;
 }
 
@@ -42,7 +44,6 @@ form
 {
   display: flex;
   align-items: center;
-  background-color: #5f2ac2;
   border-radius: 2rem;
   padding: .4rem 1rem .4rem 2rem;
 }
@@ -56,12 +57,12 @@ form input, form button
 form input
 {
   outline: none;
-  color: #EEEEEE;
+  color: #8b8888;
 }
 
 form input::placeholder
 {
-  color: #EEEEEE; 
+  color: #8b8888;
 }
 
 
@@ -71,11 +72,56 @@ form input::placeholder
   margin-right: 5rem;
 }
 
+.vertical-nav, .horizontal-nav
+{
+  background-color: #5f2ac2;
+  margin: 0 0 0 0;
+}
+
 .vertical-nav
 {
   display: flex;
   flex-direction: column;
-  padding-left: 5rem;
+  gap: 3rem;
+  padding: 3.8rem 5rem;
+}
+
+.vertical-nav a, .vertical-nav button
+{
+  font-size: 1.4rem;
+}
+
+.vertical-nav a, .vertical-nav button
+{
+  color: #EEEEEE;
+}
+
+.vertical-nav a 
+{
+  text-decoration: none;
+  
+}
+
+.vertical-nav .chosen-option
+{
+  color: #9f9ea0;
+}
+
+.vertical-nav button
+{
+  background-color: transparent;
+  border: .1rem solid #EEEEEE;
+  border-radius: .4rem;
+  padding: .6rem 1.5rem;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+
+
+.vertical-nav button:hover
+{
+  opacity: 0.7;
+  
 }
 
 .container

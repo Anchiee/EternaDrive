@@ -31,13 +31,14 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
 </head>
 <body>
 
+
   <nav class="horizontal-nav">
     <a href="#" class="logo"><strong>Eterna</strong>Drive</a>
     
     <form action="#" method="post">
       <input type="text" placeholder="Search your file" name="file-name">
       <button>
-        <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #EEEEEE; cursor:pointer;"></i>
+        <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #8b8888; cursor:pointer;"></i>
       </button>
     </form>
 
@@ -52,7 +53,7 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
     <nav class="vertical-nav">
         <button>Create</button>
 
-        <a href="#">Main</a>
+        <a href="#" class="chosen-option">Main</a>
         <a href="#">Favorite</a>
         <a href="#">Recent</a>
         <a href="#">Spam</a>

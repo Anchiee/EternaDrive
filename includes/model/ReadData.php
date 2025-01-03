@@ -31,7 +31,7 @@ function returnUser($username)
 {
   try {
 
-    require_once "dbh.php";
+    require "dbh.php";
 
     $query = "SELECT * FROM users WHERE username = :username;";
     $stmt = $pdo->prepare($query);
@@ -74,4 +74,36 @@ function isVerified($username)
   } catch(PDOException $e) {
     return "Query failed:" . $e->getMessage();
   }
+}
+
+
+function returnFiles($username)
+{
+  try {
+    require_once "dbh.php";
+
+    $userData = returnUser($username);
+    $id = $userData["id"];
+
+    $query = "SELECT * FROM files WHERE userID = :userID;";
+    $stmt = $pdo->prepare($query);
+
+    $stmt->bindParam(":userID", $id);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmt = null;
+    $pdo = null;
+
+    if(empty($result)) {
+      return false;
+    }
+    
+    return $result;
+
+  } catch(PDOException $e) {
+    return "Error occured:" . $e->getMessage();
+  }
+   
 }

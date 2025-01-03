@@ -8,6 +8,7 @@ if(empty($_SESSION["username"])) {
   die();
 }
 
+$filesData = returnFiles($_SESSION["username"]);
 $userData = returnUser($_SESSION["username"]);
 $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
 
@@ -36,7 +37,7 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
     <a href="#" class="logo"><strong>Eterna</strong>Drive</a>
     
     <form action="#" method="post">
-      <input type="text" placeholder="Search your file" name="file-name">
+      <input type="text" placeholder="Search your files" name="file-name">
       <button>
         <span class="icon">
           <i class="fa-solid fa-magnifying-glass fa-xl" style="color:#5f2ac2; cursor:pointer;"></i>
@@ -45,50 +46,72 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
     </form>
 
     <a href="#" class="profile-picture">
-      <img src="<?php echo $profilePictureDir ?>" alt="profile picture" width="60">
+      <img src="<?php echo $profilePictureDir ?>" alt="profile picture" width="55">
     </a>
 
-    </a>
+    
   </nav>
 
-  <section class="container">
+
+  <div class="container">
     <nav class="vertical-nav">
-        <button>
-          <i class="fa-solid fa-plus" style="font-weight:lighter;"></i>
-          Add
-        </button>
+      <button>
+        <i class="fa-solid fa-plus" style="font-weight:lighter;"></i>
+        Add
+      </button>
 
-        <a href="#" class="chosen-option">
-          <i class="fa-solid fa-house"></i>
-          Main
-        </a>
-        
-        <a href="#">
-          <i class="fa-solid fa-star"></i>
-          Favorite
-        </a>
+      <a href="#" class="chosen-option">
+        <i class="fa-solid fa-house"></i>
+        Main
+      </a>
+      
+      <a href="#">
+        <i class="fa-solid fa-star"></i>
+        Favorite
+      </a>
 
-        <a href="#">
-          <i class="fa-solid fa-clock"></i>
-          Recent
-        </a>
-        
-        <a href="#">
-          <i class="fa-solid fa-triangle-exclamation"></i>
-          Spam
-        </a>
+      <a href="#">
+        <i class="fa-solid fa-clock"></i>
+        Recent
+      </a>
+      
+      <a href="#">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Spam
+      </a>
 
-        <a href="#">
-          <i class="fa-solid fa-trash"></i>
-          Trash
-        </a>
-        
-        <a href="#">
-          <i class="fa-solid fa-chart-simple"></i>
-          Stats
-        </a>
+      <a href="#">
+        <i class="fa-solid fa-trash"></i>
+        Trash
+      </a>
+      
+      <a href="#">
+        <i class="fa-solid fa-chart-simple"></i>
+        Stats
+      </a>
     </nav>
-  </section>
+
+    <main>
+      <?php
+        if(empty($filesData)) {
+          echo "<img src='../../assets/images/file.png' alt='file image' width='200'>
+                <h1>Your files will be here.</h1>
+                <p>Add some files using add button and stop worrying about your storage.";
+
+        }
+        else
+        {
+          foreach($filesData as $column)
+          {
+            foreach($column as $row => $value)
+            {
+              echo "<p>". $row . " " . $value. "</p>";
+            }
+          }
+        }
+      ?>
+    </main>
+  </div>
   
 </body>
 </html>

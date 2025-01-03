@@ -9,7 +9,10 @@ body
   background-color: #EEEEEE;
 }
 
-
+i
+{
+  padding-right: .4rem;
+}
 
 .horizontal-nav
 {
@@ -28,12 +31,6 @@ body
 .logo
 {
   text-decoration: none;
-}
-
-
-
-form input, .horizontal-nav a
-{
   font-size: 1.5rem;
 }
 
@@ -43,9 +40,10 @@ form
   display: flex;
   align-items: center;
   border-radius: 2rem;
+  border: .1rem solid #5f2ac2;
   padding: .4rem 1rem .4rem 2rem;
-  box-shadow: 0px 0px 39px 11px rgba(27,26,26, 0.14);
   background-color: #f5f3f7;
+  
 }
 
 form input, form button
@@ -58,6 +56,7 @@ form input
 {
   outline: none;
   color: #5f2ac2;
+  font-size: 1.2rem;
 }
 
 form input::placeholder
@@ -81,7 +80,7 @@ form input::placeholder
 
 .vertical-nav
 {
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   width: 15rem;
 }
 
@@ -98,6 +97,21 @@ form input::placeholder
   text-align: left;
   margin-bottom: 2.7rem;
   width: 100%;
+}
+
+.vertical-nav a:visited, .vertical-nav a:active
+{
+  outline: none;
+}
+
+.vertical-nav a:active
+{
+  color: inherit;
+}
+
+.logo:active
+{
+  color:#5f2ac2;
 }
 
 .vertical-nav button
@@ -132,4 +146,16 @@ form input::placeholder
 .container
 {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+}
+
+main
+{
+  display: block;
+  margin: auto;
+  color:#5f2ac2;
+  text-align: center;
+
 }

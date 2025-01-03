@@ -36,7 +36,7 @@
 
         <button onclick="redirect()">Get started</button>
       </div>
-      <img src="assets/logo.png" alt="logo" width="400">
+      <img src="assets/images/logo.png" alt="logo" width="400">
     </section>
 
 

@@ -36,7 +36,7 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
   <nav class="horizontal-nav">
     <a href="#" class="logo"><strong>Eterna</strong>Drive</a>
     
-    <form action="#" method="post">
+    <form action="#" method="post" class="search-form">
       <input type="text" placeholder="Search your files" name="file-name">
       <button>
         <span class="icon">
@@ -55,10 +55,18 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
 
   <div class="container">
     <nav class="vertical-nav">
-      <button>
+
+      <form action="../../includes/controller/FormHandlerUploadFile.php" method="post" enctype="multipart/form-data" id="file-form">
+        
+      <label for="file-input" class="custom-file-upload">
         <i class="fa-solid fa-plus" style="font-weight:lighter;"></i>
         Add
-      </button>
+      </label>
+      <input type="file" name="file-upload" id="file-input">
+        
+          
+      </form>
+
 
       <a href="#" class="chosen-option">
         <i class="fa-solid fa-house"></i>
@@ -95,23 +103,14 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
       <?php
         if(empty($filesData)) {
           echo "<img src='../../assets/images/file.png' alt='file image' width='200'>
-                <h1>Your files will be here.</h1>
-                <p>Add some files using add button and stop worrying about your storage.";
+                <h1>Oops... Nothing found!</h1>
+                <p>Add some files using the add button and stop worrying about your storage.";
 
-        }
-        else
-        {
-          foreach($filesData as $column)
-          {
-            foreach($column as $row => $value)
-            {
-              echo "<p>". $row . " " . $value. "</p>";
-            }
-          }
         }
       ?>
     </main>
   </div>
   
+<script src="../js/fileInput.js"></script>  
 </body>
 </html>

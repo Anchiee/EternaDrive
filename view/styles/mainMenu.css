@@ -3,33 +3,31 @@
   font-family: "Manrope", sans-serif;
 }
 
-body, form
+body
 {
   margin: 0 0 0 0;
   background-color: #EEEEEE;
 }
 
 
-nav
-{
-  display: flex;
-}
-
 
 .horizontal-nav
 {
+  display: flex;
   padding: 1.3rem 0;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
+.logo, .vertical-nav a 
+{
+  padding-left: 2.2rem;
+}
 
 .logo
 {
   text-decoration: none;
-  color:#EEEEEE;
-  margin-left: 5rem;
 }
 
 
@@ -46,6 +44,8 @@ form
   align-items: center;
   border-radius: 2rem;
   padding: .4rem 1rem .4rem 2rem;
+  box-shadow: 0px 0px 39px 11px rgba(27,26,26, 0.14);
+  background-color: #f5f3f7;
 }
 
 form input, form button
@@ -57,12 +57,12 @@ form input, form button
 form input
 {
   outline: none;
-  color: #8b8888;
+  color: #5f2ac2;
 }
 
 form input::placeholder
 {
-  color: #8b8888;
+  color: #5f2ac2;
 }
 
 
@@ -70,58 +70,63 @@ form input::placeholder
 .profile-picture
 {
   margin-right: 5rem;
+  filter:drop-shadow(2px 2px 11px #1b1a1a24);
 }
 
 .vertical-nav, .horizontal-nav
 {
-  background-color: #5f2ac2;
+  background-color: #ece8f1;
   margin: 0 0 0 0;
 }
 
 .vertical-nav
 {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  padding: 3.8rem 5rem;
+  padding: 1rem 0;
+  width: 15rem;
 }
 
-.vertical-nav a, .vertical-nav button
+.vertical-nav, .vertical-nav button
 {
-  font-size: 1.4rem;
-}
-
-.vertical-nav a, .vertical-nav button
-{
-  color: #EEEEEE;
+  color: #5f2ac2;
+  font-size: 1.3rem;
 }
 
 .vertical-nav a 
 {
   text-decoration: none;
-  
-}
-
-.vertical-nav .chosen-option
-{
-  color: #9f9ea0;
+  display: block;
+  text-align: left;
+  margin-bottom: 2.7rem;
+  width: 100%;
 }
 
 .vertical-nav button
 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 3.6rem;    
   background-color: transparent;
-  border: .1rem solid #EEEEEE;
+  border: .1rem solid #5f2ac2;
   border-radius: .4rem;
-  padding: .6rem 1.5rem;
   cursor: pointer;
-  transition: opacity .2s;
+  margin: 2rem auto;
+  transition: color .5s cubic-bezier(0.075, 0.82, 0.165, 1), background-color .5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-
 
 .vertical-nav button:hover
 {
-  opacity: 0.7;
-  
+  background-color: #5f2ac2;
+  color:#EEEEEE;
+}
+
+.chosen-option
+{
+  background-color: #5f2ac2;
+  color: #EEEEEE;
+  box-sizing: border-box;
+  padding: 1rem 0;
 }
 
 .container

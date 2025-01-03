@@ -38,7 +38,9 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
     <form action="#" method="post">
       <input type="text" placeholder="Search your file" name="file-name">
       <button>
-        <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #8b8888; cursor:pointer;"></i>
+        <span class="icon">
+          <i class="fa-solid fa-magnifying-glass fa-xl" style="color:#5f2ac2; cursor:pointer;"></i>
+        </span>
       </button>
     </form>
 
@@ -51,14 +53,40 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
 
   <section class="container">
     <nav class="vertical-nav">
-        <button>Create</button>
+        <button>
+          <i class="fa-solid fa-plus" style="font-weight:lighter;"></i>
+          Add
+        </button>
 
-        <a href="#" class="chosen-option">Main</a>
-        <a href="#">Favorite</a>
-        <a href="#">Recent</a>
-        <a href="#">Spam</a>
-        <a href="#">Trash</a>
-        <a href="#">Stats</a>
+        <a href="#" class="chosen-option">
+          <i class="fa-solid fa-house"></i>
+          Main
+        </a>
+        
+        <a href="#">
+          <i class="fa-solid fa-star"></i>
+          Favorite
+        </a>
+
+        <a href="#">
+          <i class="fa-solid fa-clock"></i>
+          Recent
+        </a>
+        
+        <a href="#">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          Spam
+        </a>
+
+        <a href="#">
+          <i class="fa-solid fa-trash"></i>
+          Trash
+        </a>
+        
+        <a href="#">
+          <i class="fa-solid fa-chart-simple"></i>
+          Stats
+        </a>
     </nav>
   </section>
   

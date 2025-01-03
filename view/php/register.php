@@ -52,7 +52,7 @@
 
     <section class="info-section">
       
-      <img src="../../assets/cloud.png" width="300" alt="cloud image">
+      <img src="../../assets/images/cloud.png" width="300" alt="cloud image">
       <h3><strong>Your files, your way. Forever.</strong></h3>
       <p><strong>Eterna</strong>Drive is free for everyone, all it takes is a few clicks! Join to the wide community of people.</p>
     </section>

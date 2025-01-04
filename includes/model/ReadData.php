@@ -85,7 +85,7 @@ function returnFiles($username)
     $userData = returnUser($username);
     $id = $userData["id"];
 
-    $query = "SELECT * FROM files WHERE userID = :userID;";
+    $query = "SELECT * FROM files WHERE user_id = :userID;";
     $stmt = $pdo->prepare($query);
 
     $stmt->bindParam(":userID", $id);

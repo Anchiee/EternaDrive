@@ -10,7 +10,7 @@ if(empty($_SESSION["username"])) {
 
 $filesData = returnFiles($_SESSION["username"]);
 $userData = returnUser($_SESSION["username"]);
-$profilePictureDir = "../../assets/profiles/" . $userData["profilePicture"];
+$profilePictureDir = "../../assets/profiles/" . $userData["profile_picture"];
 
 ?>
 

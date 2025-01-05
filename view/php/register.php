@@ -47,7 +47,7 @@
 
         <button>Next</button>
       </form>
-      <p>Already have an account? <a href="login.php"><strong>Log-in</strong></a></p>
+      <p>Already have an account? <a href="../../includes/controller/UserRedirection.php"><strong>Log-in</strong></a></p>
     </section>
 
     <section class="info-section">

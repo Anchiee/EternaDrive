@@ -3,3 +3,4 @@ includes/controller/SendEmail.php
 includes/controller/SendEmailAgain.php
 includes/controller/Github/
 includes/controller/Discord/
+uploads/

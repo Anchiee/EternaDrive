@@ -3,15 +3,94 @@
   font-family: "Manrope", sans-serif;
 }
 
+html, body
+{
+  overflow: hidden;
+}
+
+/*to be able to center notify-container*/
+html, body, .container, main
+{
+  height: 100%;
+}
+
 body
 {
   margin: 0;
   background-color: #EEEEEE;
 }
 
+main
+{
+  margin: 0;
+  color:#5f2ac2;
+  text-align: center;
+  width: 100%;
+}
+
+
+
+h1, th:first-child, td:first-child
+{
+  text-align: left;
+  padding-left: 1.5rem;
+}
+
+table
+{
+  text-align: left;
+  width:100%;
+  border-collapse: collapse;
+}
+
+
+.file-container
+{
+  overflow-y: auto;
+  height: 80vh;
+}
+
+th, td
+{
+  padding: 1rem 0;
+}
+
+td
+{
+  border-top: .1rem solid #5f2ac2;
+  border-bottom: .1rem solid #5f2ac2;
+  
+}
+
+td:first-child
+{
+  max-width: 8rem;
+}
+
+.file-info:hover
+{
+  background-color: #e5e2e2;
+}
+
+.file-edit
+{
+  visibility: hidden;
+  
+}
+
+.file-edit-hovered
+{
+  visibility: visible;
+}
+
 i
 {
   padding-right: .4rem;
+}
+
+p
+{
+  display: inline;
 }
 
 #file-input
@@ -155,13 +234,15 @@ i
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-
 }
 
-main
+.notify-container
 {
-  display: block;
-  margin: auto;
-  color:#5f2ac2;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:0;
+  height:90%;
 }
+

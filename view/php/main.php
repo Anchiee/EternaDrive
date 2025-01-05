@@ -102,15 +102,47 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profile_picture"];
     <main>
       <?php
         if(empty($filesData)) {
-          echo "<img src='../../assets/images/file.png' alt='file image' width='200'>
+          echo "<div class='notify-container'>
+                <img src='../../assets/images/file.png' alt='file image' width='200'>
                 <h1>Oops... Nothing found!</h1>
-                <p>Add some files using the add button and stop worrying about your storage.";
+                <p>Add some files using the add button and stop worrying about your storage.
+                </div>";
 
+        }
+        else
+        {
+          echo "<h1>My disk</h1>";
+          echo "<div class='file-container'>";
+          echo "<table>";
+          echo"
+          <tr>
+            <th>File name</th>
+            <th>File type</th>
+            <th>File size</th>
+            <th>Creation date</th>
+          </tr>";
+          foreach($filesData as $column)
+          {
+
+            echo "
+              
+                <tr class='file-info'>
+                  <td>" . $column['file_name'] . "</td>
+                  <td>" . $column["file_type"] . "</td>
+                  <td>" . round($column["file_size"] / 1024 / 1024, 3) . "MB" . "</td>
+                  <td>" . $column["create_date"] . "</td>
+                  <td><button class='file-edit'>skibidi</button></td>
+                </tr>
+              </div>";
+          }
+          echo "</table>";
+          echo "</div>";
         }
       ?>
     </main>
   </div>
   
 <script src="../js/fileInput.js"></script>  
+<script src="../js/main.js"></script>
 </body>
 </html>

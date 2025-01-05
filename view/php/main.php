@@ -111,16 +111,19 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profile_picture"];
         }
         else
         {
-          echo "<h1>My disk</h1>";
-          echo "<div class='file-container'>";
-          echo "<table>";
-          echo"
-          <tr>
-            <th>File name</th>
-            <th>File type</th>
-            <th>File size</th>
-            <th>Creation date</th>
-          </tr>";
+          echo "
+          <h1>My disk</h1>
+          <div class='table-wrapper'>
+            <table>
+              <thead>
+                <tr>
+                  <th>File name</th>
+                  <th>File type</th>
+                  <th>File size</th>
+                  <th>Creation date</th>
+                </tr>
+              </thead>
+              </tbody class='scrollable'>";
           foreach($filesData as $column)
           {
 
@@ -131,12 +134,30 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profile_picture"];
                   <td>" . $column["file_type"] . "</td>
                   <td>" . round($column["file_size"] / 1024 / 1024, 3) . "MB" . "</td>
                   <td>" . $column["create_date"] . "</td>
-                  <td><button class='file-edit'>skibidi</button></td>
-                </tr>
-              </div>";
+                  <td class='file-button'>
+                    <button class='file-edit'>
+                      <i class='fa-solid fa-trash fa-lg'></i>
+                    </button>
+                  </td>
+
+                  <td class='file-button'>
+                    <button class='file-edit'>
+                      <i class='fa-solid fa-star fa-lg'></i>
+                    </button>
+                  </td>
+                  
+                  <td class='file-button'>
+                    <button class='file-edit'>
+                      <i class='fa-solid fa-download fa-lg'></i>
+                    </button>
+                  </td>
+                  
+                </tr>";
           }
-          echo "</table>";
-          echo "</div>";
+          echo "
+                </tbody>
+              </table>
+            </div>";
         }
       ?>
     </main>

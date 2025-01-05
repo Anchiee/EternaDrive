@@ -36,6 +36,12 @@ h1, th:first-child, td:first-child
   padding-left: 1.5rem;
 }
 
+.table-wrapper
+{
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
 table
 {
   text-align: left;
@@ -44,12 +50,6 @@ table
 }
 
 
-.file-container
-{
-  overflow-y: auto;
-  height: 80vh;
-}
-
 th, td
 {
   padding: 1rem 0;
@@ -57,14 +57,22 @@ th, td
 
 td
 {
+  
   border-top: .1rem solid #5f2ac2;
   border-bottom: .1rem solid #5f2ac2;
-  
 }
+
 
 td:first-child
 {
   max-width: 8rem;
+}
+
+
+.file-button
+{
+  padding: 0;
+  margin: 0;
 }
 
 .file-info:hover
@@ -75,7 +83,9 @@ td:first-child
 .file-edit
 {
   visibility: hidden;
-  
+  border:none;
+  background: transparent;
+  cursor:pointer;
 }
 
 .file-edit-hovered

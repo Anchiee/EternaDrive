@@ -18,6 +18,8 @@ require "templates/main/head.php";
     <?php require "templates/main/verticalNav.php" ?>
     <main>
       <?php
+        $regularStar = '<i class="fa-regular fa-star fa-lg"></i>';
+        $solidStar = '<i class="fa-solid fa-star fa-lg"></i>';
         if(empty($filesData)) {
           echo "<div class='notify-container'>
                 <img src='../../assets/images/file.png' alt='file image' width='200'>
@@ -65,7 +67,7 @@ require "templates/main/head.php";
                     <form action='#' method='post' class='edit-form'>
                       <input type='hidden' name='file-id' value='" . $column["id"] . "'>" .
                       "<button class='edit-button'>
-                        <i class='fa-solid fa-star fa-lg'></i>
+                        <i class='fa-solid fa-download fa-lg'></i>
                       </button>
                     </form>
                   </td>
@@ -73,9 +75,14 @@ require "templates/main/head.php";
                   <td class='file-button'>
                     <form action='#' method='post' class='edit-form'>
                       <input type='hidden' name='file-id' value='" . $column["id"] . "'>" .
-                      "<button class='edit-button'>
-                        <i class='fa-solid fa-download fa-lg'></i>
-                      </button>
+                      "<button class='edit-button'>";
+                        if($column["isFavorite"]) {
+                          echo $solidStar;
+                        }
+                        else {
+                          echo $regularStar;
+                        }
+                      echo "</button>
                     </form>
                   </td>
                   

@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
   $fileId = $_POST["file-id"];
   $fileInfo = returnFile($fileId);
-  unlink("../../" . $fileInfo["file_path"] . $fileInfo["file_name"]);
+  unlink("../../" . $fileInfo["file_path"]);
   deleteFile($fileId);
   
 

@@ -7,7 +7,7 @@ if(empty($_SESSION["username"])) {
   echo "You are not logged in!";
   die();
 }
-
+$_SESSION["currentPage"] = $_SERVER["PHP_SELF"];
 $filesData = returnFiles($_SESSION["username"]);
 $userData = returnUser($_SESSION["username"]);
 $profilePictureDir = "../../assets/profiles/" . $userData["profile_picture"];
@@ -135,21 +135,31 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profile_picture"];
                   <td>" . round($column["file_size"] / 1024 / 1024, 3) . "MB" . "</td>
                   <td>" . $column["create_date"] . "</td>
                   <td class='file-button'>
-                    <button class='file-edit'>
-                      <i class='fa-solid fa-trash fa-lg'></i>
-                    </button>
+                  
+                    <form action='../../includes/controller/FormHandlerDeleteFile.php' method='post' class='edit-form'>
+                      <input type='hidden' name='file-id' value='" . $column["id"] . "'>" .
+                      "<button class='edit-button'>
+                        <i class='fa-solid fa-trash fa-lg'></i>
+                      </button>
+                    </form>
                   </td>
 
                   <td class='file-button'>
-                    <button class='file-edit'>
-                      <i class='fa-solid fa-star fa-lg'></i>
-                    </button>
+                    <form action='#' method='post' class='edit-form'>
+                      <input type='hidden' name='file-id' value='" . $column["id"] . "'>" .
+                      "<button class='edit-button'>
+                        <i class='fa-solid fa-star fa-lg'></i>
+                      </button>
+                    </form>
                   </td>
                   
                   <td class='file-button'>
-                    <button class='file-edit'>
-                      <i class='fa-solid fa-download fa-lg'></i>
-                    </button>
+                    <form action='#' method='post' class='edit-form'>
+                      <input type='hidden' name='file-id' value='" . $column["id"] . "'>" .
+                      "<button class='edit-button'>
+                        <i class='fa-solid fa-download fa-lg'></i>
+                      </button>
+                    </form>
                   </td>
                   
                 </tr>";

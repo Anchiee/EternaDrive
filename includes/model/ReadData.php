@@ -107,3 +107,28 @@ function returnFiles($username)
   }
    
 }
+
+
+function returnFile($fileId) 
+{
+  try {
+    require_once "dbh.php";
+
+    $query = "SELECT * FROM files WHERE id = :id;";
+    $stmt = $pdo->prepare($query);
+
+    $stmt->bindParam(":id", $fileId);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $stmt = null;
+    $pdo = null;
+    
+    return $result;
+
+  } catch(PDOException $e) {
+    return "Error occured:" . $e->getMessage();
+  }
+  
+}

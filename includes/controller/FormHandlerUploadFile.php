@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
   //i didnt add '../../' because simple uploads/ would be more flexible
-  $dir = "uploads/" . $username . "/";
+  $dir = "uploads/" . $username . "/" . $fileName . "/";
   $targetDir = "../../" . $dir . $fileName;
 
   if(!is_dir("../../" . $dir)) {

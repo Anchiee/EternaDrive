@@ -2,7 +2,7 @@ const tableRow = document.getElementsByClassName("file-info");
 
 for (const fileElement of tableRow) {
   fileElement.addEventListener("mouseenter", () => {
-    const buttons = fileElement.getElementsByClassName("file-edit");
+    const buttons = fileElement.getElementsByClassName("edit-form");
     
     for (const buttonElement of buttons) {
       buttonElement.classList.add("file-edit-hovered");
@@ -10,7 +10,7 @@ for (const fileElement of tableRow) {
   });
 
   fileElement.addEventListener("mouseleave", () => {
-    const buttons = fileElement.getElementsByClassName("file-edit");
+    const buttons = fileElement.getElementsByClassName("edit-form");
 
     for (const buttonElement of buttons) {
       buttonElement.classList.remove("file-edit-hovered");

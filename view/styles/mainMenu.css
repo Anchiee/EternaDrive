@@ -82,7 +82,7 @@ td:first-child
   background-color: #e5e2e2;
 }
 
-form
+.edit-form
 {
   visibility: hidden;
 }

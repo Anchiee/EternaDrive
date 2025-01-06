@@ -2,11 +2,11 @@
 
   <form action="../../includes/controller/FormHandlerUploadFile.php" method="post" enctype="multipart/form-data" id="file-form">
     
-  <label for="file-input" class="custom-file-upload">
-    <i class="fa-solid fa-plus" style="font-weight:lighter;"></i>
-    Add
-  </label>
-  <input type="file" name="file-upload" id="file-input">
+    <label for="file-input" class="custom-file-upload">
+      <i class="fa-solid fa-plus" style="font-weight:lighter;"></i>
+      Add
+    </label>
+    <input type="file" name="file-upload" id="file-input">
   </form>
 
 

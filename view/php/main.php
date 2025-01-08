@@ -64,23 +64,25 @@ require "templates/main/head.php";
                   </td>
 
                   <td class='file-button'>
-                    <form action='#' method='post' class='edit-form'>
-                      <input type='hidden' name='file-id' value='" . $column["id"] . "'>" .
+                    <form action='../../includes/controller/FormHandlerDownloadFile.php' method='get' class='edit-form'>
+                      <input type='hidden' name='file-name' value='" . $column["file_name"] . "'>" .
                       "<button class='edit-button'>
-                        <i class='fa-solid fa-download fa-lg'></i>
-                      </button>
-                    </form>
+                          <i class='fa-solid fa-download fa-lg'></i>
+                        </button>
+                      </form>
                   </td>
                   
                   <td class='file-button'>
-                    <form action='#' method='post' class='edit-form'>
+                    <form action='../../includes/controller/FormHandlerControllerFavorite.php' method='post' class='edit-form'>
                       <input type='hidden' name='file-id' value='" . $column["id"] . "'>" .
                       "<button class='edit-button'>";
                         if($column["isFavorite"]) {
-                          echo $solidStar;
+                          echo $solidStar . "</button>";
+                          echo "<input type='hidden' name='favorite-status' value='true'>";
                         }
                         else {
-                          echo $regularStar;
+                          echo $regularStar . "</button>";
+                          echo "<input type='hidden' name='favorite-status' value='false'>";
                         }
                       echo "</button>
                     </form>

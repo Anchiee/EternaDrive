@@ -129,6 +129,33 @@ function returnFile($fileId)
 
   } catch(PDOException $e) {
     return "Error occured:" . $e->getMessage();
+  } 
+}
+
+
+function returnFavoriteFiles($fileId, $userId)
+{
+  try {
+
+    require_once "dbh.php";
+
+    $query = "SELECT * FROM files WHERE id = :fileId AND user_id = :userId;";
+    $stmt = $pdo->prepare($query);
+
+    $stmt->bindParam(":fileId", $fileId);
+    $stmt->bindParam(":userId", $userId);
+
+    $stmt->execute();
+
+    $result = $pdo->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmt = null;
+    $pdo = null;
+
+    return $result;
+
+  } catch(PDOException $e) {
+    return "Query failed:" . $e->getMessage();
   }
   
 }

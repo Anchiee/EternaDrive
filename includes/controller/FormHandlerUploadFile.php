@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   $fileType = $_FILES["file-upload"]["type"];
   $fileSize = $_FILES["file-upload"]["size"];
 
-  AddFile($fileName, $targetDir, $userId, $fileType, $fileSize);
+  AddFile($fileName, $dir . $fileName, $userId, $fileType, $fileSize);
 
   die();
 }

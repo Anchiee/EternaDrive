@@ -199,8 +199,6 @@ p
 {
   box-sizing: border-box;
   padding: 1rem 0;
-  border-top-right-radius: 2rem;
-  border-bottom-right-radius: 2rem;
 }
 
 .vertical-nav a.chosen-option

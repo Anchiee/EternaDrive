@@ -29,13 +29,8 @@
     <i class="fa-solid fa-triangle-exclamation"></i>
     Spam
   </a>
-
-  <a href="#" <?php echo $chosenOption[3] ?>>
-    <i class="fa-solid fa-trash"></i>
-    Trash
-  </a>
   
-  <a href="#" <?php echo $chosenOption[4] ?>>
+  <a href="#" <?php echo $chosenOption[3] ?>>
     <i class="fa-solid fa-chart-simple"></i>
     Stats
   </a>

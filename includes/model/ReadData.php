@@ -133,21 +133,21 @@ function returnFile($fileId)
 }
 
 
-function returnFavoriteFiles($fileId, $userId)
+function returnFavoriteFiles($favoriteStatus, $userId)
 {
   try {
 
-    require_once "dbh.php";
+    require "dbh.php";
 
-    $query = "SELECT * FROM files WHERE id = :fileId AND user_id = :userId;";
+    $query = "SELECT * FROM files WHERE is_favorite = :favoriteStatus AND user_id = :userId;";
     $stmt = $pdo->prepare($query);
 
-    $stmt->bindParam(":fileId", $fileId);
+    $stmt->bindParam(":favoriteStatus", $favoriteStatus);
     $stmt->bindParam(":userId", $userId);
 
     $stmt->execute();
 
-    $result = $pdo->fetchAll(PDO::FETCH_ASSOC);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $stmt = null;
     $pdo = null;

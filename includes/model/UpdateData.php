@@ -28,7 +28,7 @@ function setFavorite($fileId)
   require "dbh.php";
 
   try {
-    $query = "UPDATE files SET isFavorite = true WHERE id = :id";
+    $query = "UPDATE files SET is_favorite = true WHERE id = :id";
     $stmt = $pdo->prepare($query);
 
     $stmt->bindParam(":id", $fileId);
@@ -51,7 +51,7 @@ function unsetFavorite($fileId)
   try {
     require_once "dbh.php";
 
-    $query = "UPDATE files SET isFavorite = false WHERE id = :id;";
+    $query = "UPDATE files SET is_favorite = false WHERE id = :id;";
     $stmt = $pdo->prepare($query);
 
     $stmt->bindParam(":id", $fileId);

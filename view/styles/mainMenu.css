@@ -198,19 +198,32 @@ p
   text-align: left;
   margin-bottom: 2.7rem;
   width: 100%;
-}
-
-.vertical-nav a:visited
-{
   outline: none;
+  color: #5f2ac2;
 }
 
-.vertical-nav a:active
+.chosen-option
+{
+  box-sizing: border-box;
+  padding: 1rem 0;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.vertical-nav a.chosen-option
+{
+  background-color: #5f2ac2;
+  color: #EEEEEE;
+}
+
+.chosen-option:visited
 {
   color: inherit;
 }
 
-.logo:active
+
+
+.logo
 {
   color:#5f2ac2;
 }
@@ -234,16 +247,6 @@ p
 {
   background-color: #5f2ac2;
   color:#EEEEEE;
-}
-
-.chosen-option
-{
-  background-color: #5f2ac2;
-  color: #EEEEEE;
-  box-sizing: border-box;
-  padding: 1rem 0;
-  border-top-right-radius: 2rem;
-  border-bottom-right-radius: 2rem;
 }
 
 .container

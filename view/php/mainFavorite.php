@@ -1,14 +1,12 @@
-
-
 <?php 
 
-$title = "Main";
+$title = "Favorites";
 require "templates/main/head.php";
-$chosenOption[0] = "class='chosen-option'";
+$filesData = returnFavoriteFiles(true, $userData["id"]);
+
+$chosenOption[1] = "class='chosen-option'";
 
 ?>
-
-
 
 <body>
 

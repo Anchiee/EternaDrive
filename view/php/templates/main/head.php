@@ -16,6 +16,9 @@ $filesData = returnFiles($_SESSION["username"]);
 $userData = returnUser($_SESSION["username"]);
 $profilePictureDir = "../../assets/profiles/" . $userData["profile_picture"];
 
+// corresponds to chosen option class in horizontal nav bar eg. chosenOption[0] would be main, chosenOption[1] would be favorites etc.
+$chosenOption = ["", "", "", "", ""];
+
 ?>
 
 <!DOCTYPE html>

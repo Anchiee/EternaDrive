@@ -10,32 +10,32 @@
   </form>
 
 
-  <a href="#" class="chosen-option">
+  <a href="./main.php" <?php echo $chosenOption[0] ?>>
     <i class="fa-solid fa-house"></i>
     Main
   </a>
   
-  <a href="#">
+  <a href="./mainFavorite.php" <?php echo $chosenOption[1] ?>>
     <i class="fa-solid fa-star"></i>
     Favorite
   </a>
 
-  <a href="#">
+  <a href="#" <?php echo $chosenOption[2] ?>>
     <i class="fa-solid fa-clock"></i>
     Recent
   </a>
   
-  <a href="#">
+  <a href="#" <?php echo $chosenOption[2] ?>>
     <i class="fa-solid fa-triangle-exclamation"></i>
     Spam
   </a>
 
-  <a href="#">
+  <a href="#" <?php echo $chosenOption[3] ?>>
     <i class="fa-solid fa-trash"></i>
     Trash
   </a>
   
-  <a href="#">
+  <a href="#" <?php echo $chosenOption[4] ?>>
     <i class="fa-solid fa-chart-simple"></i>
     Stats
   </a>

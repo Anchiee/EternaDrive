@@ -87,13 +87,6 @@ td:first-child
   visibility: hidden;
 }
 
-.edit-button
-{
-  
-  border:none;
-  background: transparent;
-  cursor:pointer;
-}
 
 .file-edit-hovered
 {

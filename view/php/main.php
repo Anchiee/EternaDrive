@@ -54,6 +54,14 @@ require "templates/main/head.php";
                   <td>" . round($column["file_size"] / 1024 / 1024, 3) . "MB" . "</td>
                   <td>" . $column["create_date"] . "</td>
                   <td class='file-button'>
+                    <form action='../../includes/controller/FormHandlerSee.php' method='get' class='edit-form'>
+                      <input type='hidden' name='file-name' value='" . $column["file_name"] . "'>" .
+                      "<button class='edit-button'>
+                        <i class='fa-solid fa-eye fa-lg'></i>
+                      </button>
+                    </form>
+                  </td>
+                  <td class='file-button'>
                   
                     <form action='../../includes/controller/FormHandlerDeleteFile.php' method='post' class='edit-form'>
                       <input type='hidden' name='file-id' value='" . $column["id"] . "'>" .

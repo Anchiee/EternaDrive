@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   $_SESSION["code"] = $code;
 
   header("Location: ../../view/php/registerCode.php");
-  AddUser($username, $password, $email);
+  addUser($username, $password, $email);
   sendEmail($email, $username, $code);
   header("Location: ../../view/php/main.php");
   die();

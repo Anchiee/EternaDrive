@@ -56,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     
 
     addMemoryUsage($username, $fileSize);
-    AddFile($fileName, $dir . $fileName, $userId, $fileType, $fileSize);
+    addFile($fileName, $dir . $fileName, $userId, $fileType, $fileSize);
     die();
   }
 

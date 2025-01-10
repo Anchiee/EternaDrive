@@ -1,7 +1,7 @@
 <?php
 
 
-function AddUser($username,  $password, $email)
+function addUser($username,  $password, $email)
 {
 
   try {
@@ -29,7 +29,7 @@ function AddUser($username,  $password, $email)
 }
 
 
-function AddFile($fileName, $filePath, $userId, $type, $size)
+function addFile($fileName, $filePath, $userId, $type, $size)
 {
   try {
 

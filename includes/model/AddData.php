@@ -56,3 +56,4 @@ function AddFile($fileName, $filePath, $userId, $type, $size)
     return "Query failed:" . $e->getMessage();
   }
 }
+

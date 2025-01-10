@@ -34,4 +34,15 @@
     <i class="fa-solid fa-chart-simple"></i>
     Stats
   </a>
+
+  <section class="memory-section">
+    <div class="progress-bar">
+      <div class="progress-bar-percentage" style='width: <?php echo round($userData["memory_usage"] / 1024 / 1024, 2) / 500 * 100 .  '%'?>'"></div>
+    </div>
+    <p class="memory-info"><?php echo "Used "  . round($userData["memory_usage"] / 1024 / 1024, 2) . " MB out of 500MB"?></p>
+
+  </section>
+  
+
+
 </nav>

@@ -33,7 +33,7 @@
                 <tr class='file-info'>
                   <td>" . $column['file_name'] . "</td>
                   <td>" . $column["file_type"] . "</td>
-                  <td>" . round($column["file_size"] / 1024 / 1024, 3) . "MB" . "</td>
+                  <td>" . round($column["file_size"] / 1024 / 1024, 2) . "MB" . "</td>
                   <td>" . $column["create_date"] . "</td>
                   <td class='file-button'>
                     <form action='../../includes/controller/FormHandlerSee.php' method='get' class='edit-form'>

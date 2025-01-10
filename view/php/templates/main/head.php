@@ -43,9 +43,6 @@ $fileSize = "";
 $fileDate = "";
 $isFavorite = "";
 
-$regularStar = '<i class="fa-regular fa-star fa-lg"></i>';
-$solidStar = '<i class="fa-solid fa-star fa-lg"></i>';
-
 if(!empty($filesData)) {
 
   foreach($filesData as $column) {

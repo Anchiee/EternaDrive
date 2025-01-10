@@ -1,3 +1,5 @@
+(ABANDONED DUE TO PROJECT CORRUPTION)
+
 # EternaDrive
 Securely share and manage your files anytime, anywhere!</a>
 

@@ -1,21 +1,14 @@
-
-
 <?php 
 
-$title = "Main";
+$title = "Recent";
 require "templates/main/head.php";
-$chosenOption[0] = "class='chosen-option'";
+$filesData = returnFavoriteFiles(true, $userData["id"]);
 
-$regularStar = '<i class="fa-regular fa-star fa-lg"></i>';
-$solidStar = '<i class="fa-solid fa-star fa-lg"></i>';
-
+$chosenOption[2] = "class='chosen-option'";
 
 ?>
 
-
-
 <body>
-
 
   <?php require "templates/main/horizontalNav.php" ?>
 
@@ -23,7 +16,6 @@ $solidStar = '<i class="fa-solid fa-star fa-lg"></i>';
 
     <?php require "templates/main/verticalNav.php" ?>
     <?php require "templates/main/mainBody.php" ?>
-    
   </div>
   
 <script src="../js/fileInput.js"></script>  

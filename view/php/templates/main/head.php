@@ -19,6 +19,54 @@ $profilePictureDir = "../../assets/profiles/" . $userData["profile_picture"];
 // corresponds to chosen option class in horizontal nav bar eg. chosenOption[0] would be main, chosenOption[1] would be favorites etc.
 $chosenOption = ["", "", "", ""];
 
+
+$tableHead = "
+
+  <h1>My disk</h1>
+  <div class='table-wrapper'>
+    <table>
+      <thead>
+        <tr>
+          <th>File name</th>
+          <th>File type</th>
+          <th>File size</th>
+          <th>Creation date</th>
+        </tr>
+      </thead>
+";
+
+$tableBody = "";
+$fileId = "";
+$fileName = "";
+$fileType = "";
+$fileSize = "";
+$fileDate = "";
+$isFavorite = "";
+
+$regularStar = '<i class="fa-regular fa-star fa-lg"></i>';
+$solidStar = '<i class="fa-solid fa-star fa-lg"></i>';
+
+if(!empty($filesData)) {
+
+  foreach($filesData as $column) {
+    $fileId = $column["id"];
+    $fileName = $column["file_name"];
+    $fileType = $column["file_type"];
+    $fileSize = round($column["file_size"] / 1024 / 1024, 2);
+    $fileDate = $column["create_date"];
+    $isFavorite = $column["is_favorite"];
+  }
+}
+$templateContent = file_get_contents(__DIR__ . "/tableBody.php");
+
+$templateContent = str_replace("{{file_id}}", $fileId, $templateContent);
+$templateContent = str_replace("{{file_name}}", $fileName, $templateContent);
+$templateContent = str_replace("{{file_type}}", $fileType, $templateContent);
+$templateContent = str_replace("{{file_size}}", $fileSize, $templateContent);
+$templateContent = str_replace("{{file_date}}", $fileDate, $templateContent);
+
+$tableBody = $templateContent;
+
 ?>
 
 <!DOCTYPE html>

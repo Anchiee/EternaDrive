@@ -20,7 +20,7 @@
     Favorite
   </a>
 
-  <a href="#" <?php echo $chosenOption[2] ?>>
+  <a href="./mainRecent.php" <?php echo $chosenOption[2] ?>>
     <i class="fa-solid fa-clock"></i>
     Recent
   </a>

@@ -12,9 +12,9 @@ export default function Nav()
       </div>
     
       <div>
-        <Link className="text-[.9rem] mx-9 hover:text-red-700 transition-all" href="about">About us</Link>
-        <Link className="outline-2 outline-red-600 px-5 py-2 rounded-4xl text-[.9rem]
-        hover:bg-red-600 hover:text-white-300 transition-all">SIGN-IN</Link>
+        <Link className="outline-2 outline-red-800 px-5 py-2 rounded-4xl text-[.7rem]
+        hover:bg-red-800 hover:text-white-300 transition-all" 
+        href={route("login")}>SIGN-IN</Link>
       </div>
     </nav>
   )

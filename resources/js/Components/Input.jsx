@@ -6,10 +6,10 @@ export default function Input(props)
     <input 
     type={props.InputType} 
     placeholder={props.InputPlaceholder}
-    className="bg-transparent border border-gray-300 text-gray-900 text-sm rounded-lg
-     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -gray-600"
-    InputId={props.InputId}
-    InputOnChange={props.InputOnChange}
+    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-800 
+    focus:border-red-800 block w-full p-2.5"
+    id={props.InputId}
+    onChange={props.InputOnChange}
     />
   )
 }

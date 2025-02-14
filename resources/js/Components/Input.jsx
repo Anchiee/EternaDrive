@@ -16,7 +16,7 @@ export default function Input(props)
 
 Input.propTypes = {
   InputType: PropTypes.string.isRequired,
-  InputPlaceholder: PropTypes.string.isRequired,
+  InputPlaceholder: PropTypes.string,
   InputId: PropTypes.string.isRequired,
   InputOnChange: PropTypes.func.isRequired,
 }

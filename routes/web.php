@@ -20,6 +20,7 @@ Route::middleware(["auth", "verified"])->group(function() {
 
 Route::middleware("guest")->group(function() {
     Route::get("/sign", [RegisteredUserController::class, "create"])->name("sign");
+    Route::get("/login", [AuthenticatedSessionController::class, "create"])->name("login");
 });
 
 require __DIR__.'/auth.php';

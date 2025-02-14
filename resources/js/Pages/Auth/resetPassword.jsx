@@ -17,7 +17,7 @@ export default function ResetPassword()
 
   const onSubmit = (e) => {
     e.preventDefault()
-    post("/forgot-password", data)
+    post("/reset-password", data)
   }
 
   return(

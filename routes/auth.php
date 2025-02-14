@@ -19,29 +19,40 @@ Route::middleware("guest")->group(function() {
   Route::post("/sign", [RegisteredUserController::class, "store"])->name("sign");
   Route::post("/login", [AuthenticatedSessionController::class, "store"])->name("login");
 
+  //creates forgot password email form
   Route::get("/forgot-password", [PasswordResetLinkController::class, "create"])->
   name("password.request");
 
-  Route::post("/forgot-password", [PasswordResetLinkController::class, "store"])->middleware("throttle:1,1")->
+  //sends the email link
+  Route::post("/forgot-password", [PasswordResetLinkController::class, "store"])->
   name("password.email");
 
+  //when the user clicks the link display the new password form
   Route::get("/reset-password/{token}", [NewPasswordController::class, "create"])->
   name("password.reset");
+
+  //handle the new password form
+  Route::post("/reset-password", [NewPasswordController::class, "store"])->name("password.update");
+
 });
 
 Route::middleware("auth")->group(function () {
 
   
+
+  //display the verify email notification
   Route::get("/email/verify", function() {
     return Inertia::render("Auth/verifyEmail");
   })->name("verification.notice");
 
+  //when the user clicks the link
   Route::get("/email/verify/{id}/{hash}", function(EmailVerificationRequest $request) {
     $request->fulfill();
 
     return redirect(route("dashboard", absolute:false));
   })->middleware("signed")->name("verification.verify");
 
+  //resend the email link
   Route::post("/email/verify", function(Request $request) {
     $request->user()->sendEmailVerificationNotification();
 

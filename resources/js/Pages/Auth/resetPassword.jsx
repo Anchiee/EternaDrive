@@ -1,5 +1,6 @@
 import CenteredCardLayout from "@/Layouts/CenteredCardLayout";
-import { usePage, useForm } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react";
+import useUser from "@/Hooks/useUser";
 import Input from "@/Components/Input";
 import SolidButton from "@/Components/SolidButton";
 import ErrorMessage from "@/Components/ErrorMessage";
@@ -7,22 +8,18 @@ import ErrorMessage from "@/Components/ErrorMessage";
 export default function ResetPassword()
 {
   const {token} = usePage().props
-
-  const {post, data, setData, errors} = useForm({
+  
+  const {onSubmit, errors, setData} = useUser({
     "email": "",
     "password":"",
     "password_confirmation":"",
     "token": token
-  })
+  }) 
 
-  const onSubmit = (e) => {
-    e.preventDefault()
-    post("/reset-password", data)
-  }
 
   return(
     <CenteredCardLayout title="Reset password">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={(e) => onSubmit(e, "/reset-password")} className="px-6">
         <div className="my-6">
           <label htmlFor="email">Email</label>
           <Input InputId="email" InputType="email" InputPlaceholder="name@example.com" 

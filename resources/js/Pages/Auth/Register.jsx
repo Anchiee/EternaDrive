@@ -1,5 +1,5 @@
 import Input from "@/Components/Input"
-import {  useForm } from "@inertiajs/react"
+import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
 import AuthLayout from "@/Layouts/AuthLayout"
 import SolidButton from "@/Components/SolidButton"
@@ -9,20 +9,16 @@ import InlinePrompt from "@/Components/InlinePrompt"
 export default function Register()
 {
 
-  const {errors, post, data, setData} = useForm({
+  const {onSubmit, errors, setData} = useUser({
     "name": "",
     "email": "",
     "password": "",
     "password_confirmation":""
   }) 
 
-  const onSubmit = (e) => {
-    e.preventDefault()
-    post("/sign", data)
-  }
 
   return (
-    <AuthLayout onSubmit={onSubmit}>
+    <AuthLayout onSubmit={(e) => onSubmit(e, "/sign")}>
       <div className="my-4">
         <label htmlFor="username">Username</label>
         <Input InputId="username" InputType="text" InputPlaceholder="John"

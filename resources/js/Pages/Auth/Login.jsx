@@ -1,5 +1,6 @@
 import AuthLayout from "@/Layouts/AuthLayout"
-import { Link, useForm, usePage } from "@inertiajs/react"
+import useUser from "@/Hooks/useUser"
+import { usePage } from "@inertiajs/react"
 import ErrorMessage from "@/Components/ErrorMessage"
 import Input from "@/Components/Input"
 import SolidButton from "@/Components/SolidButton"
@@ -7,19 +8,15 @@ import InlinePrompt from "@/Components/InlinePrompt"
 
 export default function Login()
 {
+
   const {status, canResetPassword} = usePage().props
-  const {errors, post, data, setData} = useForm({
+  const {onSubmit, errors, setData} = useUser({
     "email": "",
     "password": "",
-  }) 
-
-  const onSubmit = (e) => {
-    e.preventDefault()
-    post("/login", data)
-  }
+  })
 
   return(
-    <AuthLayout onSubmit={onSubmit}>
+    <AuthLayout onSubmit={(e) => onSubmit(e, "/login")}>
 
       <div className="my-4">
         <label htmlFor="email">Email</label>
@@ -36,7 +33,10 @@ export default function Login()
       </div>
 
       <InlinePrompt PromptHeader="New to EternaDrive?" PromptText="Sign-in" PromptRoute="sign"/>
-      <InlinePrompt PromptHeader="Forgot password?" PromptText="Click here" PromptRoute="password.request"/>
+      {canResetPassword && 
+      <InlinePrompt PromptHeader="Forgot password?" PromptText="Click here" PromptRoute="password.request"/>}
+
+      {status && <p className="text-xs my-1 text-red-600">{status}</p>}
 
       <SolidButton ButtonType="submit" ButtonText="Log-in"/>
 

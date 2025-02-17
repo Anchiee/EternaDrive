@@ -10,15 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
-
+use DB;
 class ProfileController extends Controller
 {
-
-    public function show() {
-        return Inertia::render("Dashboard", [
-            "user" => Auth::user()
-        ]);
-    }
     
     /**
      * Display the user's profile form.

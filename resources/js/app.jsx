@@ -17,7 +17,7 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        el.classList.add("size-full")
+        el.classList.add("min-h-screen")
         root.render(<App {...props} />);
     },
     progress: {

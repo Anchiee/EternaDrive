@@ -43,7 +43,7 @@ export default function Nav()
               <FontAwesomeIcon icon={faGear}/>
               Settings
             </Link>
-            <Link className="my-2 flex items-center gap-1 font-light hover:text-red-800 transition-all" 
+            <Link className="my-2 flex items-center gap-1 font-light hover:text-red-800 transition-all cursor-pointer" 
             href={route("user.destroy")} method="delete">
               <FontAwesomeIcon icon={faRightFromBracket}/>
               Log out

@@ -19,6 +19,7 @@ Route::middleware("guest")->group(function() {
   Route::post("/sign", [RegisteredUserController::class, "store"])->name("sign");
   Route::post("/login", [AuthenticatedSessionController::class, "store"])->name("login");
 
+
   //creates forgot password email form
   Route::get("/forgot-password", [PasswordResetLinkController::class, "create"])->
   name("password.request");
@@ -58,5 +59,9 @@ Route::middleware("auth")->group(function () {
 
     return back()->with("message","Verification link sent!");
   })->middleware("throttle:6,1")->name("verification.send");
+
+  Route::middleware("verified")->group(function() {
+    Route::delete("/user", [AuthenticatedSessionController::class, "destroy"])->name("user.destroy");
+  });
 });
 

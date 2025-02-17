@@ -1,6 +1,14 @@
+import { Head } from "@inertiajs/react"
+import AppLayout from "@/Layouts/AppLayout"
 
 
 export default function Dashboard()
 {
-  return <h1>signed uwuw</h1>
+  return(
+    <>
+      <Head title="Dashboard"/>
+      <AppLayout></AppLayout>
+    </>
+    
+  )
 }

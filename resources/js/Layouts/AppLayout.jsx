@@ -5,7 +5,7 @@ export default function AppLayout({children})
   return(
     <>
       <Nav/>
-      <main className="size-full">
+      <main className="min-h-full">
         {children}
       </main>
     </>

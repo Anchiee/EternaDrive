@@ -15,7 +15,9 @@ Route::get("/", function() {
 
 
 Route::middleware(["auth", "verified"])->group(function() {
-    Route::get("/dashboard", [ProfileController::class, "show"])->name("dashboard");
+    Route::get("/dashboard", function() {
+        return Inertia::render("Dashboard");
+    })->name("dashboard");
 });
 
 Route::middleware("guest")->group(function() {

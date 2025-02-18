@@ -39,7 +39,8 @@ export default function Nav()
             <p className="text-[.9rem] mt-2">{auth.user.name}</p>
             <p className="text-[.9rem] text-gray-500 border-b-[1px] border-gray-300 mb-2 pb-2">{auth.user.email}</p>
 
-            <Link className="my-2 flex items-center gap-1 font-light box-border hover:text-red-800 transition-all">
+            <Link className="my-2 flex items-center gap-1 font-light box-border hover:text-red-800 transition-all"
+            href={route("profile.edit")}>
               <FontAwesomeIcon icon={faGear}/>
               Settings
             </Link>

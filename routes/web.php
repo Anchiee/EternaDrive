@@ -18,6 +18,9 @@ Route::middleware(["auth", "verified"])->group(function() {
     Route::get("/dashboard", function() {
         return Inertia::render("Dashboard");
     })->name("dashboard");
+
+    Route::get("/settings", [ProfileController::class, "edit"])->name("profile.edit");
+    Route::delete("/settings", [ProfileController::class, "destroy"])->name("profile.destroy");
 });
 
 Route::middleware("guest")->group(function() {

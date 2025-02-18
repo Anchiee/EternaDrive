@@ -1,7 +1,7 @@
 import { Link, usePage } from "@inertiajs/react"
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGear, faRightFromBracket } from "@fortawesome/free-solid-svg-icons"
+import { faGear, faRightFromBracket, faCircleUser } from "@fortawesome/free-solid-svg-icons"
 
 export default function Nav()
 {
@@ -31,7 +31,7 @@ export default function Nav()
         <div className="relative">
 
           <button className="cursor-pointer" onClick={() => setIsHidden(prev => !prev)}>
-            <img src={auth.user.profile_path} alt="profile picture" width="40"/>
+            <FontAwesomeIcon icon={faCircleUser} size="2x"/>
           </button>
 
           {!isHidden &&

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string("profile_path")->default("/assets/default_profile.png");
+            $table->unsignedBigInteger("memory_usage")->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

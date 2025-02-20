@@ -4,7 +4,7 @@ import SolidButton from "./SolidButton";
 import { popUpContext } from "@/Contexts/Popup";
 import { useContext } from "react";
 
-export default function EditProfile(props)
+export default function EditProfile()
 {
   const { popUpOption, setPopUpOption} = useContext(popUpContext
   )

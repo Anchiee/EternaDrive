@@ -1,20 +1,17 @@
 import EditUserLayout from "@/Layouts/EditUserLayout";
 import Input from "./Input";
-import PropTypes from "prop-types";
 import SolidButton from "./SolidButton";
 import { popUpContext } from "@/Contexts/Popup";
 import { useContext } from "react";
-import { AnimatePresence } from "motion/react";
 
 export default function EditProfile(props)
 {
-  const {  setPopUpOption} = useContext(popUpContext
-
+  const { popUpOption, setPopUpOption} = useContext(popUpContext
   )
   return  (
     <EditUserLayout>
-      <label htmlFor={props.option}>{props.option}</label>
-      <Input InputId={props.option} InputType="text"/>
+      <label htmlFor={popUpOption}>{popUpOption}</label>
+      <Input InputId={popUpOption} InputType="text"/>
 
       <label htmlFor="password">Password</label>
       <Input InputId="password" InputType="password"/>

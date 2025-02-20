@@ -65,6 +65,7 @@ export default function Edit()
           </div>
         </section>
 
+        {/*delete account dialog*/}
         <AnimatePresence>
           {!isHidden &&
           <EditUserLayout onSubmit={(e) => onSubmit(e, "/settings", "delete")}>
@@ -80,6 +81,7 @@ export default function Edit()
           </EditUserLayout>}
         </AnimatePresence>
 
+        {/*edit credentials dialog*/}
         <AnimatePresence>
           {popUpOption &&
               <EditProfile option={popUpOption}/>

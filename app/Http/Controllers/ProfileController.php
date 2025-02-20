@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 use DB;
+use Hash;
+
 class ProfileController extends Controller
 {
     
@@ -30,13 +32,20 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $validated = $request->validated();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user->fill($validated);
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
+        else if(!empty($validated["new_password"])) {
+            $user->password = Hash::make($validated["new_password"]);
+        }
+        
 
-        $request->user()->save();
+        $user->save();
 
         return Redirect::route('profile.edit');
     }

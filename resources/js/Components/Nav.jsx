@@ -1,7 +1,10 @@
 import { Link, usePage } from "@inertiajs/react"
+import { AnimatePresence } from "motion/react"
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGear, faRightFromBracket, faCircleUser } from "@fortawesome/free-solid-svg-icons"
+import AnimatedComponent from "./AnimatedComponent"
+
 
 export default function Nav()
 {
@@ -34,23 +37,28 @@ export default function Nav()
             <FontAwesomeIcon icon={faCircleUser} size="2x"/>
           </button>
 
+          <AnimatePresence>
           {!isHidden &&
-          <div className="bg-white-300 rounded-md px-5 absolute right-[10%] text-black">
-            <p className="text-[.9rem] mt-2">{auth.user.name}</p>
-            <p className="text-[.9rem] text-gray-500 border-b-[1px] border-gray-300 mb-2 pb-2">{auth.user.email}</p>
+          
+            <AnimatedComponent>
+              <div className="bg-white-300 rounded-md px-5 absolute right-[10%] text-black">
+                <p className="text-[.9rem] mt-2">{auth.user.name}</p>
+                <p className="text-[.9rem] text-gray-500 border-b-[1px] border-gray-300 mb-2 pb-2">{auth.user.email}</p>
 
-            <Link className="my-2 flex items-center gap-1 font-light box-border hover:text-red-800 transition-all"
-            href={route("profile.edit")}>
-              <FontAwesomeIcon icon={faGear}/>
-              Settings
-            </Link>
-            <Link className="my-2 flex items-center gap-1 font-light hover:text-red-800 transition-all cursor-pointer" 
-            href={route("user.destroy")} method="delete">
-              <FontAwesomeIcon icon={faRightFromBracket}/>
-              Log out
-            </Link>
-          </div>
+                <Link className="my-2 flex items-center gap-1 font-light box-border hover:text-red-800 transition-all"
+                href={route("profile.edit")}>
+                  <FontAwesomeIcon icon={faGear}/>
+                  Settings
+                </Link>
+                <Link className="my-2 flex items-center gap-1 font-light hover:text-red-800 transition-all cursor-pointer" 
+                href={route("user.destroy")} method="delete">
+                  <FontAwesomeIcon icon={faRightFromBracket}/>
+                  Log out
+                </Link>
+              </div>
+            </AnimatedComponent>
         }
+        </AnimatePresence>
         </div>
       </div>
       

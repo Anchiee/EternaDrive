@@ -3,11 +3,21 @@ import { useForm } from "@inertiajs/react";
 
 export default function useUser(authFields)
 {
-  const {errors, post, data, setData} = useForm(authFields) 
+  const {errors, post, delete: destroy, data, setData} = useForm(authFields) 
 
-  const onSubmit = (e, route) => {
+  const onSubmit = (e, route, routeMethod = "post") => {
     e.preventDefault()
-    post(route, data)
+
+    switch(routeMethod)
+    {
+      case "post":
+        post(route, data)
+        break
+      case "delete":
+        destroy(route, data)
+        break
+    }
+    
   }
 
   return {onSubmit, setData, errors }

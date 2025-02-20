@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -62,6 +63,8 @@ Route::middleware("auth")->group(function () {
 
   Route::middleware("verified")->group(function() {
     Route::delete("/user", [AuthenticatedSessionController::class, "destroy"])->name("user.destroy");
+
+    Route::delete("/settings", [ProfileController::class, "destroy"])->name("user.delete");
   });
 });
 

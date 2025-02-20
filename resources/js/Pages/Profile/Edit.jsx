@@ -1,9 +1,25 @@
 import { Head, usePage } from "@inertiajs/react"
-import { useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import useUser from "@/Hooks/useUser"
+import Input from "@/Components/Input"
+import EditUserLayout from "@/Layouts/EditUserLayout"
+import SolidButton from "@/Components/SolidButton"
+import ErrorMessage from "@/Components/ErrorMessage"
+import { AnimatePresence } from "motion/react"
+import EditProfile from "@/Components/EditProfile"
+import { popUpContext } from "@/Contexts/popup"
+import PopUpProvider from "@/ContextsProviders/PopUpProvider"
+import AppLayout from "@/Layouts/AppLayout"
+
 
 export default function Edit()
 {
   const {auth, status} = usePage().props
+  const {isHidden, setIsHidden} = useContext(popUpContext)
+
+  const {onSubmit, errors, setData} = useUser({
+    "password": ""
+  })
 
   const date = new Date(auth.user.created_at)
   const year = date.getFullYear()
@@ -12,12 +28,14 @@ export default function Edit()
 
   const formattedDate = `${year}-${month}-${day}`
 
-  let [isHidden, setIsHidden] = useState(true)
+  let [choosenOption, setChoosenOption] = useState(null)
+
+  useEffect(() => {
+    console.log(choosenOption)
+  }, [choosenOption])
 
   return(
-    <>
-      <Head title="Settings"/>
-      <main className="min-h-screen">
+    <AppLayout title="Settings">
         <section className="min-h-screen flex justify-center items-center">
           <div className="bg-white-300 pl-8 pr-19 py-6 rounded-md">
 
@@ -34,9 +52,10 @@ export default function Edit()
 
                   <div className="flex items-center justify-between gap-16">
                     <p>{dataPiece.data}</p>
+
                     {dataPiece.label !== "Join date" && <button 
                     className="bg-red-800 px-3 py-1 text-white-300 rounded-sm cursor-pointer
-                    hover:bg-red-900 transition-all">Edit</button>}
+                    hover:bg-red-900 transition-all" onClick={() => setChoosenOption(dataPiece.label)}>Edit</button>}
                   </div>
                 </div>
               </div>
@@ -45,20 +64,32 @@ export default function Edit()
             
             <button 
             className="border-2 border-red-800 text-red-800 px-3 py-1 rounded-sm mt-4
-            hover:bg-red-800 hover:text-white-300 transition-all cursor-pointer">Delete account</button>
+            hover:bg-red-800 hover:text-white-300 transition-all cursor-pointer"
+            onClick={() => setIsHidden(prev => !prev)}>Delete account</button>
           </div>
         </section>
 
-        <section className="size-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-transparent-300">
-          
-          <div className="size-full flex justify-center items-center">
-            <div className="bg-white-300 pl-8 pr-19 py-6 rounded-md">
-              
+        <AnimatePresence>
+          {!isHidden &&
+          <EditUserLayout onSubmit={(e) => onSubmit(e, "/settings", "delete")}>
+            <h1 className="font-bold text-red-800 tracking-wider my-3">CONFIRM THE ACTION</h1>
+            <label htmlFor="password">Password</label>
+            <Input InputId="password" InputOnChange={(e) => setData("password", e.target.value)} InputType="password"/>
+            {errors.password && <ErrorMessage message={errors.password}/>}
+
+            <div className="flex gap-10 my-3">
+              <button type="button" className="cursor-pointer" onClick={() => setIsHidden(prev => !prev)}>Close</button>
+              <SolidButton ButtonType="submit" ButtonText="Confirm"/>
             </div>
-          </div>
-        </section>
+          </EditUserLayout>}
+        </AnimatePresence>
 
-      </main>
-    </>
+        <AnimatePresence>
+          {choosenOption &&
+            <EditProfile option={choosenOption}/>
+          }
+        </AnimatePresence>
+      
+    </AppLayout>
   )
 }

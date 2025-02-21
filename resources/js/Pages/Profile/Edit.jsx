@@ -38,9 +38,14 @@ export default function Edit()
             {status && <p className="text-base my-1 text-center text-red-600">{status}</p>}
               
               {[
+<<<<<<< HEAD
                 {label: "Name", data: auth.user.name},
                 {label: "Email", data: auth.user.email},
                 {label: "Password", data: "******"},
+=======
+                {label: "Username", data: auth.user.name},
+                {label: "Email", data: auth.user.email},
+>>>>>>> 996d7fcecc04e6998b073fc56b9c1f43651b0119
                 {label: "Join date", data: formattedDate},
               ].map((dataPiece, index) => (
                 <div key={index}>

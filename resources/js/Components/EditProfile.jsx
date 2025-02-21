@@ -2,7 +2,7 @@ import EditUserLayout from "@/Layouts/EditUserLayout";
 import Input from "./Input";
 import SolidButton from "./SolidButton";
 import { popUpContext } from "@/Contexts/Popup";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import useUser from "@/Hooks/useUser";
 import ErrorMessage from "./ErrorMessage";
 
@@ -10,7 +10,7 @@ export default function EditProfile()
 {
   const { popUpOption, setPopUpOption} = useContext(popUpContext)
 
-  const { errors, setData, onSubmit } = useUser({
+  const { errors, setData, onSubmit, data } = useUser({
     password: "",
     new_password: ""
   })
@@ -19,6 +19,11 @@ export default function EditProfile()
     let fieldName = popUpOption === "Password" ? "new_password" : popUpOption.toLowerCase()
     setData(fieldName, e.target.value)
   }
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+  
 
 
   return  (

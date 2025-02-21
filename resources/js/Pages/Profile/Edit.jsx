@@ -1,5 +1,5 @@
 import { usePage, Head } from "@inertiajs/react"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import useUser from "@/Hooks/useUser"
 import Input from "@/Components/Input"
 import EditUserLayout from "@/Layouts/EditUserLayout"

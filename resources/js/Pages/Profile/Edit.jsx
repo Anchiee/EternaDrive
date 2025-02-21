@@ -16,7 +16,7 @@ export default function Edit()
   const {isHidden, setIsHidden, popUpOption, setPopUpOption} = useContext(popUpContext)
 
   const {onSubmit, errors, setData} = useUser({
-    "password": ""
+    "password": "",
   })
 
   const date = new Date(auth.user.created_at)
@@ -40,7 +40,7 @@ export default function Edit()
               {[
                 {label: "Name", data: auth.user.name},
                 {label: "Email", data: auth.user.email},
-                {label: "Password", data: "******"},
+                {label: "Password", data: "********"},
                 {label: "Join date", data: formattedDate},
               ].map((dataPiece, index) => (
                 <div key={index}>

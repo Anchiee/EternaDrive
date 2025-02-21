@@ -5,7 +5,7 @@ import { popUpContext } from "@/Contexts/popup";
 export default function PopUpProvider({children})
 {
   let [isHidden, setIsHidden] = useState(true)
-  let [popUpOption, setPopUpOption] = useState(null)
+  let [popUpOption, setPopUpOption] = useState("")
 
   return(
     <popUpContext.Provider value={{isHidden, setIsHidden, popUpOption, setPopUpOption}}>

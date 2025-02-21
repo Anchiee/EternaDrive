@@ -2,7 +2,11 @@ import EditUserLayout from "@/Layouts/EditUserLayout";
 import Input from "./Input";
 import SolidButton from "./SolidButton";
 import { popUpContext } from "@/Contexts/Popup";
-import { useContext  } from "react";
+<<<<<<< HEAD
+import { useContext, useEffect } from "react";
+=======
+import { useContext } from "react";
+>>>>>>> 996d7fcecc04e6998b073fc56b9c1f43651b0119
 import useUser from "@/Hooks/useUser";
 import ErrorMessage from "./ErrorMessage";
 
@@ -10,7 +14,7 @@ export default function EditProfile()
 {
   const { popUpOption, setPopUpOption} = useContext(popUpContext)
 
-  const { errors, setData, onSubmit} = useUser({
+  const { errors, setData, onSubmit, data} = useUser({
     password: "",
     new_password: ""
   })
@@ -28,15 +32,33 @@ export default function EditProfile()
         {popUpOption === "Password" ? "New password" : popUpOption}
       </label>
 
-      <Input 
-        InputId={popUpOption || "null"} 
-        InputType={popUpOption === "Name" ? "text" : popUpOption.toLowerCase()} 
-        InputOnChange={handleInputChange}
-      />
-      
-      {errors.email && <ErrorMessage message={errors.email}/>}
-      {errors.name && <ErrorMessage message={errors.name}/>}
+      <Input InputId={popUpOption || "null"} 
+      InputType={popUpOption === "Email" ? "email" : popUpOption === "Password" ? "password" : "text"} 
+      InputOnChange={(e) => setData(popUpOption === "Password" ? "new_password" : popUpOption.toLowerCase(), e.target.value)}/>
 
+=======
+  const { errors, setData, onSubmit} = useUser({
+    popUpOption: "",
+    password: ""
+  })
+
+  const onChange = (e) => {
+
+    if(popUpOption === "Username") {
+      setPopUpOption(popUpOption.slice(4, 8))
+    }
+    setData(popUpOption.toLowerCase(), e.target.value)
+    console.log(popUpOption)
+  }
+
+  return  (
+    <EditUserLayout onSubmit={(e) => onSubmit(e, "/settings", "put")}>
+      <label htmlFor={popUpOption}>{popUpOption === "name" ? "Username" : popUpOption}</label>
+      <Input InputId={popUpOption || "null"} 
+      InputType={popUpOption === "Email" ? "email" : "text"} 
+      InputOnChange={onChange}/>
+      {errors.email && <ErrorMessage message={errors.email}/>}
+>>>>>>> 996d7fcecc04e6998b073fc56b9c1f43651b0119
 
       <label htmlFor="password">Password</label>
       <Input 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("name")->unique();
             $table->integer("size");
             $table->date("creation_date")->default(now());
+            $table->string("file_type");
             $table->foreignId("user_id")->constrained();
         });
     }

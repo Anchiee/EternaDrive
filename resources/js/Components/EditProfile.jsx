@@ -36,6 +36,8 @@ export default function EditProfile()
       <Input InputId={popUpOption || "null"} 
       InputType={popUpOption === "Email" ? "email" : popUpOption === "Password" ? "password" : "text"} 
       InputOnChange={handleInputChange}/>
+      {errors.name && <ErrorMessage message={errors.name}/>}
+      {errors.email && <ErrorMessage message={errors.email}/>}
 
       <label htmlFor="password">Password</label>
       <Input 

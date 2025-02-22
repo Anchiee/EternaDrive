@@ -2,9 +2,8 @@ import { Link, usePage } from "@inertiajs/react"
 import { AnimatePresence } from "motion/react"
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGear, faRightFromBracket, faCircleUser } from "@fortawesome/free-solid-svg-icons"
 import AnimatedComponent from "./AnimatedComponent"
-
+import { Settings2, LogOut, User } from "lucide-react"
 
 export default function Nav()
 {
@@ -34,7 +33,7 @@ export default function Nav()
         <div className="relative">
 
           <button className="cursor-pointer" onClick={() => setIsHidden(prev => !prev)}>
-            <FontAwesomeIcon icon={faCircleUser} size="2x"/>
+            <User size={20}/>
           </button>
 
           <AnimatePresence>
@@ -47,12 +46,12 @@ export default function Nav()
 
                 <Link className="my-2 flex items-center gap-1 font-light box-border hover:text-red-800 transition-all"
                 href={route("profile.edit")}>
-                  <FontAwesomeIcon icon={faGear}/>
+                  <Settings2 size={20} strokeWidth={1}/>
                   Settings
                 </Link>
                 <Link className="my-2 flex items-center gap-1 font-light hover:text-red-800 transition-all cursor-pointer" 
                 href={route("user.destroy")} method="delete">
-                  <FontAwesomeIcon icon={faRightFromBracket}/>
+                  <LogOut size={20} strokeWidth={1}/>
                   Log out
                 </Link>
               </div>

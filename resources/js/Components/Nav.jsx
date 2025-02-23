@@ -1,7 +1,6 @@
 import { Link, usePage } from "@inertiajs/react"
 import { AnimatePresence } from "motion/react"
 import { useState } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import AnimatedComponent from "./AnimatedComponent"
 import { Settings2, LogOut, User } from "lucide-react"
 

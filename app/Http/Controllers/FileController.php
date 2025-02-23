@@ -16,19 +16,27 @@ class FileController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            "name" => ["required"],
-            "size" => ["required"],
-            "file_type" => ["required"],
-            "user_id" => ["required"],
+            "file" => "file|required|max:51200"
         ]);
 
 
-        File::create([
-            "name" => $request->name,
-            "size" => $request->size,
-            "file_type" => $request->file_type,
-            "user_id" => $request->user_id
-        ]);
+        $uploadedFile = $request->file("file");
+
+        $fileName = $uploadedFile->getClientOriginalName();
+        $fileExtension = $uploadedFile->extension();
+        $fileSize = $uploadedFile->getSize();
+
+        if($uploadedFile->isValid()) {
+            File::create([
+                "name" => $fileName,
+                "size" => $fileSize,
+                "file_type" => $fileExtension,
+                "user_id" => auth()->id()
+            ]);
+        }
+
+
+       
         return redirect(route("file.index", absolute:false));
     }
 }

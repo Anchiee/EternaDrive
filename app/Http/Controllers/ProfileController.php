@@ -12,6 +12,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use DB;
 use Hash;
+use Storage;
 
 class ProfileController extends Controller
 {
@@ -60,6 +61,11 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+        $userName = $user->name;
+
+        if(Storage::exists($userName)) {
+            Storage::deleteDirectory($userName);
+        }
 
         Auth::logout();
 

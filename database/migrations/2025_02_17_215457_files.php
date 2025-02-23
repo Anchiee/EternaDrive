@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create("files", function(Blueprint $table) {
             $table->id();
-            $table->string("name")->unique();
+            $table->string("name");
             $table->integer("size");
-            $table->date("creation_date")->default(now());
+            $table->date("created_at")->default(now());
+            $table->date("updated_at")->default(now());
             $table->string("file_type");
+            $table->string("random_name");
             $table->foreignId("user_id")->constrained();
         });
     }

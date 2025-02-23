@@ -17,8 +17,7 @@ Route::get("/", function() {
 Route::middleware(["auth", "verified"])->group(function() {
     Route::get("/dashboard", [FileController::class, "index"])->name("file.index");
 
-    Route::get("/settings", [ProfileController::class, "edit"])->name("profile.edit");
-    Route::delete("/settings", [ProfileController::class, "destroy"])->name("profile.destroy");
+    
 });
 
 Route::middleware("guest")->group(function() {
@@ -27,3 +26,4 @@ Route::middleware("guest")->group(function() {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/user.php';

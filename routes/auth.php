@@ -37,6 +37,11 @@ Route::middleware("auth")->group(function () {
 
   //display the verify email notification
   Route::get("/email/verify", function() {
+
+    if(auth()->user()->hasVerifiedEmail()) {
+      return redirect(route("file.index"));
+    }
+
     return Inertia::render("Auth/verifyEmail");
   })->name("verification.notice");
 
@@ -54,8 +59,11 @@ Route::middleware("auth")->group(function () {
     return back()->with("message","Verification link sent!");
   })->middleware("throttle:6,1")->name("verification.send");
 
+  
 
-  Route::post("/file", [FileController::class, "store"])->name("file.store");
 
+  Route::middleware("verified")->group(function() {
+    Route::post("/file", [FileController::class, "store"])->name("file.store");
+  });
 });
 

@@ -1,41 +1,61 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-test('login screen can be rendered', function () {
-    $response = $this->get('/login');
+uses(RefreshDatabase::class);
+
+test("user can access the login screen", function() {
+    $response = $this->get("/login");
 
     $response->assertStatus(200);
 });
 
-test('users can authenticate using the login screen', function () {
+test("authenticated user cant see the login", function() {
     $user = User::factory()->create();
 
-    $response = $this->post('/login', [
-        'email' => $user->email,
-        'password' => 'password',
+
+    $response = $this->actingAs($user)->get("/login");
+
+    $response->assertRedirect("/dashboard");
+});
+
+
+test("empty inputs will appear upon giving an empty input", function() {
+    $response = $this->post("/login", [
+        "email" => "",
+        "password" => ""
     ]);
 
-    $this->assertAuthenticated();
-    $response->assertRedirect(route('dashboard', absolute: false));
+    $response->assertSessionHasErrors(["email", "password"]);
 });
 
-test('users can not authenticate with invalid password', function () {
-    $user = User::factory()->create();
-
-    $this->post('/login', [
-        'email' => $user->email,
-        'password' => 'wrong-password',
+test("incorrect credentials error when giving wrong info", function() {
+    $response = $this->post("/login", [
+        "email" => "wrong@example.com",
+        "password" => "invalid-password"
     ]);
 
-    $this->assertGuest();
+    $response->assertSessionHasErrors();
 });
 
-test('users can logout', function () {
-    $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->post('/logout');
+test("user redirected to verify email when logging and not verified", function() {
+    $password = "123";
+    $user = User::factory()->create([
+        "password" => bcrypt($password),
+        "email_verified_at" => null
+    ]);
 
-    $this->assertGuest();
-    $response->assertRedirect('/');
+    $response = $this->post("/login", [
+        "email" => $user->email,
+        "password" => $password,
+        
+    ]);
+
+    $response->assertRedirect("/dashboard");
+
+    $protectedResponse= $this->actingAs($user)->get("/dashboard");
+    $protectedResponse->assertRedirect("/email/verify");
 });
+

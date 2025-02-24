@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FileController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
@@ -35,31 +36,14 @@ Route::middleware("guest")->group(function() {
 
 Route::middleware("auth")->group(function () {
 
-  //display the verify email notification
-  Route::get("/email/verify", function() {
-
-    if(auth()->user()->hasVerifiedEmail()) {
-      return redirect(route("file.index"));
-    }
-
-    return Inertia::render("Auth/verifyEmail");
-  })->name("verification.notice");
 
   //when the user clicks the link
-  Route::get("/email/verify/{id}/{hash}", function(EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return redirect(route("file.index", absolute:false));
-  })->middleware("signed")->name("verification.verify");
+  Route::get("/email/verify/{id}/{hash}", [EmailController::class, "verificationLink"])
+  ->middleware("signed")->name("verification.verify");
 
   //resend the email link
-  Route::post("/email/verify", function(Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-
-    return back()->with("message","Verification link sent!");
-  })->middleware("throttle:6,1")->name("verification.send");
-
-  
+  Route::post("/email/verify", [EmailController::class, "sendVerificationLink"])
+  ->middleware("throttle:6,1")->name("verification.send");
 
 
   Route::middleware("verified")->group(function() {

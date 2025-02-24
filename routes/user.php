@@ -10,5 +10,4 @@ Route::middleware(["auth", "verified"])->group(function() {
   Route::delete("/user", [AuthenticatedSessionController::class, "destroy"])->name("user.destroy");
   Route::delete("/settings", [ProfileController::class, "destroy"])->name("user.delete");
   Route::put("/settings", [ProfileController::class, "update"])->name("user.update");
-  Route::get("/settings", [ProfileController::class, "edit"])->name("profile.edit");
 });

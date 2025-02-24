@@ -21,7 +21,7 @@ class EmailController extends Controller
     }
 
     public function sendVerificationLink(Request $request) {
-        $request->sendEmailVerificationNotification();
+        $request->user()->sendEmailVerificationNotification();
         return back()->with("message","Verification link sent!");
     }
 }

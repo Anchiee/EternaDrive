@@ -8,14 +8,18 @@
 
 @theme{
   --font-montserrat: "Montserrat", serif;
-  --color-black: #1D1616;
+  
   --color-white-300: #EEEEEE;
+  --color-black: #1c1c1c;
 
   --color-transparent-100: rgba(0, 0, 0, .1);
   --color-transparent-200: rgba(0, 0, 0, .2);
   --color-transparent-300: rgba(0, 0, 0, .3);
   --color-transparent-400: rgba(0, 0, 0, .4);
   --color-transparent-500: rgba(0, 0, 0, .5);
+  --color-transparent-900: rgba(0, 0, 0, .9);
+
+  --color-grayTransparent-700: rgba(54, 65, 83, 0.5);
 }
 
 /*

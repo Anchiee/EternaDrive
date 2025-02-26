@@ -23,5 +23,22 @@ export default function useUser(authFields)
     
   }
 
-  return {onSubmit, setData, errors, data }
+  const fileRequest = (route, routeMethod = "post") => {
+
+    switch(routeMethod)
+    {
+      case "post":
+        post(route, data)
+        break
+      case "delete":
+        destroy(route, data)
+        break
+      case "put":
+        put(route, data)
+        break
+    }
+    
+  }
+
+  return {onSubmit, setData, fileRequest, errors, data }
 }

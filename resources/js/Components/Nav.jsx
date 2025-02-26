@@ -10,7 +10,7 @@ export default function Nav()
   let [isHidden, setIsHidden] = useState(true)
 
   return(
-    <nav className="flex items-center justify-between bg-black border-b-2 border-b-gray-800 
+    <nav className="flex items-center justify-between bg-black border-b-[1px] border-b-grayTransparent-700
     text-white-300 sticky top-0">
 
       <div className="flex items-center">

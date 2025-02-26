@@ -25,7 +25,7 @@ export default function Dashboard()
       <AppLayout title="Dashboard">
 
         <section className="flex gap-5 mt-5">
-          <nav className="flex flex-col border-r-2 border-r-gray-800 pr-10">
+          <nav className="flex flex-col border-r-[1px] border-r-grayTransparent-700 pr-10">
 
             <label 
             htmlFor="file" 

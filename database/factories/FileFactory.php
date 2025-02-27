@@ -22,6 +22,7 @@ class FileFactory extends Factory
             "name" => fake()->name(),
             "size" => fake()->numberBetween(1, 1000),
             "file_type" => fake()->randomElement(["image/png", "image/jpeg", "application/pdf"]),
+            "is_favorite" => fake()->boolean(),
             "user_id" => User::factory(),
         ];
     }

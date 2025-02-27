@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date("updated_at")->default(now());
             $table->string("file_type");
             $table->string("random_name");
+            $table->boolean("is_favorite")->default(false);
             $table->foreignId("user_id")->constrained()->cascadeOnDelete();
         });
     }

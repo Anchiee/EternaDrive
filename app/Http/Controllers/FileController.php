@@ -21,7 +21,11 @@ class FileController extends Controller
         })->
         when($type === "all", function(){
             return null;
-        })->get();
+        })->
+        when($type === "favorites", function($query) {
+            return $query->where("is_favorite", true);
+        })->
+        get();
 
         return Inertia::render("Dashboard", [
             "files" => $files

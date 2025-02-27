@@ -1,9 +1,9 @@
 import AppLayout from "@/Layouts/AppLayout"
 import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
-import { usePage } from "@inertiajs/react"
+import { usePage, Link } from "@inertiajs/react"
 import { useEffect } from "react"
-import { Plus, Clock, Star, Columns2 } from "lucide-react"
+import { Plus, Clock, Star, Columns2} from "lucide-react"
 
 export default function Dashboard()
 {
@@ -41,15 +41,16 @@ export default function Dashboard()
               <section className="flex flex-col gap-3 text-white-300 mt-10">
                 {
                   [
-                    {page: "All", component: <Columns2 size={16}/>},
-                    {page: "Recent", component: <Clock size={16}/>},
-                    {page: "Favorites", component: <Star size={16}/>},
+                    {page: "All", component: <Columns2 size={16}/>, route: route("file.index", {"type": "all"})},
+                    {page: "Recent", component: <Clock size={16}/> , route: route("file.index", {"type": "recent"})},
+                    {page: "Favorites", component: <Star size={16}/> , route: route("file.index", {"type": "favorites"})},
                   ].map(tab => (
 
-                    <p key={tab.page} className="flex items-center gap-2">
+                    <Link key={tab.page} className="flex items-center gap-2 hover:text-red-800 transition-colors" 
+                    href={tab.route}>
                       {tab.component}
                       {tab.page}
-                    </p>
+                    </Link>
                   
                 ))
                 }

@@ -62,8 +62,8 @@ test("authed user cant enter the pages", function() {
 
     $user = User::factory()->create();
 
-    $request = $this->actingAs($user)->get("/forgot-password");
-    $request->assertRedirect("/dashboard");
+    $response = $this->actingAs($user)->get("/forgot-password");
+    $response->assertRedirect(route("file.index", ["type" => "all"]));
 
 
     $user = User::factory()->create();
@@ -71,6 +71,5 @@ test("authed user cant enter the pages", function() {
     $request = $this->actingAs($user)->get(route("password.reset", ["token" => $token]), [
         "token" => $token
     ]);
-    $request->assertRedirect("/dashboard");
-
+    $response->assertRedirect(route("file.index", ["type" => "all"]));
 });

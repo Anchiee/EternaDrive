@@ -9,7 +9,7 @@ class EmailController extends Controller
     public function index()
     {
         if(auth()->user()->hasVerifiedEmail()) {
-            return redirect(route("file.index"));
+            return redirect(route("file.index", ["type" => "all"]));
         }
       
         return Inertia::render("Auth/verifyEmail");
@@ -17,7 +17,7 @@ class EmailController extends Controller
 
     public function verificationLink(EmailVerificationRequest $request) {
         $request->fulfill();
-        return redirect(route("file.index", absolute:false));
+        return redirect(route("file.index", ["type" => "all"]));
     }
 
     public function sendVerificationLink(Request $request) {

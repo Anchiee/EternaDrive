@@ -17,7 +17,7 @@ test("authenticated user cant see the login", function() {
 
     $response = $this->actingAs($user)->get("/login");
 
-    $response->assertRedirect("/dashboard");
+    $response->assertRedirect(route("file.index", ["type" => "all"]));
 });
 
 
@@ -53,9 +53,9 @@ test("user redirected to verify email when logging and not verified", function()
         
     ]);
 
-    $response->assertRedirect("/dashboard");
+    $response->assertRedirect(route("file.index", ["type" => "all"]));
 
-    $protectedResponse= $this->actingAs($user)->get("/dashboard");
+    $protectedResponse= $this->actingAs($user)->get(route("file.index", ["type" => "all"]));
     $protectedResponse->assertRedirect("/email/verify");
 });
 

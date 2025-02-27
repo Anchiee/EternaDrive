@@ -20,7 +20,7 @@ test("verified users cant access the page", function() {
     $user = User::factory()->create();
     $response = $this->actingAs($user)->get("/email/verify");
 
-    $response->assertRedirect("/dashboard");
+    $response->assertRedirect(route("file.index", ["type" => "all"]));
 });
 
 
@@ -38,7 +38,7 @@ test("user can verify the email", function() {
 
     $user->refresh();
     $this->assertNotNull($user->email_verified_at);
-    $response->assertRedirect(route("file.index"));
+    $response->assertRedirect(route("file.index", ["type" => "all"]));
 
 
 });

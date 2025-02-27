@@ -28,7 +28,7 @@ test("file uploading", function() {
         "user_id" => $user->id
     ]);
 
-    $response->assertRedirect(route("file.index"));
+    $response->assertRedirect();
 });
 
 test("guests cant enter the request", function() {

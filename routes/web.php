@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,7 +17,7 @@ Route::get("/", function() {
 
 
 Route::middleware(["auth", "verified"])->group(function() {
-    Route::get("/dashboard", [FileController::class, "index"])->name("file.index");    
+    Route::get("/dashboard/{type}", [FileController::class, "index"])->name("file.index");    
     Route::get("/settings", [ProfileController::class, "edit"])->name("profile.edit");
 });
 

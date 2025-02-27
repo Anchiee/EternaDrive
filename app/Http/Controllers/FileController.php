@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\File;
@@ -10,9 +12,19 @@ use Storage;
 
 class FileController extends Controller
 {
-    public function index() {
+    public function index(string $type) {
+
+        $user = auth()->user();
+        $files = $user->file()->
+        when($type == "recent", function($query) {
+            return $query->orderBy("created_at", "desc");
+        })->
+        when($type === "all", function(){
+            return null;
+        })->get();
+
         return Inertia::render("Dashboard", [
-            "files" => auth()->user()->file()->get()
+            "files" => $files
         ]);
     }
 
@@ -48,6 +60,7 @@ class FileController extends Controller
             
         }
        
-        return redirect(route("file.index", absolute:false));
+        return back();
     }
 }
+

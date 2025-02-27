@@ -28,7 +28,7 @@ export default function Nav()
     {auth.user && 
       <div className="flex items-center gap-10">
         <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
-        href={route("file.index")}>Dashboard</Link>
+        href={route("file.index", {"type": "all"})}>Dashboard</Link>
         <div className="relative">
 
           <button className="cursor-pointer" onClick={() => setIsHidden(prev => !prev)}>

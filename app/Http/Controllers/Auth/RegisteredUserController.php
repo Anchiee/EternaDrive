@@ -46,6 +46,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('file.index', absolute: false));
+        return redirect(route('file.index', ["type" => "all"]));
     }
 }

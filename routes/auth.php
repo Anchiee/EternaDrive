@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 
 
 Route::middleware("guest")->group(function() {
-  Route::post("/sign", [RegisteredUserController::class, "store"])->name("sign");
-  Route::post("/login", [AuthenticatedSessionController::class, "store"])->name("login");
+  Route::post("/sign", [RegisteredUserController::class, "store"])->name("sign.store");
+  Route::post("/login", [AuthenticatedSessionController::class, "store"])->name("session.store");
 
 
   //creates forgot password email form

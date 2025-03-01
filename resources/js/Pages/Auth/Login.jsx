@@ -1,6 +1,6 @@
 import AuthLayout from "@/Layouts/AuthLayout"
-import useUser from "@/Hooks/useUser"
 import { usePage } from "@inertiajs/react"
+import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
 import Input from "@/Components/Input"
 import SolidButton from "@/Components/SolidButton"
@@ -32,7 +32,7 @@ export default function Login()
         {errors.password && <ErrorMessage message={errors.password}/>}
       </div>
 
-      <InlinePrompt PromptHeader="New to EternaDrive?" PromptText="Sign-in" PromptRoute="sign"/>
+      <InlinePrompt PromptHeader="New to EternaDrive?" PromptText="Sign-in" PromptRoute="sign.create"/>
       {canResetPassword && 
       <InlinePrompt PromptHeader="Forgot password?" PromptText="Click here" PromptRoute="password.request"/>}
 

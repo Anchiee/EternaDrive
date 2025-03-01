@@ -47,7 +47,7 @@ export default function Register()
         {errors.password && <ErrorMessage message={errors.password}/>}
       </div>
 
-      <InlinePrompt PromptHeader="Already have an account?" PromptText="Log-in" PromptRoute="login"/>
+      <InlinePrompt PromptHeader="Already have an account?" PromptText="Log-in" PromptRoute="session.create"/>
 
       <SolidButton ButtonType="submit" ButtonText="Sign-in"/>
     </AuthLayout>

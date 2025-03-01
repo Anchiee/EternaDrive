@@ -25,8 +25,8 @@ Route::get("/email/verify", [EmailController::class, "index"])
 ->middleware("auth")->name("verification.notice");
 
 Route::middleware("guest")->group(function() {
-    Route::get("/sign", [RegisteredUserController::class, "create"])->name("sign");
-    Route::get("/login", [AuthenticatedSessionController::class, "create"])->name("login");
+    Route::get("/sign", [RegisteredUserController::class, "create"])->name("sign.create");
+    Route::get("/login", [AuthenticatedSessionController::class, "create"])->name("session.create");
 });
 
 require __DIR__.'/auth.php';

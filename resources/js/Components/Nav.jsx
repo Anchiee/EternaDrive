@@ -21,7 +21,7 @@ export default function Nav()
     {!auth.user &&
       <Link className="outline-2 outline-red-800 px-5 py-2 rounded-4xl text-[.7rem]
       hover:bg-red-800 hover:text-white-300 transition-all" 
-      href={route("sign")}>SIGN-IN</Link>
+      href={route("session.create")}>SIGN-IN</Link>
     }
 
 

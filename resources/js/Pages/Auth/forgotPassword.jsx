@@ -1,5 +1,5 @@
 import CenteredCardLayout from "@/Layouts/CenteredCardLayout";
-import { usePage, useForm } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react";
 import useUser from "@/Hooks/useUser";
 import Input from "@/Components/Input";
 import SolidButton from "@/Components/SolidButton";

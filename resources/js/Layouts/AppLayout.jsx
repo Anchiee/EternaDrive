@@ -8,7 +8,7 @@ export default function AppLayout({children, title})
   <>
       <Head title={title}/>
       <Nav/>
-      <main className="min-h-full">
+      <main className="grow-1 flex flex-col">
           {children}
       </main>
   </>

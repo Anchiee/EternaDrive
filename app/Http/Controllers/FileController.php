@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\File;
@@ -63,7 +61,16 @@ class FileController extends Controller
             ]);
             
         }
-       
+        return back();
+    }
+
+    public function delete(File $file) {
+        if($file->user_id !== auth()->id()) {
+            abort(403, "Unauthorized action");
+        }
+
+        Storage::delete($file->random_name);
+        $file->delete();
         return back();
     }
 }

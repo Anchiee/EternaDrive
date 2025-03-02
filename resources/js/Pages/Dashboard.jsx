@@ -2,13 +2,14 @@ import AppLayout from "@/Layouts/AppLayout"
 import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
 import { usePage, Link } from "@inertiajs/react"
-import { useEffect } from "react"
-import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X } from "lucide-react"
 
 export default function Dashboard() {
   const { errors, fileRequest, data, setData } = useUser({
     file: ""
   })
+  let [hoveredIndex, setHoveredIndex] = useState(true)
 
   const { files } = usePage().props
   const { url } = usePage()
@@ -94,6 +95,7 @@ return (
               <th className="px-6 py-3">Size</th>
               <th className="px-6 py-3">Uploaded at</th>
               <th className="px-6 py-3">Modified at</th>
+              <th className="px-6 py-3">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -116,7 +118,8 @@ return (
                 const changeDate = `${updateYear}-${updateMonth}-${updateDay}`
 
                 return (
-                  <tr key={index} className="text-white-300 border-b-[1px] border-y-grayTransparent-700 text-[.8rem]">
+                  <tr key={index} className="text-white-300 border-b-[1px] border-y-grayTransparent-700 text-[.8rem] cursor-pointer"
+                  onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
                     <td className="px-6 py-7 font-bold flex items-center gap-2">
                       {getFileIcon(file.file_type)}
                       {file.name}
@@ -124,6 +127,17 @@ return (
                     <td className="px-6">{getFileSize(file.size)}</td>
                     <td className="px-6">{uploadDate}</td>
                     <td className="px-6">{changeDate}</td>
+                    
+                    {hoveredIndex === index &&
+                    <td className="px-6 flex items-center gap-4">
+                      <Link method="delete" href={route("file.delete", {file: files[index]})}>
+                        <Trash size={15}/>
+                      </Link>
+
+                      <Download size={15}/>
+
+                      {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
+                    </td>}
                   </tr>
                 )
               })

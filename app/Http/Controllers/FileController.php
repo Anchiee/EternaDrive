@@ -42,8 +42,7 @@ class FileController extends Controller
         $fileExtension = $uploadedFile->getMimeType();
         $fileSize = $uploadedFile->getSize();
 
-        $userName = preg_replace("[^A-Za-z0-9]", "_", $request->user()->name);
-
+        $userName = preg_replace("/[^A-Za-z0-9]/", "_", $request->user()->name);
 
         if($uploadedFile->isValid()) {
             if(!Storage::directoryExists($userName)) {
@@ -93,7 +92,8 @@ class FileController extends Controller
             abort(404, "File not found");
         }
 
-        return Storage::disk("local")->download($fileRandomName, $fileName);
+        return response()->download($fileRandomName);
+        //return Storage::disk("local")->download($fileRandomName, $fileName);
 
     }
 }

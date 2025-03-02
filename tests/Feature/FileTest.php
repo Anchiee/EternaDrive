@@ -18,7 +18,7 @@ test("file uploading", function() {
         "file" => $uploadedFile
     ]);
 
-    $username = preg_replace("[^A-Za-z0-9]", "_", $user->name);
+    $username = preg_replace("/[^A-Za-z0-9]/", "_", $user->name);
     Storage::disk("local")->assertExists($username);
     Storage::disk("local")->assertExists($username . '/' . $file->random_name);
 

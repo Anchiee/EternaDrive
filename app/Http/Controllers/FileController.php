@@ -92,8 +92,7 @@ class FileController extends Controller
             abort(404, "File not found");
         }
 
-        return response()->download($fileRandomName);
-        //return Storage::disk("local")->download($fileRandomName, $fileName);
+        return Storage::disk("local")->download($fileRandomName, $fileName);
 
     }
 }

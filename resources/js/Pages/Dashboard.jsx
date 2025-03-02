@@ -134,9 +134,10 @@ return (
                         <Trash size={15}/>
                       </Link>
 
-                      <Link method="get" className="cursor-pointer" href={route("file.download", {file: files[index]})}>
+                      <a className="cursor-pointer" href={route("file.download", {file: files[index]})} 
+                      download={file[index]}>
                         <Download size={15}/>
-                      </Link>
+                      </a>
 
                       <Link method="put" className="cursor-pointer" href={route("file.setFavorite", {file: files[index]})}>
                         {file.is_favorite ? <X size={15}/> : <Star size={15}/>}

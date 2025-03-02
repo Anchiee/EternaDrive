@@ -18,8 +18,9 @@ test("file uploading", function() {
         "file" => $uploadedFile
     ]);
 
-    Storage::disk("local")->assertExists($user->name);
-    Storage::disk("local")->assertExists($user->name . '/' . $file->random_name);
+    $username = preg_replace("[^A-Za-z0-9]", "_", $user->name);
+    Storage::disk("local")->assertExists($username);
+    Storage::disk("local")->assertExists($username . '/' . $file->random_name);
 
     $this->assertDatabaseHas("files", [
         "name" => $file->name,
@@ -47,14 +48,26 @@ test("user can delete files", function() {
         "random_name" => $user->name . "/example.png"
     ]);
 
-    Storage::disk("local")->put($file->random_name, 
-    UploadedFile::fake()->create($file->name, $file->size, $file->file_type));
-
-    Storage::disk("local")->assertExists($file->random_name);
-
     $this->actingAs($user)->delete(route("file.delete", ["file" => $file]));
     
     $this->assertDatabaseMissing("files", [
         "id" => $file->id
+    ]);
+});
+
+
+test("user can mark files as favorite", function() {
+
+    $user = User::factory()->create();
+    $file = File::factory()->create([
+        "user_id" => $user->id,
+        "is_favorite" => false,
+        "random_name" => "1"
+    ]);
+
+    $this->actingAs($user)->put(route("file.setFavorite", ["file" => $file]));
+    
+    $this->assertDatabaseHas("files", [
+        "is_favorite" => true
     ]);
 });

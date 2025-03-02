@@ -6,7 +6,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\File;
 use Storage;
-
+use DB;
 
 class FileController extends Controller
 {
@@ -42,11 +42,11 @@ class FileController extends Controller
         $fileExtension = $uploadedFile->getMimeType();
         $fileSize = $uploadedFile->getSize();
 
-        $userName = $request->user()->name;
+        $userName = preg_replace("[^A-Za-z0-9]", "_", $request->user()->name);
 
 
         if($uploadedFile->isValid()) {
-            if(!Storage::exists($userName)) {
+            if(!Storage::directoryExists($userName)) {
                 Storage::createDirectory($userName);
             }
 
@@ -72,6 +72,29 @@ class FileController extends Controller
         Storage::delete($file->random_name);
         $file->delete();
         return back();
+    }
+
+    public function setFavorite(File $file) {
+        if($file->user_id !== auth()->id()) {
+            abort(403, "Unauthorized action");
+        }  
+
+        $favoriteStatus = $file->is_favorite;
+
+        $file->update(["is_favorite" => !$favoriteStatus]);
+    }
+
+
+    public function download(File $file) {
+        $fileRandomName = $file->random_name;
+        $fileName = $file->name;
+
+        if (!Storage::disk('local')->exists($fileRandomName)) {
+            abort(404, "File not found");
+        }
+
+        return Storage::disk("local")->download($fileRandomName, $fileName);
+
     }
 }
 

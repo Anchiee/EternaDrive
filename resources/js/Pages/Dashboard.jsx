@@ -19,8 +19,7 @@ export default function Dashboard() {
     }
   }, [data.file])
 
-  const getIcon = (type) => {
-    console.log(type.startsWith("video"))
+  const getFileIcon = (type) => {
 
     if (type.startsWith("image")) return <ImageIcon size={20} />
 
@@ -31,7 +30,17 @@ export default function Dashboard() {
     else return <FileIcon size={20} />
 
   }
+  const getFileSize = (size) => {
+    let fullName = null
 
+    if(size / 1024 / 1024 >= 1) {
+      fullName = `${(size / 1024 / 1024).toFixed(1)} MB`
+    }
+    else {
+      fullName = `${(size / 1024).toFixed(1)} KB` 
+    }
+    return fullName
+  }
 
 
 return (
@@ -106,15 +115,13 @@ return (
 
                 const changeDate = `${updateYear}-${updateMonth}-${updateDay}`
 
-                const size = file.size / 1024 / 1024
-                const type = file.file_type
                 return (
                   <tr key={index} className="text-white-300 border-b-[1px] border-y-grayTransparent-700 text-[.8rem]">
                     <td className="px-6 py-7 font-bold flex items-center gap-2">
-                      {getIcon(file.file_type)}
+                      {getFileIcon(file.file_type)}
                       {file.name}
                     </td>
-                    <td className="px-6">{`${size.toFixed(1)} MB`}</td>
+                    <td className="px-6">{getFileSize(file.size)}</td>
                     <td className="px-6">{uploadDate}</td>
                     <td className="px-6">{changeDate}</td>
                   </tr>

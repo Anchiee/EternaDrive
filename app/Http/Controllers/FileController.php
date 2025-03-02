@@ -41,7 +41,7 @@ class FileController extends Controller
         $uploadedFile = $request->file("file");
 
         $fileName = $uploadedFile->getClientOriginalName();
-        $fileExtension = $uploadedFile->extension();
+        $fileExtension = $uploadedFile->getMimeType();
         $fileSize = $uploadedFile->getSize();
 
         $userName = $request->user()->name;

@@ -49,6 +49,8 @@ Route::middleware("auth")->group(function () {
   Route::middleware("verified")->group(function() {
     Route::post("/file", [FileController::class, "store"])->name("file.store");
     Route::delete("/file/{file}", [FileController::class, "delete"])->name("file.delete");
+    Route::put("/file/{file}", [FileController::class, "setFavorite"])->name("file.setFavorite");
+    Route::get("/file/download/{file}", [FileController::class, "download"])->name("file.download");
   });
 });
 

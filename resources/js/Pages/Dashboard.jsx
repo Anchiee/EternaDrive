@@ -130,13 +130,17 @@ return (
                     
                     {hoveredIndex === index &&
                     <td className="px-6 flex items-center gap-4">
-                      <Link method="delete" href={route("file.delete", {file: files[index]})}>
+                      <Link method="delete" className="cursor-pointer" href={route("file.delete", {file: files[index]})}>
                         <Trash size={15}/>
                       </Link>
 
-                      <Download size={15}/>
+                      <Link method="get" className="cursor-pointer" href={route("file.download", {file: files[index]})}>
+                        <Download size={15}/>
+                      </Link>
 
-                      {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
+                      <Link method="put" className="cursor-pointer" href={route("file.setFavorite", {file: files[index]})}>
+                        {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
+                      </Link>
                     </td>}
                   </tr>
                 )

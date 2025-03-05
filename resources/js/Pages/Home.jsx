@@ -51,6 +51,10 @@ export default function Home()
                 question: "How do I reset my password?",
                 answer:"Click the 'Forgot Password' link on the login page and follow the instructions to reset your password."
               },
+              {
+                question: "How do I delete my data?",
+                answer:"It's really easy! All you have to do is go to settings, click delete account and confirm the action with password."
+              },
             ].map((faq, index) => (
               <div key={index}>
                 <h3 className=" text-red-800 text-xl tracking-wider">{faq.question}</h3>

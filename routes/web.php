@@ -13,8 +13,12 @@ use App\Http\Controllers\FileController;
 Route::get("/", function() {
     return Inertia::render("Home");
 })->name("Home");
-
-
+Route::get("/terms", function() {
+    return Inertia::render("Terms");
+});
+Route::get("/policy", function() {
+    return Inertia::render("Policy");
+});
 
 Route::middleware(["auth", "verified"])->group(function() {
     Route::get("/dashboard/{type}", [FileController::class, "index"])->name("file.index");    

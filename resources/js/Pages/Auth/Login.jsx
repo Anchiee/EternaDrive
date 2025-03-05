@@ -5,7 +5,7 @@ import ErrorMessage from "@/Components/ErrorMessage"
 import Input from "@/Components/Input"
 import SolidButton from "@/Components/SolidButton"
 import InlinePrompt from "@/Components/InlinePrompt"
-import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons"
+import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 
@@ -50,8 +50,8 @@ export default function Login()
         </p>
 
         <p className="flex gap-2 items-center border-2 rounded-xl py-2 px-2 hover:shadow-sm transition-all">
-          <FontAwesomeIcon icon={faDiscord}/>
-          Discord
+          <FontAwesomeIcon icon={faTwitter}/>
+          Twitter
         </p>
         
       </div>

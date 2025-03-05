@@ -29,6 +29,13 @@ export default function Nav()
       <div className="flex items-center gap-10">
         <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
         href={route("file.index", {"type": "all"})}>Dashboard</Link>
+        <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
+        href="/terms">Terms of service</Link>
+        <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
+        href="/policy">Privacy policy</Link>
+
+
+
         <div className="relative">
 
           <button className="cursor-pointer" onClick={() => setIsHidden(prev => !prev)} aria-label="user">

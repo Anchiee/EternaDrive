@@ -31,7 +31,7 @@ export default function Nav()
         href={route("file.index", {"type": "all"})}>Dashboard</Link>
         <div className="relative">
 
-          <button className="cursor-pointer" onClick={() => setIsHidden(prev => !prev)}>
+          <button className="cursor-pointer" onClick={() => setIsHidden(prev => !prev)} aria-label="user">
             <User size={20}/>
           </button>
 

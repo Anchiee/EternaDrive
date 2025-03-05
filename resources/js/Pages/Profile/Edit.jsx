@@ -7,7 +7,7 @@ import SolidButton from "@/Components/SolidButton"
 import ErrorMessage from "@/Components/ErrorMessage"
 import { AnimatePresence } from "motion/react"
 import EditProfile from "@/Components/EditProfile"
-import { popUpContext } from "@/Contexts/popup"
+import { popUpContext } from "@/Contexts/Popup"
 
 
 export default function Edit()

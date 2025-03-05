@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\OAuth2Controller;
 
 Route::middleware("guest")->group(function() {
   Route::post("/sign", [RegisteredUserController::class, "store"])->name("sign.store");
@@ -31,6 +31,8 @@ Route::middleware("guest")->group(function() {
 
   //handle the new password form
   Route::post("/reset-password", [NewPasswordController::class, "store"])->name("password.update");
+
+  Route::get("/github/callback", [OAuth2Controller::class, "githubCallback"])->name("github.callback");
 
 });
 

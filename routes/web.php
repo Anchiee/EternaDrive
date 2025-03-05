@@ -9,6 +9,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\OAuth2Controller;
 
 Route::get("/", function() {
     return Inertia::render("Home");
@@ -31,6 +32,9 @@ Route::get("/email/verify", [EmailController::class, "index"])
 Route::middleware("guest")->group(function() {
     Route::get("/sign", [RegisteredUserController::class, "create"])->name("sign.create");
     Route::get("/login", [AuthenticatedSessionController::class, "create"])->name("session.create");
+
+    Route::get("/github/redirect", [OAuth2Controller::class, "githubRedirect"])->name("github.redirect");
+    Route::get("/twitter/redirect", [OAuth2Controller::class, "facebookRedirect"])->name("facebook.redirect");
 });
 
 require __DIR__.'/auth.php';

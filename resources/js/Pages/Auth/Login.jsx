@@ -5,8 +5,7 @@ import ErrorMessage from "@/Components/ErrorMessage"
 import Input from "@/Components/Input"
 import SolidButton from "@/Components/SolidButton"
 import InlinePrompt from "@/Components/InlinePrompt"
-import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Socials from "@/Components/Socials"
 
 
 export default function Login()
@@ -43,19 +42,7 @@ export default function Login()
 
       <SolidButton ButtonType="submit" ButtonText="Log-in"/>
 
-      <div className="flex text-base justify-between mt-5 text-gray-900 border-t-[1px] border-gray-300 pt-4">
-        <p className="flex gap-2 items-center border-2 rounded-xl py-2 px-2 hover:shadow-sm transition-all">
-          <FontAwesomeIcon icon={faGithub}/>
-          Github
-        </p>
-
-        <p className="flex gap-2 items-center border-2 rounded-xl py-2 px-2 hover:shadow-sm transition-all">
-          <FontAwesomeIcon icon={faTwitter}/>
-          Twitter
-        </p>
-        
-      </div>
-
+      <Socials/>
     </AuthLayout>
   )
 }

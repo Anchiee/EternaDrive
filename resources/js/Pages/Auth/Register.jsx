@@ -4,8 +4,7 @@ import ErrorMessage from "@/Components/ErrorMessage"
 import AuthLayout from "@/Layouts/AuthLayout"
 import SolidButton from "@/Components/SolidButton"
 import InlinePrompt from "@/Components/InlinePrompt"
-import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Socials from "@/Components/Socials"
 
 export default function Register()
 {
@@ -51,18 +50,8 @@ export default function Register()
       <InlinePrompt PromptHeader="Already have an account?" PromptText="Log-in" PromptRoute="session.create"/>
 
       <SolidButton ButtonType="submit" ButtonText="Sign-in"/>
-      <div className="flex text-base justify-between mt-5 text-gray-900 border-t-[1px] border-gray-300 pt-4">
-        <p className="flex gap-2 items-center border-2 rounded-xl py-2 px-2 hover:shadow-sm transition-all">
-          <FontAwesomeIcon icon={faGithub}/>
-          Github
-        </p>
 
-        <p className="flex gap-2 items-center border-2 rounded-xl py-2 px-2 hover:shadow-sm transition-all">
-          <FontAwesomeIcon icon={faTwitter}/>
-          Twitter
-        </p>
-        
-      </div>
+      <Socials/>
     </AuthLayout>
   )
 }

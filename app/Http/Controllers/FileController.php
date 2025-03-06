@@ -85,6 +85,11 @@ class FileController extends Controller
 
 
     public function download(File $file) {
+
+        if($file->user_id !== auth()->id()) {
+            abort(403, "Unauthorized action");
+        }
+        
         $fileRandomName = $file->random_name;
         $fileName = $file->name;
 

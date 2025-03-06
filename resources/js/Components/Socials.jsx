@@ -1,4 +1,4 @@
-import { faFacebook, faGithub } from "@fortawesome/free-brands-svg-icons"
+import { faGithub, faDiscord } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function Socials() {
@@ -11,9 +11,9 @@ export default function Socials() {
             </a>
 
             <a className="flex gap-2 items-center border-2 rounded-xl py-2 px-2 hover:shadow-sm transition-all cursor-pointer" 
-            href={route("facebook.redirect")}>
-            <FontAwesomeIcon icon={faFacebook}/>
-            Facebook
+            href={route("discord.redirect")}>
+            <FontAwesomeIcon icon={faDiscord}/>
+            Discord
             </a>
       </div>
     )

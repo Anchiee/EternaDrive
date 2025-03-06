@@ -39,10 +39,10 @@ return [
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect' => env('GITHUB_CLIENT_REDIRECT'),
     ],
-    'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID'),
-        'client_secret' => env('FACBOOK_CLIENT_SECRET'),
-        'redirect' => env('FACEBOOK_CLIENT_REDIRECT')
+    'discord' => [
+        'client_id' => env('DISCORD_CLIENT_ID'),
+        'client_secret' => env('DISCORD_CLIENT_SECRET'),
+        'redirect' => env('DISCORD_CLIENT_REDIRECT'),
     ],
 
 ];

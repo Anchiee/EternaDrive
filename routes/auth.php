@@ -33,6 +33,7 @@ Route::middleware("guest")->group(function() {
   Route::post("/reset-password", [NewPasswordController::class, "store"])->name("password.update");
 
   Route::get("/github/callback", [OAuth2Controller::class, "githubCallback"])->name("github.callback");
+  Route::get("/discord/callback", [OAuth2Controller::class, "discordCallback"])->name("discord.callback");
 
 });
 

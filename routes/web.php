@@ -34,7 +34,7 @@ Route::middleware("guest")->group(function() {
     Route::get("/login", [AuthenticatedSessionController::class, "create"])->name("session.create");
 
     Route::get("/github/redirect", [OAuth2Controller::class, "githubRedirect"])->name("github.redirect");
-    Route::get("/twitter/redirect", [OAuth2Controller::class, "facebookRedirect"])->name("facebook.redirect");
+    Route::get("/discord/redirect", [OAuth2Controller::class, "discordRedirect"])->name("discord.redirect");
 });
 
 require __DIR__.'/auth.php';

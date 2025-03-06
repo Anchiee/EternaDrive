@@ -22,6 +22,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'github_id',
+        'discord_id',
+        'discord_token',
+        'github_token',
+        'discord_refresh_token',
+        'github_refresh_token'
     ];
 
     /**

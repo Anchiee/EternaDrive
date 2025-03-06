@@ -3,7 +3,7 @@ import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
 import { usePage, Link } from "@inertiajs/react"
 import { useEffect, useState } from "react"
-import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X } from "lucide-react"
+import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X, Share2 } from "lucide-react"
 
 export default function Dashboard() {
   const { errors, fileRequest, data, setData } = useUser({
@@ -141,6 +141,10 @@ return (
 
                       <Link method="put" className="cursor-pointer" href={route("file.setFavorite", {file: files[index]})}>
                         {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
+                      </Link>
+
+                      <Link className="cursor-pointer">
+                        <Share2 size={15}/>
                       </Link>
                     </td>}
                   </tr>

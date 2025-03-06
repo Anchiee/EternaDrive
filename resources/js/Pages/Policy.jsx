@@ -5,7 +5,7 @@ export default function Policy() {
         <AppLayout title="Privacy Policy">
             <div className="container mx-auto p-6">
                 <h1 className="text-2xl font-bold text-red-800 tracking-widest">Privacy Policy for EternaDrive</h1>
-                <p className="text-white-300 text-xs mb-3">Last Updated: [Insert Date]</p>
+                <p className="text-white-300 text-xs mb-3">Last Updated: 03.05.2025</p>
                 
                 <h2 className="text-red-800 text-xl font-semibold">1. Information We Collect</h2>
                 <p className="text-white-300 text-xs mb-3">We may collect the following types of information:</p>

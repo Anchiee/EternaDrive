@@ -19,8 +19,11 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger("memory_usage")->default(0);
             $table->string("github_id")->nullable()->unique();
-            $table->integer("github_token")->nullable();
+            $table->string("github_token")->nullable();
             $table->string("github_refresh_token")->nullable();
+            $table->string('discord_id')->nullable()->unique();
+            $table->string('discord_token')->nullable();
+            $table->string('discord_refresh_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

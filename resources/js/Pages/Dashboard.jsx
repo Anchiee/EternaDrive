@@ -3,7 +3,7 @@ import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
 import { usePage, Link } from "@inertiajs/react"
 import { useEffect, useState } from "react"
-import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X, Share2 } from "lucide-react"
+import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X, Share2, Check } from "lucide-react"
 
 export default function Dashboard() {
   const { errors, fileRequest, data, setData } = useUser({
@@ -123,6 +123,16 @@ return (
 
                 const changeDate = `${updateYear}-${updateMonth}-${updateDay}`
 
+                let [shareIcon, setShareIcon] = useState(<Share2 size={15}/>)
+
+                const onShareClick = () => {
+                  setShareIcon(<Check size={15}/>)
+
+                  setTimeout(() => {
+                    setShareIcon(<Share2 size={15}/>)
+                  }, 800);
+                }
+
                 return (
                   <tr key={index} className="text-white-300 border-b-[1px] border-y-grayTransparent-700 text-[.8rem] cursor-pointer"
                   onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
@@ -149,8 +159,9 @@ return (
                         {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
                       </Link>
 
-                      <Link className="cursor-pointer" href={route("file.share", {"file": files[index]})}>
-                        <Share2 size={15}/>
+                      <Link className="cursor-pointer" onClick={onShareClick}
+                      href={route("file.share", {"file": files[index]})}>
+                        {shareIcon}
                       </Link>
                     </td>}
                   </tr>

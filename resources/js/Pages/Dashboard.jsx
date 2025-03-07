@@ -11,7 +11,10 @@ export default function Dashboard() {
   })
   let [hoveredIndex, setHoveredIndex] = useState(true)
 
-  const { files } = usePage().props
+  const { files, flash } = usePage().props
+
+  const signedUrl = flash.signedUrl
+
   const { url } = usePage()
 
   useEffect(() => {
@@ -43,6 +46,9 @@ export default function Dashboard() {
     return fullName
   }
 
+  useEffect(() => {
+    navigator.clipboard.writeText(signedUrl)
+  }, [signedUrl])
 
 return (
   <>
@@ -143,7 +149,7 @@ return (
                         {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
                       </Link>
 
-                      <Link className="cursor-pointer">
+                      <Link className="cursor-pointer" href={route("file.share", {"file": files[index]})}>
                         <Share2 size={15}/>
                       </Link>
                     </td>}

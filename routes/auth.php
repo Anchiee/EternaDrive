@@ -54,6 +54,7 @@ Route::middleware("auth")->group(function () {
     Route::delete("/file/{file}", [FileController::class, "delete"])->name("file.delete");
     Route::put("/file/{file}", [FileController::class, "setFavorite"])->name("file.setFavorite");
     Route::get("/file/download/{file}", [FileController::class, "download"])->name("file.download");
+    Route::get("/file/get/{file}", [FileController::class, "share"])->name("file.share");
   });
 });
 

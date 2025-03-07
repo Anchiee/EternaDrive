@@ -100,5 +100,14 @@ class FileController extends Controller
         return Storage::disk("local")->download($fileRandomName, $fileName);
 
     }
+
+    public function share(File $file) {
+
+        $filePath = $file->random_name;
+
+        $temporarySignedUrl = Storage::temporaryUrl($filePath, now()->addMinutes(10));
+        session()->flash('signedUrl', $temporarySignedUrl);
+        return back();
+    }
 }
 

@@ -34,6 +34,10 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'flash' => 
+            [
+                'signedUrl' => fn () => $request->session()->get('signedUrl'),
+            ],
         ];
     }
 }

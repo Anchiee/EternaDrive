@@ -3,7 +3,8 @@ import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
 import { usePage, Link } from "@inertiajs/react"
 import { useEffect, useState } from "react"
-import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X, Share2, Check, Share } from "lucide-react"
+import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X, Share2, Check, LetterText} from "lucide-react"
+
 
 export default function Dashboard() {
   const { errors, fileRequest, data, setData } = useUser({
@@ -11,7 +12,8 @@ export default function Dashboard() {
   })
   let [hoveredIndex, setHoveredIndex] = useState(true)
 
-  const { files, flash } = usePage().props
+  const { files, flash, auth, maxUsage } = usePage().props
+  const user = auth.user
 
   const signedUrl = flash.signedUrl
 
@@ -44,6 +46,8 @@ export default function Dashboard() {
         return <VideoIcon size={20} />
       case "audio":
         return <Music2Icon size={20}/>
+      case "text":
+        return <LetterText size={20}/>
       default:
         return <FileIcon size={20} />
     }
@@ -82,6 +86,7 @@ return (
 
           <input type="file" onChange={(e) => setData("file", e.target.files[0])} id="file"
             className="fixed right-full bottom-full" />
+          {errors.file && <ErrorMessage message={errors.file}/>}
 
           <section className="flex flex-col gap-3 text-white-300 mt-10">
             {
@@ -100,14 +105,16 @@ return (
                   {tab.component}
                   {tab.page}
                 </Link>
-
-              ))
-
+              ))    
             }
+            <div className="w-full h-2 bg-gray-400 rounded-md">
+                <div className="bg-red-800 h-2 rounded-md" style={{width: `${user.memory_usage / maxUsage * 100}%`}}>
+                </div>
+            </div>
+            <p className="text-xs">{(user.memory_usage / 1024 / 1024).toFixed(2)}MB used out of {maxUsage / 1024 / 1024}MB</p>
           </section>
         </nav>
 
-        {errors.file && <ErrorMessage message={errors.file} />}
 
         <table className="size-full text-sm text-left rtl:text-right table-fixed">
           <thead className="border-b-[1px] border-b-grayTransparent-700 text-xs uppercase">

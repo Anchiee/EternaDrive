@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\File;
 use Storage;
 use DB;
+use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 class FileController extends Controller
 {
@@ -26,23 +28,34 @@ class FileController extends Controller
         get();
 
         return Inertia::render("Dashboard", [
-            "files" => $files
+            "files" => $files,
+            "maxUsage" => User::MAX_MEMORY_USAGE,
         ]);
     }
 
     public function store(Request $request) {
         $request->validate([
-            "file" => "file|required|max:51200"
+            "file" => "file|required|max:10240"
         ]);
 
 
+        $user = $request->user();
         $uploadedFile = $request->file("file");
+        $fileSize = $uploadedFile->getSize();
+
+        //100MB
+        if($user->memory_usage >=  User::MAX_MEMORY_USAGE || $user->memory_usage + $fileSize >= User::MAX_MEMORY_USAGE) {
+            throw ValidationException::withMessages([
+                "file" => ["Memory usage exceeded, delete a file"]
+            ]);
+            return back();
+        }
 
         $fileName = $uploadedFile->getClientOriginalName();
         $fileExtension = $uploadedFile->getMimeType();
-        $fileSize = $uploadedFile->getSize();
+        
 
-        $user = $request->user();
+        
 
         $userName = preg_replace("/[^A-Za-z0-9]/", "_", $user->name);
 

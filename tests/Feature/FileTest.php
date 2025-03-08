@@ -89,3 +89,17 @@ test("user can mark files as favorite", function() {
         "is_favorite" => true
     ]);
 });
+
+
+test("user cant upload files if their memory usage is over 100mb", function() {
+    $user = User::factory()->create([
+        "memory_usage" => 99998976
+    ]);
+
+    $uploadedFile = UploadedFile::fake()->create("example.png", 1024, "image/png");
+
+    $response = $this->actingAs($user)->post("/file", [
+        "file" => $uploadedFile
+    ]);
+    $response->assertSessionHasErrors("file");
+}) ;

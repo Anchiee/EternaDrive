@@ -3,7 +3,9 @@ import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
 import { usePage, Link } from "@inertiajs/react"
 import { useEffect, useState } from "react"
-import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X, Share2, Check, LetterText} from "lucide-react"
+import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X, Share2, Check, LetterText,
+  ChevronUp, ChevronDown
+} from "lucide-react"
 
 
 export default function Dashboard() {
@@ -13,11 +15,20 @@ export default function Dashboard() {
   let [hoveredIndex, setHoveredIndex] = useState(true)
 
   const { files, flash, auth, maxUsage } = usePage().props
-  const user = auth.user
+  const { url } = usePage()
 
+  let userFiles = files
+  const user = auth.user
   const signedUrl = flash.signedUrl
 
   let [shareIcons, setShareIcons] = useState({})
+  let [sortIcons, setSortIcons] = useState(
+    {
+      0: <ChevronDown size={15} strokeWidth={4}/>,
+      1: <ChevronDown size={15} strokeWidth={4}/>,
+      2: <ChevronDown size={15} strokeWidth={4}/>,
+      3: <ChevronDown size={15} strokeWidth={4}/>,
+    })
 
   const onShareClick = (index) => {
     setShareIcons(prev => ({...prev, [index]: <Check size={15}/>}))
@@ -27,13 +38,18 @@ export default function Dashboard() {
     }, 800);
   }
 
-  const { url } = usePage()
+  const onClickSort = (index) => {
+    const currentIcon = sortIcons[index]
 
-  useEffect(() => {
-    if (data.file) {
-      fileRequest("/file")
+    switch(currentIcon.type) {
+      case ChevronDown:
+        setSortIcons(prev => ({...prev, [index]: <ChevronUp size={15} strokeWidth={4}/>}))
+        break
+      case ChevronUp:
+        setSortIcons(prev => ({...prev, [index]: <ChevronDown size={15} strokeWidth={4}/>}))
+        break
     }
-  }, [data.file])
+  }
 
   const getFileIcon = (type) => {
 
@@ -65,9 +81,17 @@ export default function Dashboard() {
     return fullName
   }
 
+
   useEffect(() => {
     navigator.clipboard.writeText(signedUrl)
   }, [signedUrl])
+
+  useEffect(() => {
+    if (data.file) {
+      fileRequest("/file")
+    }
+  }, [data.file])
+
 
 return (
   <>
@@ -118,18 +142,35 @@ return (
         
         <div className="max-h-[50rem] overflow-y-auto">
           <table className="size-full text-sm text-left rtl:text-right table-fixed">
-            <thead className="border-b-[1px] border-b-grayTransparent-700 text-xs uppercase sticky top-0 bg-black">
+            <thead className="border-b-[1px] border-b-grayTransparent-700 text-xs uppercase sticky top-0 z-1 bg-black">
               <tr className="text-red-800">
-                <th className="px-6 py-3">Name</th>
-                <th className="px-6 py-3">Size</th>
-                <th className="px-6 py-3">Uploaded at</th>
-                <th className="px-6 py-3">Modified at</th>
-                <th className="px-6 py-3">Actions</th>
+                  {
+                    [
+                      {text: "Name"},
+                      {text: "Size"},
+                      {text: "Uploaded at"},
+                      {text: "Modified at"},
+                    ].map((header, index) => (
+                      <th className="px-6 py-3" key={index}>
+                        <p className="flex items-center gap-2">
+                          {header.text}
+                          <button 
+                          onClick={() => onClickSort(index)} 
+                          className="cursor-pointer">
+                            {sortIcons[index]}
+                          </button>
+                        </p>
+                      </th>
+                    ))
+                  } 
+                  <th className="px-6 py-3">
+                    Actions
+                  </th>
               </tr>
             </thead>
             <tbody>
               {
-                files.map((file, index) => {
+                userFiles.map((file, index) => {
 
 
                   const createDate = new Date(file.created_at)

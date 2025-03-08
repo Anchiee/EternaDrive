@@ -115,74 +115,76 @@ return (
           </section>
         </nav>
 
+        
+        <div className="max-h-[50rem] overflow-y-auto">
+          <table className="size-full text-sm text-left rtl:text-right table-fixed">
+            <thead className="border-b-[1px] border-b-grayTransparent-700 text-xs uppercase sticky top-0 bg-black">
+              <tr className="text-red-800">
+                <th className="px-6 py-3">Name</th>
+                <th className="px-6 py-3">Size</th>
+                <th className="px-6 py-3">Uploaded at</th>
+                <th className="px-6 py-3">Modified at</th>
+                <th className="px-6 py-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                files.map((file, index) => {
 
-        <table className="size-full text-sm text-left rtl:text-right table-fixed">
-          <thead className="border-b-[1px] border-b-grayTransparent-700 text-xs uppercase">
-            <tr className="text-red-800">
-              <th className="px-6 py-3">Name</th>
-              <th className="px-6 py-3">Size</th>
-              <th className="px-6 py-3">Uploaded at</th>
-              <th className="px-6 py-3">Modified at</th>
-              <th className="px-6 py-3">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              files.map((file, index) => {
 
+                  const createDate = new Date(file.created_at)
+                  const createYear = createDate.getFullYear()
+                  const createMonth = String(createDate.getMonth() + 1).padStart(2, "0")
+                  const createDay = String(createDate.getDate()).padStart(2, "0")
 
-                const createDate = new Date(file.created_at)
-                const createYear = createDate.getFullYear()
-                const createMonth = String(createDate.getMonth() + 1).padStart(2, "0")
-                const createDay = String(createDate.getDate()).padStart(2, "0")
+                  const uploadDate = `${createYear}-${createMonth}-${createDay}`
 
-                const uploadDate = `${createYear}-${createMonth}-${createDay}`
+                  const updateDate = new Date(file.updated_at)
+                  const updateYear = updateDate.getFullYear()
+                  const updateMonth = String(updateDate.getMonth() + 1).padStart(2, "0")
+                  const updateDay = String(updateDate.getDate()).padStart(2, "0")
 
-                const updateDate = new Date(file.updated_at)
-                const updateYear = updateDate.getFullYear()
-                const updateMonth = String(updateDate.getMonth() + 1).padStart(2, "0")
-                const updateDay = String(updateDate.getDate()).padStart(2, "0")
+                  const changeDate = `${updateYear}-${updateMonth}-${updateDay}`
 
-                const changeDate = `${updateYear}-${updateMonth}-${updateDay}`
+                  return (
+                    <tr key={index} className="text-white-300 border-b-[1px] border-y-grayTransparent-700 text-[.8rem] cursor-pointer"
+                    onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
+                      <td className="px-6 py-7 font-bold flex items-center gap-2">
+                        {getFileIcon(file.file_type)}
+                        {file.name}
+                      </td>
+                      <td className="px-6">{getFileSize(file.size)}</td>
+                      <td className="px-6">{uploadDate}</td>
+                      <td className="px-6">{changeDate}</td>
+                      
+                      {hoveredIndex === index &&
+                      <td className="px-6 flex items-center gap-4">
+                        <Link method="delete" className="cursor-pointer" href={route("file.delete", {file: files[index]})}>
+                          <Trash size={15}/>
+                        </Link>
 
-                return (
-                  <tr key={index} className="text-white-300 border-b-[1px] border-y-grayTransparent-700 text-[.8rem] cursor-pointer"
-                  onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
-                    <td className="px-6 py-7 font-bold flex items-center gap-2">
-                      {getFileIcon(file.file_type)}
-                      {file.name}
-                    </td>
-                    <td className="px-6">{getFileSize(file.size)}</td>
-                    <td className="px-6">{uploadDate}</td>
-                    <td className="px-6">{changeDate}</td>
-                    
-                    {hoveredIndex === index &&
-                    <td className="px-6 flex items-center gap-4">
-                      <Link method="delete" className="cursor-pointer" href={route("file.delete", {file: files[index]})}>
-                        <Trash size={15}/>
-                      </Link>
+                        <a className="cursor-pointer" href={route("file.download", {file: files[index]})} 
+                        download={file[index]}>
+                          <Download size={15}/>
+                        </a>
 
-                      <a className="cursor-pointer" href={route("file.download", {file: files[index]})} 
-                      download={file[index]}>
-                        <Download size={15}/>
-                      </a>
+                        <Link method="put" className="cursor-pointer" href={route("file.setFavorite", {file: files[index]})}>
+                          {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
+                        </Link>
 
-                      <Link method="put" className="cursor-pointer" href={route("file.setFavorite", {file: files[index]})}>
-                        {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
-                      </Link>
+                        <Link className="cursor-pointer" onClick={() => onShareClick(index)}
+                        href={route("file.share", {"file": files[index]})}>
+                          {shareIcons[index] || <Share2 size={15}/>}
+                        </Link>
+                      </td>}
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
 
-                      <Link className="cursor-pointer" onClick={() => onShareClick(index)}
-                      href={route("file.share", {"file": files[index]})}>
-                        {shareIcons[index] || <Share2 size={15}/>}
-                      </Link>
-                    </td>}
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-
-        </table>
+          </table>
+        </div>
       </section>
 
 

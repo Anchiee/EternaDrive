@@ -22,11 +22,17 @@ test("file uploading", function() {
     Storage::disk("local")->assertExists($username);
     Storage::disk("local")->assertExists($username . '/' . $file->random_name);
 
+
     $this->assertDatabaseHas("files", [
         "name" => $file->name,
         "size" => $file->size * 1024,
         "file_type" => $uploadedFile->getMimeType(),
         "user_id" => $user->id
+    ]);
+
+    $this->assertDatabaseHas("users", [
+        "name" => $user->name,
+        "memory_usage" => $file->size * 1024,
     ]);
 
     $response->assertRedirect();
@@ -42,16 +48,28 @@ test("guests cant enter the request", function() {
 test("user can delete files", function() {
     Storage::fake("local");
 
-    $user = User::factory()->create();
-    $file = File::factory()->create([
-        "user_id" => $user->id,
-        "random_name" => $user->name . "/example.png"
+    UploadedFile::fake()->create("example.png", 1024, "image/png");
+
+    $user = User::factory()->create([
+        "memory_usage" => 1024
     ]);
 
+    $file = File::factory()->create([
+        "user_id" => $user->id,
+        "random_name" => $user->name . "/example.png",
+        "size" => 1024
+    ]);
+    $newMemoryUsage = $user->memory_usage - $file->size;
+
     $this->actingAs($user)->delete(route("file.delete", ["file" => $file]));
+
     
     $this->assertDatabaseMissing("files", [
         "id" => $file->id
+    ]);
+    $this->assertDatabaseHas("users", [
+        "name" => $user->name,
+        "memory_usage" => $newMemoryUsage
     ]);
 });
 

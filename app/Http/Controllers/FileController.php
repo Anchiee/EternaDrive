@@ -42,7 +42,16 @@ class FileController extends Controller
         $fileExtension = $uploadedFile->getMimeType();
         $fileSize = $uploadedFile->getSize();
 
-        $userName = preg_replace("/[^A-Za-z0-9]/", "_", $request->user()->name);
+        $user = $request->user();
+
+        $userName = preg_replace("/[^A-Za-z0-9]/", "_", $user->name);
+
+        $memoryUsage = $user->memory_usage;
+        $newMemoryUsage = $memoryUsage + $fileSize;
+
+        $user->update(['memory_usage' => $newMemoryUsage]);
+        
+        
 
         if($uploadedFile->isValid()) {
             if(!Storage::directoryExists($userName)) {
@@ -57,16 +66,21 @@ class FileController extends Controller
                 "file_type" => $fileExtension,
                 "random_name" => $randomName,
                 "user_id" => auth()->id(),
-            ]);
-            
+            ]);      
         }
         return back();
     }
 
-    public function delete(File $file) {
+    public function delete(File $file, Request $request) {
         if($file->user_id !== auth()->id()) {
             abort(403, "Unauthorized action");
         }
+
+        $user = $request->user();
+        $memoryUsage = $user->memory_usage;
+        $newMemoryUsage = $user->memory_usage - $file->size;
+
+        $user->update(["memory_usage" => $newMemoryUsage]);
 
         Storage::delete($file->random_name);
         $file->delete();

@@ -61,7 +61,7 @@ export default function Edit()
               
               <button 
               className="border-2 border-red text-red px-3 py-1 rounded-sm mt-4
-              hover:bg-red-800 hover:text-white-300 transition-all cursor-pointer"
+              hover:bg-red hover:text-white-300 transition-all cursor-pointer"
               onClick={() => setIsHidden(prev => !prev)}>Delete account</button>
             </div>
           </section>

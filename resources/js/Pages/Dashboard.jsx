@@ -3,6 +3,7 @@ import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
 import { usePage, Link } from "@inertiajs/react"
 import { useEffect, useState } from "react"
+import useSorting from "@/Hooks/useSorting"
 import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X, Share2, Check, LetterText,
   ChevronUp, ChevronDown
 } from "lucide-react"
@@ -12,23 +13,20 @@ export default function Dashboard() {
   const { errors, fileRequest, data, setData } = useUser({
     file: ""
   })
-  let [hoveredIndex, setHoveredIndex] = useState(true)
 
   const { files, flash, auth, maxUsage } = usePage().props
   const { url } = usePage()
-
-  let userFiles = files
+  const {userFiles, sortIcons, onClickSort, setUserFiles} = useSorting(files)
+  
   const user = auth.user
   const signedUrl = flash.signedUrl
 
+
+
+  let [hoveredIndex, setHoveredIndex] = useState(true)
+
   let [shareIcons, setShareIcons] = useState({})
-  let [sortIcons, setSortIcons] = useState(
-    {
-      0: <ChevronDown size={15} strokeWidth={4}/>,
-      1: <ChevronDown size={15} strokeWidth={4}/>,
-      2: <ChevronDown size={15} strokeWidth={4}/>,
-      3: <ChevronDown size={15} strokeWidth={4}/>,
-    })
+
 
   const onShareClick = (index) => {
     setShareIcons(prev => ({...prev, [index]: <Check size={15}/>}))
@@ -38,18 +36,6 @@ export default function Dashboard() {
     }, 800);
   }
 
-  const onClickSort = (index) => {
-    const currentIcon = sortIcons[index]
-
-    switch(currentIcon.type) {
-      case ChevronDown:
-        setSortIcons(prev => ({...prev, [index]: <ChevronUp size={15} strokeWidth={4}/>}))
-        break
-      case ChevronUp:
-        setSortIcons(prev => ({...prev, [index]: <ChevronDown size={15} strokeWidth={4}/>}))
-        break
-    }
-  }
 
   const getFileIcon = (type) => {
 
@@ -91,6 +77,11 @@ export default function Dashboard() {
       fileRequest("/file")
     }
   }, [data.file])
+
+  useEffect(() => {
+    setUserFiles(files)
+  }, [files])
+
 
 
 return (
@@ -156,9 +147,9 @@ return (
                           <p className="flex items-center gap-2">
                             {header.text}
                             <button 
-                            onClick={() => onClickSort(index)} 
+                            onClick={() => onClickSort(index, header.text.toLowerCase())} 
                             className="cursor-pointer">
-                              {sortIcons[index]}
+                              {sortIcons[index].icon}
                             </button>
                           </p>
                         </th>

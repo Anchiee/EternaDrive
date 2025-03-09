@@ -35,7 +35,7 @@ export default function Edit()
           <section className="min-h-screen flex justify-center items-center">
             <div className="bg-white-300 pl-8 pr-19 py-6 rounded-md">
 
-            {status && <p className="text-base my-1 text-center text-red-600">{status}</p>}
+            {status && <p className="text-base my-1 text-center text-red">{status}</p>}
               
               {[
                 {label: "Name", data: auth.user.name},
@@ -45,14 +45,14 @@ export default function Edit()
               ].map((dataPiece, index) => (
                 <div key={index}>
                   <div>
-                    <h2 className="font-bold text-red-800">{dataPiece.label}</h2>
+                    <h2 className="font-bold text-red">{dataPiece.label}</h2>
 
                     <div className="flex items-center justify-between gap-16">
                       <p>{dataPiece.data}</p>
 
                       {dataPiece.label !== "Join date" && <button 
-                      className="bg-red-800 px-3 py-1 text-white-300 rounded-sm cursor-pointer
-                      hover:bg-red-900 transition-all" onClick={() => setPopUpOption(dataPiece.label)}>Edit</button>}
+                      className="bg-red px-3 py-1 text-white-300 rounded-sm cursor-pointer
+                      hover:bg-red-800 transition-all" onClick={() => setPopUpOption(dataPiece.label)}>Edit</button>}
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@ export default function Edit()
               
               
               <button 
-              className="border-2 border-red-800 text-red-800 px-3 py-1 rounded-sm mt-4
+              className="border-2 border-red text-red px-3 py-1 rounded-sm mt-4
               hover:bg-red-800 hover:text-white-300 transition-all cursor-pointer"
               onClick={() => setIsHidden(prev => !prev)}>Delete account</button>
             </div>
@@ -70,7 +70,7 @@ export default function Edit()
           <AnimatePresence>
             {!isHidden &&
             <EditUserLayout onSubmit={(e) => onSubmit(e, "/settings", "delete")}>
-              <h1 className="font-bold text-red-800 tracking-wider my-3">CONFIRM THE ACTION</h1>
+              <h1 className="font-bold text-red tracking-wider my-3">CONFIRM THE ACTION</h1>
               <label htmlFor="password">Password</label>
               <Input InputId="password" InputOnChange={(e) => setData("password", e.target.value)} InputType="password"/>
               {errors.password && <ErrorMessage message={errors.password}/>}

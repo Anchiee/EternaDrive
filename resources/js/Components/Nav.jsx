@@ -18,21 +18,27 @@ export default function Nav()
         <Link href={route("Home")} className="text-[.8rem]">EternaDrive</Link>
       </div>
     
-    {!auth.user &&
-      <Link className="outline-2 outline-red-800 px-5 py-2 rounded-4xl text-[.7rem]
-      hover:bg-red-800 hover:text-white-300 transition-all" 
-      href={route("session.create")}>SIGN-IN</Link>
-    }
+    
+
+    <section className="flex items-center gap-10">
+      <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
+      href="/terms">Terms of service</Link>
+      <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
+      href="/policy">Privacy policy</Link>
+      {!auth.user &&
+        <Link className="outline-2 outline-red-800 px-5 py-2 rounded-4xl text-[.7rem]
+        hover:bg-red-800 hover:text-white-300 transition-all" 
+        href={route("session.create")}>SIGN-IN</Link>
+      }
+
+
 
 
     {auth.user && 
       <div className="flex items-center gap-10">
         <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
         href={route("file.index", {"type": "all"})}>Dashboard</Link>
-        <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
-        href="/terms">Terms of service</Link>
-        <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
-        href="/policy">Privacy policy</Link>
+        
 
 
 
@@ -68,6 +74,7 @@ export default function Nav()
       </div>
       
     }
+    </section>
     </nav>
   )
 }

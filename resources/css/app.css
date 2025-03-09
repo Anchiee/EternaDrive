@@ -10,7 +10,8 @@
   --font-montserrat: "Montserrat", serif;
   
   --color-white-300: #EEEEEE;
-  --color-black: #1c1c1c;
+  --color-black: #0F0F0F;
+  --color-red: #F13B48;
 
   --color-transparent-100: rgba(0, 0, 0, .1);
   --color-transparent-200: rgba(0, 0, 0, .2);

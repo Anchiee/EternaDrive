@@ -102,7 +102,7 @@ return (
 
           <label
             htmlFor="file"
-            className="border-2 border-red-800 rounded-md text-red-700 px-4 py-2 hover:bg-red-800 hover:text-white-300 
+            className="border-2 border-red rounded-md text-red px-4 py-2 hover:bg-red-800 hover:text-white-300 
             cursor-pointer transition-colors mt-5 flex items-center">
             <Plus className="inline" />
             New
@@ -123,7 +123,7 @@ return (
 
                 <Link key={tab.page}
                   className={`flex items-center gap-2 px-3 py-1
-                      ${url === `/dashboard/${tab.param}` ? " bg-red-800 rounded-md" : ""}`
+                      ${url === `/dashboard/${tab.param}` ? " bg-red rounded-md" : ""}`
                   }
                   href={tab.route}>
                   {tab.component}
@@ -132,7 +132,7 @@ return (
               ))    
             }
             <div className="w-full h-2 bg-gray-400 rounded-md">
-                <div className="bg-red-800 h-2 rounded-md" style={{width: `${user.memory_usage / maxUsage * 100}%`}}>
+                <div className="bg-red h-2 rounded-md" style={{width: `${user.memory_usage / maxUsage * 100}%`}}>
                 </div>
             </div>
             <p className="text-xs">{(user.memory_usage / 1024 / 1024).toFixed(2)}MB used out of {maxUsage / 1024 / 1024}MB</p>
@@ -144,7 +144,7 @@ return (
           <div className="overflow-y-auto max-h-[50rem]">
             <table className="size-full text-sm text-left table-fixed w-full ">
               <thead className="border-b-[1px] border-b-grayTransparent-700 text-xs uppercase sticky top-0 z-1 bg-black w-full">
-                <tr className="text-red-800 w-full">
+                <tr className="text-red w-full">
                     {
                       [
                         {text: "Name"},

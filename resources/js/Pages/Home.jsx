@@ -10,14 +10,14 @@ export default function Home()
 
         <section className="min-h-screen flex flex-row justify-between items-center mb-5 grow-0">
           <div>
-            <h1 className="font-bold text-red-800 text-xl tracking-wider">OFTEN WORRIED ABOUT YOUR MEMORY?</h1>
+            <h1 className="font-bold text-red text-xl tracking-wider">OFTEN WORRIED ABOUT YOUR MEMORY?</h1>
             <p className="text-white-300 text-xs w-2/3">
               With Eternadrive, your precious memories and files are safe, secure, and always accessible—anytime, anywhere.
             </p>
           </div>
 
           <div>
-            <h1 className="font-bold text-red-800 text-xl tracking-wider">
+            <h1 className="font-bold text-red text-xl tracking-wider">
               JOIN A THRIVING COMMUNITY OF SATISFIED USERS
             </h1>
             <p className="text-white-300 text-xs w-2/3">
@@ -28,7 +28,7 @@ export default function Home()
 
         <section className="w-full grow-1 pb-8">
           <h2 
-          className="font-bold text-red-800 text-xl tracking-wider border-b-2 border-b-red-800 w-full mb-10">ABOUT US</h2>
+          className="font-bold text-red text-xl tracking-wider border-b-2 border-b-red w-full mb-10">ABOUT US</h2>
           <div className="flex flex-col gap-10">
             {[
               {
@@ -57,7 +57,7 @@ export default function Home()
               },
             ].map((faq, index) => (
               <div key={index}>
-                <h3 className=" text-red-800 text-xl tracking-wider">{faq.question}</h3>
+                <h3 className=" text-red text-xl tracking-wider">{faq.question}</h3>
                 <p className="text-white-300 text-xs">{faq.answer}</p>
               </div>
             ))}

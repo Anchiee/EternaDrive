@@ -38,7 +38,7 @@ export default function Login()
       {canResetPassword && 
       <InlinePrompt PromptHeader="Forgot password?" PromptText="Click here" PromptRoute="password.request"/>}
 
-      {status && <p className="text-xs my-1 text-red-600">{status}</p>}
+      {status && <p className="text-xs my-1 text-red">{status}</p>}
 
       <SolidButton ButtonType="submit" ButtonText="Log-in"/>
 

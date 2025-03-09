@@ -15,7 +15,7 @@ export default function ForgotPassword()
 
   return(
     <CenteredCardLayout title="Forgot password">
-      <h1 className="text-left font-bold text-red-800 tracking-wider">FORGOT THE PASSWORD</h1>
+      <h1 className="text-left font-bold text-red tracking-wider">FORGOT THE PASSWORD</h1>
       <p className="mb-4">Provide us the account's email and we'll send the verification link.</p>
 
       <form onSubmit={(e) => onSubmit(e, "/forgot-password")}>
@@ -26,7 +26,7 @@ export default function ForgotPassword()
           {errors.email && <ErrorMessage message={errors.email}/>}
         </div>
         
-        {status && <p className="text-red-800 my-1">{status}</p>}
+        {status && <p className="text-red my-1">{status}</p>}
         <SolidButton ButtonType="email" ButtonText="Send"/>
       </form>
     </CenteredCardLayout>

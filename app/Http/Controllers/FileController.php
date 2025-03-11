@@ -48,7 +48,6 @@ class FileController extends Controller
             throw ValidationException::withMessages([
                 "file" => ["Memory usage exceeded, delete a file"]
             ]);
-            return back();
         }
 
         $fileName = $uploadedFile->getClientOriginalName();

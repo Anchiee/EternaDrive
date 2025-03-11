@@ -3,6 +3,9 @@
 use App\Models\File;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
+use App\Exceptions\InvalidOrderException;
+use Illuminate\Support\Facades\Exceptions;
+
 
 test("file uploading", function() {
     Storage::fake("local");
@@ -93,7 +96,7 @@ test("user can mark files as favorite", function() {
 
 test("user cant upload files if their memory usage is over 100mb", function() {
     $user = User::factory()->create([
-        "memory_usage" => 99998976
+        "memory_usage" => 104857600
     ]);
 
     $uploadedFile = UploadedFile::fake()->create("example.png", 1024, "image/png");

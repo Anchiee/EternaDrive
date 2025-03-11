@@ -130,7 +130,7 @@ return (
         </nav>
 
         
-        <div className="flex-1 flex flex-col min-h-0">
+        <div className="flex flex-col min-h-0">
           <div className="overflow-y-auto max-h-[50rem]">
             <table className="size-full text-sm text-left table-fixed w-full ">
               <thead className="border-b-[1px] border-b-grayTransparent-700 text-xs uppercase sticky top-0 z-1 bg-black w-full">

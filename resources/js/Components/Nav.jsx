@@ -12,7 +12,7 @@ export default function Nav()
 
   return(
     <nav className="flex items-center justify-between bg-black border-b-[1px] border-b-grayTransparent-700
-    text-white-300 sticky top-0">
+    text-white-300 sticky top-0 z-99">
 
       <div className="flex items-center">
         <img src="/assets/logo.png" alt="logo" width="70"/>

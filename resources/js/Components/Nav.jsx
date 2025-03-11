@@ -2,11 +2,12 @@ import { Link, usePage } from "@inertiajs/react"
 import { AnimatePresence } from "motion/react"
 import { useState } from "react"
 import AnimatedComponent from "./AnimatedComponent"
-import { Settings2, LogOut, User } from "lucide-react"
+import { Settings2, LogOut, User, Search } from "lucide-react"
 
 export default function Nav()
 {
   const {auth} = usePage().props
+  const {component} = usePage()
   let [isHidden, setIsHidden] = useState(true)
 
   return(
@@ -17,6 +18,16 @@ export default function Nav()
         <img src="/assets/logo.png" alt="logo" width="70"/>
         <Link href={route("Home")} className="text-[.8rem]">EternaDrive</Link>
       </div>
+
+      {component === "Dashboard" &&
+        <form className="flex items-center px-4 border-2 border-red rounded-md">
+          <Search size={12}/>
+          <input type="text" placeholder="Search by name, size, date" 
+          className="border-none bg-transparent text-white placeholder:text-white text-[.8rem] placeholder:text-[.8rem] focus:ring-0"/>
+          <button className="text-[.8rem] bg-red px-2 py-1 rounded-sm text-white cursor-pointer">Search</button>
+        </form>
+      }
+
     
     
 

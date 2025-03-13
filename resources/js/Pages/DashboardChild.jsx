@@ -14,7 +14,7 @@ export default function DashboardChild() {
     file: ""
   })
 
-  const {userFiles} = useContext(FilesContext)
+  const {userFiles, setUserFiles} = useContext(FilesContext)
   const { files, flash, auth, maxUsage } = usePage().props
   const { url } = usePage()
   const {sortIcons, onClickSort} = useSorting(files)
@@ -77,7 +77,12 @@ export default function DashboardChild() {
     if (data.file) {
       fileRequest("/file")
     }
+
   }, [data.file])
+
+  useEffect(() => {
+    setUserFiles(files)
+  }, [files])
 
 
 
@@ -195,16 +200,16 @@ return (
                         {hoveredIndex === index &&
                         <td className="px-6">
                           <p className="flex items-center gap-3">
-                            <Link method="delete" className="cursor-pointer" href={route("file.delete", {file: files[index]})}>
+                            <Link method="delete" className="cursor-pointer" href={route("file.delete", {file: userFiles[index]})}>
                               <Trash size={15}/>
                             </Link>
 
-                            <a className="cursor-pointer" href={route("file.download", {file: files[index]})} 
+                            <a className="cursor-pointer" href={route("file.download", {file: userFiles[index]})} 
                             download={file[index]}>
                               <Download size={15}/>
                             </a>
 
-                            <Link method="put" className="cursor-pointer" href={route("file.setFavorite", {file: files[index]})}>
+                            <Link method="put" className="cursor-pointer" href={route("file.setFavorite", {file: userFiles[index]})}>
                               {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
                             </Link>
 

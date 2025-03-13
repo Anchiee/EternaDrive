@@ -1,5 +1,5 @@
 import AnimatedComponent from "@/Components/AnimatedComponent"
-
+import PropTypes from "prop-types"
 
 export default function EditUserLayout({children, onSubmit})
 {
@@ -14,4 +14,10 @@ export default function EditUserLayout({children, onSubmit})
       </AnimatedComponent>
     </section>
   )
+}
+
+
+EditUserLayout.PropTypes = {
+  children: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 }

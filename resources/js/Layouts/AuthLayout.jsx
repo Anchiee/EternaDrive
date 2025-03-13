@@ -1,4 +1,6 @@
 import { Head } from "@inertiajs/react";
+import PropTypes from "prop-types";
+
 
 export default function AuthLayout({onSubmit, children})
 {
@@ -13,4 +15,10 @@ export default function AuthLayout({onSubmit, children})
         </section>
     </>
   )
+}
+
+
+AuthLayout.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  children: PropTypes.object.isRequired,
 }

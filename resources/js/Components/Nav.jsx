@@ -22,9 +22,8 @@ export default function Nav()
       setUserFiles(userFilesCopy)
     }
     else {
-      
-      console.log(`user files: ${userFiles}`)
-      setUserFiles(search(e.target.value))
+      const result = search(e.target.value)
+      setUserFiles(result)
     }
   }
 
@@ -32,6 +31,9 @@ export default function Nav()
     setUserFilesCopy(userFiles)
   }, [])
 
+  useEffect(() => {
+    console.log(userFiles)
+  }, [userFiles])
 
 
   return(

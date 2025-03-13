@@ -1,4 +1,3 @@
-import AppLayout from "@/Layouts/AppLayout"
 import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
 import { usePage, Link } from "@inertiajs/react"
@@ -7,6 +6,7 @@ import { FilesContext } from "@/Contexts/Files"
 import useSorting from "@/Hooks/useSorting"
 import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X, Share2, Check, LetterText
 } from "lucide-react"
+import AppLayout from "@/Layouts/AppLayout"
 
 
 export default function DashboardChild() {
@@ -87,11 +87,8 @@ export default function DashboardChild() {
 
 
 
-
 return (
   <>
-    <AppLayout title="Dashboard">
-
       <section className="flex gap-5 my-5 grow-1">
         <nav className="flex flex-col border-r-[1px] border-r-grayTransparent-700 pr-10">
 
@@ -229,9 +226,6 @@ return (
           </div>
         </div>
       </section>
-
-
-    </AppLayout>
   </>
 
 )

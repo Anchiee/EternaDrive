@@ -18,6 +18,7 @@ export default function CenteredCardLayout({title, children})
 }
 
 CenteredCardLayout.propTypes = {
+  children: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
 }
 

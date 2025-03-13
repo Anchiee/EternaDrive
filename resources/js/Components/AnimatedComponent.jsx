@@ -1,5 +1,8 @@
 import { easeOut } from "motion"
 import { motion } from "motion/react"
+import PropTypes from "prop-types"
+
+
 
 const transitions = {duration: .2, ease: easeOut}
 
@@ -16,4 +19,9 @@ export default function AnimatedComponent({children})
       {children}
     </motion.div>
   )
+}
+
+
+AnimatedComponent.propTypes = {
+  children: PropTypes.object.isRequired,
 }

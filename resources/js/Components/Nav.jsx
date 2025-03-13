@@ -1,14 +1,38 @@
 import { Link, usePage } from "@inertiajs/react"
 import { AnimatePresence } from "motion/react"
-import { useState } from "react"
+import { useState, useContext, useEffect } from "react"
+import useSorting from "@/Hooks/useSorting"
 import AnimatedComponent from "./AnimatedComponent"
 import { Settings2, LogOut, User, Search } from "lucide-react"
+import { FilesContext } from "@/Contexts/Files"
+
 
 export default function Nav()
 {
   const {auth} = usePage().props
   const {component} = usePage()
+  const {search} = useSorting()
   let [isHidden, setIsHidden] = useState(true)
+
+  const {userFiles, setUserFiles} = useContext(FilesContext)
+  let [userFilesCopy, setUserFilesCopy] = useState()
+
+  const onSearch = (e) => {
+    if(e.target.value.length === 0) {
+      setUserFiles(userFilesCopy)
+    }
+    else {
+      
+      console.log(`user files: ${userFiles}`)
+      setUserFiles(search(e.target.value))
+    }
+  }
+
+  useEffect(() => {
+    setUserFilesCopy(userFiles)
+  }, [])
+
+
 
   return(
     <nav className="flex items-center justify-between bg-black border-b-[1px] border-b-grayTransparent-700
@@ -20,12 +44,12 @@ export default function Nav()
       </div>
 
       {component === "Dashboard" &&
-        <form className="flex items-center px-4 border-2 border-red rounded-md">
+        <div className="flex items-center px-4 border-2 border-red rounded-md">
           <Search size={12}/>
           <input type="text" placeholder="Search by name, size, date" 
-          className="border-none bg-transparent text-white placeholder:text-white text-[.8rem] placeholder:text-[.8rem] focus:ring-0"/>
-          <button className="text-[.8rem] bg-red px-2 py-1 rounded-sm text-white cursor-pointer">Search</button>
-        </form>
+          className="border-none bg-transparent text-white placeholder:text-white text-[.8rem] placeholder:text-[.8rem] focus:ring-0"
+          onChange={onSearch}/>
+        </div>
       }
 
     

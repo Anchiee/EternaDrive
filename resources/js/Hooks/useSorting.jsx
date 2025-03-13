@@ -1,11 +1,11 @@
 import { ChevronDown, ChevronUp } from "lucide-react"
 import { useState } from "react"
+import { useContext } from "react"
+import { FilesContext } from "@/Contexts/Files"
 
-
-export default function useSorting(files) {
+export default function useSorting() {
     
-    
-    let [userFiles, setUserFiles] = useState(files)
+    const {userFiles, setUserFiles} = useContext(FilesContext)
     let [sortIcons, setSortIcons] = useState(
     {
         0: {icon: <ChevronDown size={15} strokeWidth={4}/>, sorting: "ascending"},
@@ -78,5 +78,14 @@ export default function useSorting(files) {
         return {paramA, paramB}
     }
 
-    return {userFiles, sortIcons, onClickSort, setUserFiles}
+
+    const search = (param) => {
+      console.log(`Param: ${param}`)
+      const result = userFiles.filter((file) => 
+        file.name.toLowerCase().includes(param))
+
+        return result
+    }
+
+    return {sortIcons, onClickSort, search}
 }

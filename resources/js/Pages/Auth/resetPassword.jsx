@@ -18,7 +18,8 @@ export default function ResetPassword()
 
 
   return(
-    <CenteredCardLayout title="Reset password">
+    <CenteredCardLayout title="Reset password"
+    description="Forgot your password? Quickly reset it. Give the account's email, enter the link and give the new credentials and thats all!">
       <form onSubmit={(e) => onSubmit(e, "/reset-password")} className="px-6">
         <div className="my-6">
           <label htmlFor="email">Email</label>

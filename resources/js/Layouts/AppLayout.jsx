@@ -3,12 +3,15 @@ import { Head } from "@inertiajs/react"
 import PropTypes from "prop-types"
 import SortableFilesProvider from "@/ContextsProviders/FileContextProvider"
 
-export default function AppLayout({children, title})
+export default function AppLayout({children, title, description})
 {
   
   return(
     <>
-      <Head title={title}/>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description}/>
+      </Head>
       <SortableFilesProvider>
         <Nav/>
       </SortableFilesProvider>
@@ -24,4 +27,5 @@ export default function AppLayout({children, title})
 AppLayout.propTypes = {
   children: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 }

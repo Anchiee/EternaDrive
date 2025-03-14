@@ -8,7 +8,10 @@ export default function Dashboard()
 {
     return(
         <SortableFileProvider>
-          <Head title="Dashboard"/>
+          <Head>
+            <title>Dashboard</title>
+            <meta name="description" content="EternaDrive's dashboard. Upload, share and download your files here! However remember of the 100MB file limit"/>
+          </Head>
           <Nav/>
           <DashboardChild/>
         </SortableFileProvider>

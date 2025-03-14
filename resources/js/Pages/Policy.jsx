@@ -2,7 +2,9 @@ import AppLayout from "@/Layouts/AppLayout";
 
 export default function Policy() {
     return (
-        <AppLayout title="Privacy Policy">
+        <AppLayout 
+        title="Privacy Policy"
+        description="EternaDrive's policy. Meet our way of storing the user's data and clear up your doubts about our platform">
             <div className="container mx-auto p-6">
                 <h1 className="text-2xl font-bold text-red tracking-widest">Privacy Policy for EternaDrive</h1>
                 <p className="text-white-300 text-xs mb-3">Last Updated: 03.05.2025</p>

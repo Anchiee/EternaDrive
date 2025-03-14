@@ -5,7 +5,9 @@ export default function Home()
 
 
   return (
-    <AppLayout title="Home">
+    <AppLayout 
+    title="Home" 
+    description="EternaDrive's home. Meet a brand new file hosting service. Timeless, secure, eterna. Join us and stop worrying about your storage!">
       <section className="h-full flex flex-col">
 
         <section className="min-h-screen flex flex-row justify-between items-center mb-5 grow-0">

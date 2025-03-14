@@ -14,8 +14,10 @@ export default function ForgotPassword()
   }) 
 
   return(
-    <CenteredCardLayout title="Forgot password">
-      <h1 className="text-left font-bold text-red tracking-wider">FORGOT THE PASSWORD</h1>
+    <CenteredCardLayout 
+    title="Forgot password"
+    description="Forgot your password? Quickly reset it. Give the account's email, enter the link and give the new credentials and thats all!">
+      <h1 className="text-left font-bold text-red-800 tracking-wider">FORGOT THE PASSWORD</h1>
       <p className="mb-4">Provide us the account's email and we'll send the verification link.</p>
 
       <form onSubmit={(e) => onSubmit(e, "/forgot-password")}>

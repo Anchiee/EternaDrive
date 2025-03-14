@@ -36,7 +36,7 @@ export default function Login()
 
       <InlinePrompt PromptHeader="New to EternaDrive?" PromptText="Sign-in" PromptRoute="sign.create"/>
       {canResetPassword && 
-      <InlinePrompt PromptHeader="Forgot password?" PromptText="Click here" PromptRoute="password.request"/>}
+      <InlinePrompt PromptHeader="Forgot password?" PromptText="Reset it" PromptRoute="password.request"/>}
 
       {status && <p className="text-xs my-1 text-red">{status}</p>}
 

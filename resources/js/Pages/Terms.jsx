@@ -2,7 +2,9 @@ import AppLayout from "@/Layouts/AppLayout";
 
 export default function Terms() {
     return (
-        <AppLayout title="Terms of Service">
+        <AppLayout 
+        title="Terms of Service"
+        description="Our terms of service, meet how you have to use the platform to not get blocked either temporarily or forever">
             <div className="container mx-auto p-6">
                 <h1 className="text-2xl font-bold text-red tracking-widest">Terms of Service for EternaDrive</h1>
                 <p className="text-white-300 text-xs mb-3">Last Updated: 03.05.2025</p>

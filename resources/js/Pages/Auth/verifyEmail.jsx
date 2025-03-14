@@ -4,7 +4,8 @@ import CenteredCardLayout from "@/Layouts/CenteredCardLayout";
 export default function verifyEmail() {
 
   return(
-    <CenteredCardLayout title="Verify email">
+    <CenteredCardLayout title="Verify email"
+    description="Verify your email in order to proceed further! We've sent the link to your email inbox, just click the link and you are done!">
       <h1 className="font-bold text-red tracking-wider">EMAIL VERIFICATION</h1>
       <p>Email verification link has been sent, please verify your email to proceed further.</p>
 

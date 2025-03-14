@@ -1,6 +1,7 @@
 import Nav from "@/Components/Nav"
 import { Head } from "@inertiajs/react"
 import PropTypes from "prop-types"
+import SortableFilesProvider from "@/ContextsProviders/FileContextProvider"
 
 export default function AppLayout({children, title})
 {
@@ -8,7 +9,10 @@ export default function AppLayout({children, title})
   return(
     <>
       <Head title={title}/>
-      <Nav/>
+      <SortableFilesProvider>
+        <Nav/>
+      </SortableFilesProvider>
+      
       <main className="grow-1 flex flex-col">
           {children}
       </main> 

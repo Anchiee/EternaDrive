@@ -3,7 +3,7 @@ import { SortableFilesContext } from "@/Contexts/Files";
 import { usePage } from "@inertiajs/react";
 
 
-export default function sortableFilesProvider({children})
+export default function SortableFilesProvider({children})
 {   
     const {files} = usePage().props
     let [sortableFiles, setSortableFiles] = useState(files)

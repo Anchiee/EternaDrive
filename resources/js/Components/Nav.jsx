@@ -4,36 +4,37 @@ import { useState, useContext, useEffect } from "react"
 import useSorting from "@/Hooks/useSorting"
 import AnimatedComponent from "./AnimatedComponent"
 import { Settings2, LogOut, User, Search } from "lucide-react"
-import { FilesContext } from "@/Contexts/Files"
+import { SortableFilesContext } from "@/Contexts/Files"
 
 
 export default function Nav()
 {
-  const {auth} = usePage().props
+  const {auth, files} = usePage().props
   const {component} = usePage()
   const {search} = useSorting()
   let [isHidden, setIsHidden] = useState(true)
 
-  const {userFiles, setUserFiles} = useContext(FilesContext)
+  const {setSortableFiles} = useContext(SortableFilesContext)
   let [userFilesCopy, setUserFilesCopy] = useState()
 
   const onSearch = (e) => {
     if(e.target.value.length === 0) {
-      setUserFiles(userFilesCopy)
+      setSortableFiles(userFilesCopy)
     }
     else {
       const result = search(e.target.value)
-      setUserFiles(result)
+      setSortableFiles(result)
     }
   }
 
   useEffect(() => {
-    setUserFilesCopy(userFiles)
-  }, [])
+    setUserFilesCopy(files)
+  }, [files])
 
-  useEffect(() => {
-    console.log(userFiles)
-  }, [userFiles])
+
+
+ 
+
 
 
   return(

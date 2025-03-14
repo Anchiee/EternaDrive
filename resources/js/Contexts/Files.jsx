@@ -1,3 +1,3 @@
-import { createContext, useContext } from "react";
+import { createContext  } from "react";
 
-export const FilesContext = createContext()
+export const SortableFilesContext = createContext()

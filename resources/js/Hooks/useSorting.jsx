@@ -1,11 +1,11 @@
 import { ChevronDown, ChevronUp } from "lucide-react"
 import { useState } from "react"
 import { useContext } from "react"
-import { FilesContext } from "@/Contexts/Files"
+import { SortableFilesContext } from "@/Contexts/Files"
 
 export default function useSorting() {
     
-    const {userFiles, setUserFiles} = useContext(FilesContext)
+    const {sortableFiles, setSortableFiles} = useContext(SortableFilesContext)
     let [sortIcons, setSortIcons] = useState(
     {
         0: {icon: <ChevronDown size={15} strokeWidth={4}/>, sorting: "ascending"},
@@ -21,7 +21,7 @@ export default function useSorting() {
         switch(currentSorting) {
           case "descending":
             setSortIcons({...sortIcons, [index] : {icon: <ChevronDown size={15} strokeWidth={4}/>, sorting: "ascending"}})
-            setUserFiles(userFiles.sort((a, b) => {
+            setSortableFiles(sortableFiles.sort((a, b) => {
                 const params = returnParams(type, a, b)
                 const paramA = params.paramA
                 const paramB = params.paramB
@@ -38,7 +38,7 @@ export default function useSorting() {
 
             setSortIcons({...sortIcons, [index] : {icon: <ChevronUp size={15} strokeWidth={4}/>, sorting: "descending"}})
 
-            setUserFiles(userFiles.sort((a , b) => {
+            setSortableFiles(sortableFiles.sort((a , b) => {
                 const params = returnParams(type, a, b)
                 const paramA = params.paramA
                 const paramB = params.paramB
@@ -81,8 +81,8 @@ export default function useSorting() {
 
     const search = (param) => {
       console.log(`Param: ${param}`)
-      const result = userFiles.filter((file) => 
-        file.name.toLowerCase().includes(param))
+      const result = sortableFiles.filter((file) => 
+        file.name.toLowerCase().includes(param.toLowerCase()))
 
         return result
     }

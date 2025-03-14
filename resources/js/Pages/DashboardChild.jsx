@@ -2,19 +2,17 @@ import useUser from "@/Hooks/useUser"
 import ErrorMessage from "@/Components/ErrorMessage"
 import { usePage, Link } from "@inertiajs/react"
 import { useEffect, useState, useContext } from "react"
-import { FilesContext } from "@/Contexts/Files"
+import { SortableFilesContext } from "@/Contexts/Files"
 import useSorting from "@/Hooks/useSorting"
-import { Plus, Clock, Star, Columns2, ImageIcon, VideoIcon, Music2Icon, FileIcon, Trash, Download, X, Share2, Check, LetterText
+import { Plus, Clock, Star, Columns2, ImageIcon, Video, Music2Icon, FileIcon, Trash, Download, X, Share2, Check, LetterText
 } from "lucide-react"
-import AppLayout from "@/Layouts/AppLayout"
-
 
 export default function DashboardChild() {
   const { errors, fileRequest, data, setData } = useUser({
     file: ""
   })
 
-  const {userFiles, setUserFiles} = useContext(FilesContext)
+  const {sortableFiles, setSortableFiles} = useContext(SortableFilesContext)
   const { files, flash, auth, maxUsage } = usePage().props
   const { url } = usePage()
   const {sortIcons, onClickSort} = useSorting(files)
@@ -46,7 +44,7 @@ export default function DashboardChild() {
       case "image":
         return <ImageIcon size={20} />
       case "video":
-        return <VideoIcon size={20} />
+        return <Video size={20} />
       case "audio":
         return <Music2Icon size={20}/>
       case "text":
@@ -81,7 +79,9 @@ export default function DashboardChild() {
   }, [data.file])
 
   useEffect(() => {
-    setUserFiles(files)
+    
+    setSortableFiles(files)
+    console.log(sortableFiles)
   }, [files])
 
 
@@ -163,7 +163,7 @@ return (
               </thead>
               <tbody>
                 {
-                  userFiles.map((file, index) => {
+                  sortableFiles.map((file, index) => {
 
 
                     const createDate = new Date(file.created_at)
@@ -197,21 +197,21 @@ return (
                         {hoveredIndex === index &&
                         <td className="px-6">
                           <p className="flex items-center gap-3">
-                            <Link method="delete" className="cursor-pointer" href={route("file.delete", {file: userFiles[index]})}>
+                            <Link method="delete" className="cursor-pointer" href={route("file.delete", {file: sortableFiles[index]})}>
                               <Trash size={15}/>
                             </Link>
 
-                            <a className="cursor-pointer" href={route("file.download", {file: userFiles[index]})} 
+                            <a className="cursor-pointer" href={route("file.download", {file: sortableFiles[index]})} 
                             download={file[index]}>
                               <Download size={15}/>
                             </a>
 
-                            <Link method="put" className="cursor-pointer" href={route("file.setFavorite", {file: userFiles[index]})}>
+                            <Link method="put" className="cursor-pointer" href={route("file.setFavorite", {file: sortableFiles[index]})}>
                               {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
                             </Link>
 
                             <Link className="cursor-pointer" onClick={() => onShareClick(index)}
-                            href={route("file.share", {"file": userFiles[index]})}>
+                            href={route("file.share", {"file": sortableFiles[index]})}>
                               {shareIcons[index] || <Share2 size={15}/>}
                             </Link>
                           </p>

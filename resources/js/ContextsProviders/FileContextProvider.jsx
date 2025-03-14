@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { FilesContext } from "@/Contexts/Files";
+import { SortableFilesContext } from "@/Contexts/Files";
 import { usePage } from "@inertiajs/react";
 
 
-export default function FileContextProvider({children})
+export default function sortableFilesProvider({children})
 {   
     const {files} = usePage().props
-    let [userFiles, setUserFiles] = useState(files)
+    let [sortableFiles, setSortableFiles] = useState(files)
 
     return (
-        <FilesContext.Provider value={{userFiles, setUserFiles}}>
+        <SortableFilesContext.Provider value={{sortableFiles, setSortableFiles}}>
             {children}
-        </FilesContext.Provider>
+        </SortableFilesContext.Provider>
 
     )
 }

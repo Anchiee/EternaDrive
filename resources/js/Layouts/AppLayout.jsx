@@ -1,5 +1,5 @@
 import Nav from "@/Components/Nav"
-import { Head } from "@inertiajs/react"
+import MetaData from "@/Components/MetaData"
 import PropTypes from "prop-types"
 import SortableFilesProvider from "@/ContextsProviders/FileContextProvider"
 
@@ -8,10 +8,7 @@ export default function AppLayout({children, title, description})
   
   return(
     <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description}/>
-      </Head>
+      <MetaData title={title} description={description}/>
       <SortableFilesProvider>
         <Nav/>
       </SortableFilesProvider>
@@ -25,7 +22,8 @@ export default function AppLayout({children, title, description})
 
 
 AppLayout.propTypes = {
-  children: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object,
+    ]),
 }

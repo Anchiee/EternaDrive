@@ -59,9 +59,9 @@ export default function Nav()
     
 
     <section className="flex items-center gap-10">
-      <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
+      <Link className="text-[.8rem] hover:text-red-400 transition-colors" 
       href="/terms">Terms of service</Link>
-      <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
+      <Link className="text-[.8rem] hover:text-red-400 transition-colors" 
       href="/policy">Privacy policy</Link>
       {!auth.user &&
         <Link className="outline-2 outline-red-800 px-5 py-2 rounded-4xl text-[.7rem]
@@ -74,7 +74,7 @@ export default function Nav()
 
     {auth.user && 
       <div className="flex items-center gap-10">
-        <Link className="text-[.8rem] hover:text-red-800 transition-colors" 
+        <Link className="text-[.8rem] hover:text-red-400 transition-colors" 
         href={route("file.index", {"type": "all"})}>Dashboard</Link>
         
 

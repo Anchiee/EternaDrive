@@ -17,7 +17,10 @@ export default function EditUserLayout({children, onSubmit})
 }
 
 
-EditUserLayout.PropTypes = {
-  children: PropTypes.object.isRequired,
+EditUserLayout.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   onSubmit: PropTypes.func.isRequired,
 }

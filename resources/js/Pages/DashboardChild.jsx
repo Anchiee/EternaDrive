@@ -33,6 +33,7 @@ export default function DashboardChild() {
     setTimeout(() => {
       setShareIcons(prev => ({...prev, [index]: <Share2 size={15}/>}))
     }, 800);
+    
   }
 
 
@@ -68,7 +69,9 @@ export default function DashboardChild() {
 
 
   useEffect(() => {
-    navigator.clipboard.writeText(signedUrl)
+    if(signedUrl) {
+      navigator.clipboard.writeText(signedUrl)
+    }
   }, [signedUrl])
 
   useEffect(() => {
@@ -94,8 +97,8 @@ return (
 
           <label
             htmlFor="file"
-            className="border-2 border-red rounded-md text-red px-4 py-2 hover:bg-red-800 hover:text-white-300 
-            cursor-pointer transition-colors mt-5 flex items-center">
+            className="border-2 border-red rounded-md text-red px-4 py-2 hover:bg-red-700 hover:text-white-300 
+            hover:border-red-700 cursor-pointer transition-colors mt-5 flex items-center">
             <Plus className="inline" />
             New
           </label>
@@ -115,7 +118,7 @@ return (
 
                 <Link key={tab.page}
                   className={`flex items-center gap-2 px-3 py-1
-                      ${url === `/dashboard/${tab.param}` ? " bg-red rounded-md" : ""}`
+                      ${url === `/dashboard/${tab.param}` ? " bg-red-700 rounded-md" : ""}`
                   }
                   href={tab.route}>
                   {tab.component}
@@ -149,7 +152,8 @@ return (
                             {header.text}
                             <button 
                             onClick={() => onClickSort(index, header.text.toLowerCase())} 
-                            className="cursor-pointer">
+                            className="cursor-pointer"
+                            aria-label="sort button">
                               {sortIcons[index].icon}
                             </button>
                           </p>

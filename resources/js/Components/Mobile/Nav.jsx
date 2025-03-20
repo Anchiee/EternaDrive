@@ -11,7 +11,9 @@ export default function MobileNav()
 
     const {auth} = usePage().props
 
+    const currentYear = new Date().getFullYear()
 
+    
     return(
         <section className="flex items-center justify-between  bg-black border-b-[1px] border-b-grayTransparent-700
       text-white-300 sticky top-0 z-99 md:hidden">         
@@ -24,14 +26,14 @@ export default function MobileNav()
                 
                 <div className="h-full w-full bg-transparent-300 absolute">
 
-                    <AnimatedNav>
-                        <nav className="absolute top-0 h-[110rem] w-[60%] right-40 bg-white-300 text-black flex flex-col">
+                    <AnimatedNav className="h-full">
+                        <nav className="absolute top-0 w-[60%] h-screen right-40 bg-white-300 text-black flex flex-col">
                             <button onClick={() => setIsHidden(prev => !prev)} className="text-black self-end mr-4 mt-5">
                                 <X/>
                             </button>
 
 
-                            <section className="mx-4 flex flex-col gap-3 text-[.8rem] mt-10">       
+                            <section className="mx-4 flex flex-col gap-3 text-[.8rem] mt-10 flex-grow">       
                                 
                                 {!auth.user &&
                                 <Link className="bg-red text-white-300 px-5 py-2 rounded-sm"
@@ -72,6 +74,11 @@ export default function MobileNav()
 
 
                             </section>
+
+                            <footer className="mx-4 border-t-[1px] border-t-gray-300 py-4 text-xs">
+                                <p>EternaDrive {currentYear}</p>
+                                <a href="https://github.com/Anchiee/EternaDrive" className="underline">Get full repo here</a>
+                            </footer>
 
                         </nav>
                     </AnimatedNav>         

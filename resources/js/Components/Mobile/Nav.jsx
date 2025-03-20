@@ -1,5 +1,5 @@
 import { Link, usePage } from "@inertiajs/react"
-import { Menu, X, Handshake, EarthLock } from "lucide-react"
+import { Menu, X, Handshake, EarthLock, Settings, LogOut } from "lucide-react"
 import { useState } from "react"
 import AnimatedNav from "./AnimatedNav"
 import { AnimatePresence } from "motion/react"
@@ -32,9 +32,30 @@ export default function MobileNav()
 
 
                             <section className="mx-4 flex flex-col gap-3 text-[.8rem] mt-10">       
+                                
                                 {!auth.user &&
                                 <Link className="bg-red text-white-300 px-5 py-2 rounded-sm"
                                 href={route("session.create")}>SIGN-IN</Link>
+                                }
+
+
+                                {auth.user &&
+                                    <>
+                                        <div>
+                                            <p className="font-semibold">{auth.user.name}</p>
+                                            <p className="font-semibold">{auth.user.email}</p>
+                                        </div>
+                                        
+                                        <Link href={route("profile.edit")} className="flex items-center gap-2">
+                                            <Settings size={15}/>
+                                            Settings
+                                        </Link>
+
+                                        <Link href={route("user.destroy")} className="flex items-center gap-2">
+                                            <LogOut size={15}/>
+                                            Log out
+                                        </Link>
+                                    </>
                                 }
 
                                 {
@@ -48,6 +69,8 @@ export default function MobileNav()
                                         </Link>
                                     ))
                                 }
+
+
                             </section>
 
                         </nav>

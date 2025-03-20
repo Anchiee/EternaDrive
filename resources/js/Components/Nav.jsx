@@ -40,7 +40,10 @@ export default function Nav()
   return(
 
     <>
-      <MobileNav/>
+      <AnimatePresence mode="wait">
+        <MobileNav/>
+      </AnimatePresence>
+     
       <nav className="hidden md:flex items-center justify-between bg-black border-b-[1px] border-b-grayTransparent-700
       text-white-300 sticky top-0 z-99">
 

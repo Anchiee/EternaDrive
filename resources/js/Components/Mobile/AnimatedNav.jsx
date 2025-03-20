@@ -12,9 +12,9 @@ const animations = {
 export default function AnimatedNav({children})
 {
     return(
-        <motion.div variants={animations} initial="initial" animate="animate" exit="exit">
+        <motion.nav variants={animations} initial="initial" animate="animate" exit="exit">
             {children}
-        </motion.div>
+        </motion.nav>
     )
 }
 

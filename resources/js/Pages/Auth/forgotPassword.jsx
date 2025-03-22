@@ -28,7 +28,7 @@ export default function ForgotPassword()
           {errors.email && <ErrorMessage message={errors.email}/>}
         </div>
         
-        {status && <p className="text-red my-1">{status}</p>}
+        {status && <p className="text-red my-1 text-xs">{status}</p>}
         <SolidButton ButtonType="email" ButtonText="Send"/>
       </form>
     </CenteredCardLayout>

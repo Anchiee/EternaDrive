@@ -92,8 +92,8 @@ export default function DashboardChild() {
 
 return (
   <>
-      <section className="flex gap-5 my-5 grow-1">
-        <nav className="flex flex-col border-r-[1px] border-r-grayTransparent-700 pr-10">
+      <section className="hidden md:flex gap-5 my-5 grow-1">
+        <nav className="flex-col border-r-[1px] border-r-grayTransparent-700 pr-10">
 
           <label
             htmlFor="file"

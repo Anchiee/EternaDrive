@@ -1,18 +1,30 @@
 import { Link, usePage } from "@inertiajs/react"
-import { Menu, X, Handshake, EarthLock, Settings, LogOut } from "lucide-react"
-import { useState } from "react"
+import { Menu, X, Handshake, EarthLock, Settings, LogOut, Star, Columns2, Clock, Plus, LayoutDashboard } from "lucide-react"
+import { useState, useEffect } from "react"
+import useUser from "@/Hooks/useUser"
 import AnimatedNav from "./AnimatedNav"
 import { AnimatePresence } from "motion/react"
+import ErrorMessage from "../ErrorMessage"
 
 
 export default function MobileNav() 
 {
+    const { errors, fileRequest, data, setData } = useUser({
+    file: ""
+    })
+
     let [isHidden, setIsHidden] = useState(true)
 
     const {auth} = usePage().props
+    const {url} = usePage()
 
     const currentYear = new Date().getFullYear()
 
+    useEffect(() => {
+        if(data.file) {
+            fileRequest("/file")
+        }
+    }, [data.file])
     
     return(
         <section className="flex items-center justify-between  bg-black border-b-[1px] border-b-grayTransparent-700
@@ -33,7 +45,7 @@ export default function MobileNav()
                             </button>
 
 
-                            <section className="mx-4 flex flex-col gap-3 text-[.8rem] mt-10 flex-grow">       
+                            <section className="mx-4 px-4 flex flex-col gap-3 text-[.8rem] mt-10 flex-grow">       
                                 
                                 {!auth.user &&
                                 <Link className="bg-red text-white-300 px-5 py-2 rounded-sm"
@@ -53,7 +65,13 @@ export default function MobileNav()
                                             Settings
                                         </Link>
 
-                                        <Link href={route("user.destroy")} className="flex items-center gap-2">
+                                        
+                                        <Link href={route("file.index", {type: "all"})} className="flex items-center gap-2">
+                                            <LayoutDashboard size={15}/>
+                                            Dashboard
+                                        </Link>
+
+                                        <Link href={route("user.destroy")} method="delete" className="flex items-center gap-2">
                                             <LogOut size={15}/>
                                             Log out
                                         </Link>
@@ -72,10 +90,55 @@ export default function MobileNav()
                                     ))
                                 }
 
+                            
+                            <div className="flex flex-col gap-3 border-t-[1px] border-t-gray-300 py-4">
+
+                            
+                            {url.includes("/dashboard") &&
+                                <>
+                                    <label 
+                                    htmlFor="file"
+                                    className="flex items-center gap-1 bg-red py-2 pl-1 pr-5 text-white-300 rounded-sm mb-5"
+                                    >
+                                        <Plus size={15}/>
+                                        New
+                                    </label>
+                                    {errors.file && <ErrorMessage message={errors.file}/>}
+
+                                    <input type="file" onChange={(e) => setData("file", e.target.files[0])} id="file"
+                                        className="fixed right-full bottom-full" />
+
+
+                                    <input 
+                                    type="text" 
+                                    placeholder="Search by name, date, size..."
+                                    className="text-[.7rem] py-1 pl-2 rounded-sm outline-gray-300 outline-1 focus:ring-2 focus:ring-red border-none"/> 
+
+
+                                    {[
+                                        { page: "All", component: <Columns2 size={15} />, route: route("file.index", { "type": "all" }), param: "all" },
+                                        { page: "Recent", component: <Clock size={15} />, route: route("file.index", { "type": "recent" }), param: "recent" },
+                                        { page: "Favorite", component: <Star size={15} />, route: route("file.index", { "type": "favorites" }), param: "favorites" },
+                                    ].map(tab => (
+
+
+                                        <Link key={tab.page}
+                                        className={`flex items-center gap-2
+                                            ${url === `/dashboard/${tab.param}` ? "bg-red text-white-300 pl-1 pr-5 py-2 rounded-sm" : ""}`
+                                        }
+                                        href={tab.route}>
+                                        {tab.component}
+                                        {tab.page}
+                                        </Link>
+                                    ))}    
+                                </>
+                            }
+                            </div>
+
 
                             </section>
 
-                            <footer className="mx-4 border-t-[1px] border-t-gray-300 py-4 text-xs">
+                            <footer className="mx-4 px-4 border-t-[1px] border-t-gray-300 py-4 text-xs">
                                 <p>EternaDrive {currentYear}</p>
                                 <a href="https://github.com/Anchiee/EternaDrive" className="underline">Get full repo here</a>
                             </footer>
@@ -84,6 +147,7 @@ export default function MobileNav()
                     </AnimatedNav>         
                     
                 </div>
+            
                 
             }
             </AnimatePresence>

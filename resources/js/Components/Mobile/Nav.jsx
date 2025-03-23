@@ -39,7 +39,7 @@ export default function MobileNav()
                 <div className="h-full w-full bg-transparent-300 absolute">
 
                     <AnimatedNav className="h-full">
-                        <nav className="absolute top-0 w-[60%] h-screen right-40 bg-white-300 text-black flex flex-col">
+                        <nav className="absolute top-0 w-[60%] h-screen right-[50%] bg-white-300 text-black flex flex-col">
                             <button onClick={() => setIsHidden(prev => !prev)} className="text-black self-end mr-4 mt-5">
                                 <X/>
                             </button>
@@ -55,9 +55,9 @@ export default function MobileNav()
 
                                 {auth.user &&
                                     <>
-                                        <div>
+                                        <div className="border-b-[1px] border-b-gray-300 pb-3">
                                             <p className="font-semibold">{auth.user.name}</p>
-                                            <p className="font-semibold">{auth.user.email}</p>
+                                            <p className="text-[.7rem]">{auth.user.email}</p>
                                         </div>
                                         
                                         <Link href={route("profile.edit")} className="flex items-center gap-2">

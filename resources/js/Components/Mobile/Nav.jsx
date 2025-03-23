@@ -15,7 +15,7 @@ export default function MobileNav()
 
     let [isHidden, setIsHidden] = useState(true)
 
-    const {auth} = usePage().props
+    const {auth, maxUsage} = usePage().props
     const {url} = usePage()
 
     const currentYear = new Date().getFullYear()
@@ -131,6 +131,12 @@ export default function MobileNav()
                                         {tab.page}
                                         </Link>
                                     ))}    
+
+                                    <div className="w-full h-2 bg-gray-400 rounded-md">
+                                        <div className="bg-red h-2 rounded-md" style={{width: `${auth.user.memory_usage / maxUsage * 100}%`}}>
+                                        </div>
+                                    </div>
+                                    <p className="text-xs">{(auth.user.memory_usage / 1024 / 1024).toFixed(2)}MB used out of {maxUsage / 1024 / 1024}MB</p>
                                 </>
                             }
                             </div>

@@ -1,7 +1,7 @@
 import { Link, usePage } from "@inertiajs/react"
 import { AnimatePresence } from "motion/react"
 import { useState, useContext, useEffect } from "react"
-import useSorting from "@/Hooks/useSorting"
+import useSorting from "@/Hooks/useFiles"
 import AnimatedComponent from "./AnimatedComponent"
 import { Settings2, LogOut, User, Search } from "lucide-react"
 import { SortableFilesContext } from "@/Contexts/Files"

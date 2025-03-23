@@ -3,9 +3,11 @@ import ErrorMessage from "@/Components/ErrorMessage"
 import { usePage, Link } from "@inertiajs/react"
 import { useEffect, useState, useContext } from "react"
 import { SortableFilesContext } from "@/Contexts/Files"
-import useSorting from "@/Hooks/useSorting"
-import { Plus, Clock, Star, Columns2, ImageIcon, Video, Music2Icon, FileIcon, Trash, Download, X, Share2, Check, LetterText
+import useFiles from "@/Hooks/useFiles"
+import MobileDashboard from "@/Components/Mobile/Dashboard"
+import { Plus, Clock, Star, Columns2, Trash, Download, X, Share2,
 } from "lucide-react"
+
 
 export default function DashboardChild() {
   const { errors, fileRequest, data, setData } = useUser({
@@ -15,7 +17,7 @@ export default function DashboardChild() {
   const {sortableFiles, setSortableFiles} = useContext(SortableFilesContext)
   const { files, flash, auth, maxUsage } = usePage().props
   const { url } = usePage()
-  const {sortIcons, onClickSort} = useSorting(files)
+  const {sortIcons, onClickSort, onShareClick, shareIcons, getFileIcon, getFileSize, getFormattedDate} = useFiles(files)
   
   const user = auth.user
   const signedUrl = flash.signedUrl
@@ -23,49 +25,6 @@ export default function DashboardChild() {
 
 
   let [hoveredIndex, setHoveredIndex] = useState(true)
-
-  let [shareIcons, setShareIcons] = useState({})
-
-
-  const onShareClick = (index) => {
-    setShareIcons(prev => ({...prev, [index]: <Check size={15}/>}))
-
-    setTimeout(() => {
-      setShareIcons(prev => ({...prev, [index]: <Share2 size={15}/>}))
-    }, 800);
-    
-  }
-
-
-  const getFileIcon = (type) => {
-
-    const fileType = type.split('/')[0]
-
-    switch(fileType) {
-      case "image":
-        return <ImageIcon size={20} />
-      case "video":
-        return <Video size={20} />
-      case "audio":
-        return <Music2Icon size={20}/>
-      case "text":
-        return <LetterText size={20}/>
-      default:
-        return <FileIcon size={20} />
-    }
-
-  }
-  const getFileSize = (size) => {
-    let fullName = null
-
-    if(size / 1024 / 1024 >= 1) {
-      fullName = `${(size / 1024 / 1024).toFixed(1)} MB`
-    }
-    else {
-      fullName = `${(size / 1024).toFixed(1)} KB` 
-    }
-    return fullName
-  }
 
 
   useEffect(() => {
@@ -92,6 +51,7 @@ export default function DashboardChild() {
 
 return (
   <>
+    <MobileDashboard/>
       <section className="hidden md:flex gap-5 my-5 grow-1">
         <nav className="flex-col border-r-[1px] border-r-grayTransparent-700 pr-10">
 
@@ -169,20 +129,8 @@ return (
                 {
                   sortableFiles.map((file, index) => {
 
-
-                    const createDate = new Date(file.created_at)
-                    const createYear = createDate.getFullYear()
-                    const createMonth = String(createDate.getMonth() + 1).padStart(2, "0")
-                    const createDay = String(createDate.getDate()).padStart(2, "0")
-
-                    const uploadDate = `${createYear}-${createMonth}-${createDay}`
-
-                    const updateDate = new Date(file.updated_at)
-                    const updateYear = updateDate.getFullYear()
-                    const updateMonth = String(updateDate.getMonth() + 1).padStart(2, "0")
-                    const updateDay = String(updateDate.getDate()).padStart(2, "0")
-
-                    const changeDate = `${updateYear}-${updateMonth}-${updateDay}`
+                    const uploadDate = getFormattedDate(file.created_at)
+                    const changeDate = getFormattedDate(file.updated_at)
 
                     return (
                       <tr key={index} className="text-white-300 border-b-[1px] border-y-grayTransparent-700 text-[.8rem] cursor-pointer"

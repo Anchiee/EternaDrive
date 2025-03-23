@@ -1,11 +1,12 @@
-import { ChevronDown, ChevronUp } from "lucide-react"
+import { ChevronDown, ChevronUp, ImageIcon, Video, Music2Icon, FileIcon,} from "lucide-react"
 import { useState } from "react"
 import { useContext } from "react"
 import { SortableFilesContext } from "@/Contexts/Files"
 
-export default function useSorting() {
+export default function useFiles() {
     
     const {sortableFiles, setSortableFiles} = useContext(SortableFilesContext)
+    let [shareIcons, setShareIcons] = useState({})
     let [sortIcons, setSortIcons] = useState(
     {
         0: {icon: <ChevronDown size={15} strokeWidth={4}/>, sorting: "ascending"},
@@ -13,6 +14,8 @@ export default function useSorting() {
         2: {icon: <ChevronDown size={15} strokeWidth={4}/>, sorting: "ascending"},
         3: {icon: <ChevronDown size={15} strokeWidth={4}/>, sorting: "ascending"},
     })
+
+    
 
     const onClickSort = (index, type) => {
         const currentSorting = sortIcons[index].sorting
@@ -87,5 +90,55 @@ export default function useSorting() {
         return result
     }
 
-    return {sortIcons, onClickSort, search}
+    const onShareClick = (index) => {
+      setShareIcons(prev => ({...prev, [index]: <Check size={15}/>}))
+  
+      setTimeout(() => {
+        setShareIcons(prev => ({...prev, [index]: <Share2 size={15}/>}))
+      }, 800);
+      
+    }
+
+    const getFileIcon = (type) => {
+
+      const fileType = type.split('/')[0]
+  
+      switch(fileType) {
+        case "image":
+          return <ImageIcon size={20} />
+        case "video":
+          return <Video size={20} />
+        case "audio":
+          return <Music2Icon size={20}/>
+        case "text":
+          return <LetterText size={20}/>
+        default:
+          return <FileIcon size={20} />
+      }
+  
+    }
+
+    const getFileSize = (size) => {
+      let fullName = null
+  
+      if(size / 1024 / 1024 >= 1) {
+        fullName = `${(size / 1024 / 1024).toFixed(1)} MB`
+      }
+      else {
+        fullName = `${(size / 1024).toFixed(1)} KB` 
+      }
+      return fullName
+    }
+
+    const getFormattedDate = (date) => {
+      const createDate = new Date(date)
+      const createMonth = String(createDate.getMonth() + 1).padStart(2, "0")
+      const createYear = String(createDate.getFullYear()).padStart(2, "0")
+      const createDay = createDate.getDate()
+
+      const formattedDate = `${createYear}-${createMonth}-${createDay}`
+      return formattedDate
+    }
+
+    return {sortIcons, onClickSort, search, onShareClick, getFileIcon, getFileSize, getFormattedDate, shareIcons}
 }

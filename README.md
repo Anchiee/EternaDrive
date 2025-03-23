@@ -36,6 +36,10 @@ I used Inertia.js to provide api-less development which greatly improves the dev
 ## Phase
 The project is still in development phase which means that its not deployed on the internet
 
+## Project start up
+All you have to do is either ``git clone`` or download the project. Then run the project using ``npm run dev`` and ``php artisan serve``.
+Lastly, create the SQL database named ``eternadrive`` with ``php artisan migrate``. That's all! You may run the project.
+
 ## Contribution
 
 If you want to contribute clone the project using ``git clone`` make the changes and make a pull request

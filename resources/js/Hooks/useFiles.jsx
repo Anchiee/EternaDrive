@@ -82,13 +82,7 @@ export default function useFiles() {
     }
 
 
-    const search = (param) => {
-      console.log(`Param: ${param}`)
-      const result = sortableFiles.filter((file) => 
-        file.name.toLowerCase().includes(param.toLowerCase()))
-
-        return result
-    }
+  
 
     const onShareClick = (index) => {
       setShareIcons(prev => ({...prev, [index]: <Check size={15}/>}))
@@ -99,12 +93,30 @@ export default function useFiles() {
       
     }
 
+    const search = (param, files) => {
+      console.log(`Param: ${param}`)
+
+      let paramNum = Number(param)
+      const paramLower = param.toLowerCase()
+
+      console.log((files[0].size / 1024).toFixed(1) == paramNum)
+
+      const result = files.filter((file) => 
+        file.name.toLowerCase().includes(paramLower) ||
+        (file.size / 1024).toFixed(1) === paramNum.toFixed(1) ||
+        (file.size / 1024 / 1024).toFixed(1) === paramNum.toFixed(1) ||
+        file.created_at.includes(paramLower) ||
+        file.updated_at.includes(paramLower))
+
+        return result
+    }
+
     const onSearch = (e, files) => {
       if(e.target.value.length === 0) {
         setSortableFiles(files)
       }
       else {
-        const result = search(e.target.value)
+        const result = search(e.target.value, files)
         setSortableFiles(result)
       }
     }

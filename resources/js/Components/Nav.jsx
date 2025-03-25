@@ -1,39 +1,18 @@
 import { Link, usePage } from "@inertiajs/react"
 import { AnimatePresence } from "motion/react"
-import { useState, useContext, useEffect } from "react"
-import useSorting from "@/Hooks/useFiles"
+import { useState, useEffect } from "react"
+import useFiles from "@/Hooks/useFiles"
 import AnimatedComponent from "./AnimatedComponent"
 import { Settings2, LogOut, User, Search } from "lucide-react"
-import { SortableFilesContext } from "@/Contexts/Files"
 import MobileNav from "@/Components/Mobile/Nav"
 
 export default function Nav()
 {
   const {auth, files} = usePage().props
   const {component} = usePage()
-  const {search} = useSorting()
+  const {onSearch} = useFiles()
+
   let [isHidden, setIsHidden] = useState(true)
-
-  const {setSortableFiles} = useContext(SortableFilesContext)
-  let [userFilesCopy, setUserFilesCopy] = useState()
-
-  const onSearch = (e) => {
-    if(e.target.value.length === 0) {
-      setSortableFiles(userFilesCopy)
-    }
-    else {
-      const result = search(e.target.value)
-      setSortableFiles(result)
-    }
-  }
-
-  useEffect(() => {
-    setUserFilesCopy(files)
-  }, [files])
-
-
-
- 
 
 
 
@@ -57,7 +36,7 @@ export default function Nav()
             <Search size={12}/>
             <input type="text" placeholder="Search by name, size, date" 
             className="border-none bg-transparent text-white placeholder:text-white text-[.8rem] placeholder:text-[.8rem] focus:ring-0"
-            onChange={onSearch}/>
+            onChange={(e) => onSearch(e, files)}/>
           </div>
         }
 

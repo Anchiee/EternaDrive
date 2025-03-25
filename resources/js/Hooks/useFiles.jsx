@@ -99,6 +99,16 @@ export default function useFiles() {
       
     }
 
+    const onSearch = (e, files) => {
+      if(e.target.value.length === 0) {
+        setSortableFiles(files)
+      }
+      else {
+        const result = search(e.target.value)
+        setSortableFiles(result)
+      }
+    }
+
     const getFileIcon = (type) => {
 
       const fileType = type.split('/')[0]
@@ -140,5 +150,5 @@ export default function useFiles() {
       return formattedDate
     }
 
-    return {sortIcons, onClickSort, search, onShareClick, getFileIcon, getFileSize, getFormattedDate, shareIcons}
+    return {sortIcons, onClickSort, onShareClick, getFileIcon, getFileSize, getFormattedDate, onSearch, shareIcons}
 }

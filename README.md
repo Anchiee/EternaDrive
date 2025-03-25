@@ -46,6 +46,12 @@ Install dependencies
 ``npm install
  composer install``
 
+Generate .env keys
+``cp .env.example .env``
+``php artisan key:generate``
+
+**NOTE THAT FOR THINGS LIKE OAUTH2 ETC YOU WILL HAVE TO SET UP ENV KEYS MANUALLY**
+
  Run the project
  ``php artisan serve
    npm run dev``

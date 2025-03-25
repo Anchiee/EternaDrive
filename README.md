@@ -4,10 +4,10 @@
 
 ## About EternaDrive
 
-EternaDrive is a new file hosting service web application, made with a powerful stack technology, providing the good user experience. Stop worrying about your storage!
+EternaDrive is a new file hosting service web application, made with a powerful stack technology, providing a great user experience. Stop worrying about your storage!
 
 - Secure and reliable way of storing files.
-- Balanced user experience with high quality frontend.
+- Smooth user experience with a high quality frontend.
 - High quality software deployment
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
@@ -31,38 +31,48 @@ Frontend:
  - React.js
  - TailwindCSS
 
-I used Inertia.js to provide api-less development which greatly improves the developing experience
+EternaDrive leverages Inertia.js for API-less development, significantly improving the developer experience.
 
 ## Phase
-The project is still in development phase which means that its not deployed on the internet
+The project is currently in development and has not yet been deployed.
 
-## Project start up
+## Project start up and configuration
 
-Download the repo
+#### Download the repo
 ``git clone https://github.com/Anchiee/EternaDrive``
 ``cd EternaDrive``
 
-Install dependencies
+#### Install dependencies
 ``npm install
  composer install``
 
-Generate .env keys
+#### Generate .env keys
 ``cp .env.example .env``
 ``php artisan key:generate``
 
 **NOTE THAT FOR THINGS LIKE OAUTH2 ETC YOU WILL HAVE TO SET UP ENV KEYS MANUALLY**
 
- Run the project
+ #### Run the project
  ``php artisan serve
    npm run dev``
 
-Run the tests(optional) 
+#### Run the tests(optional) 
 ``php artisan test``
 
 ## Contribution
 
-If you want to contribute clone the project using ``git clone`` make the changes and make a pull request
+#### Fork the repository
+#### Clone your fork
+``git clone https://github.com/YOUR_USERNAME/EternaDrive.git``
+#### Create a new branch for changes
+``git checkout -b feature-branch``
+#### Make your changes and push them
+``git commit -m "Describe your changes"``
+``git push origin feature-branch``
+#### Open a pull request
+
+
 
 ## Contact
-For any contact, use social medias that are linkedon my github profile
+For any inquiries, feel free to reach out via my social media links on my GitHub profile.
 

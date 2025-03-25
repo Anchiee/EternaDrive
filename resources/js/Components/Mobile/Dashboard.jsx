@@ -1,16 +1,17 @@
 import { usePage } from "@inertiajs/react"
 import useFiles from "@/Hooks/useFiles"
+import {SortableFilesContext} from "@/Contexts/Files"
+import { useContext } from "react"
 
 export default function MobileDashboard() {
-    const { files, flash } = usePage().props
+    const { sortableFiles } = useContext(SortableFilesContext)
     const {getFileIcon, getFileSize, getFormattedDate} = useFiles()
 
     return(
         <section className="grid grid-rows-3 grid-cols-2 gap-y-10 gap-x-5 mt-10 md:hidden">
             {
-                files.map((file, index) => {
+                sortableFiles.map((file, index) => {
                     
-
                     return(
                         <div key={index} className="bg-white-300 rounded-sm text-xs py-4">
 

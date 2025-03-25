@@ -1,6 +1,7 @@
 import { Link, usePage } from "@inertiajs/react"
 import { Menu, X, Handshake, EarthLock, Settings, LogOut, Star, Columns2, Clock, Plus, LayoutDashboard } from "lucide-react"
 import { useState, useEffect } from "react"
+import useFiles from "@/Hooks/useFiles"
 import useUser from "@/Hooks/useUser"
 import AnimatedNav from "./AnimatedNav"
 import { AnimatePresence } from "motion/react"
@@ -12,10 +13,11 @@ export default function MobileNav()
     const { errors, fileRequest, data, setData } = useUser({
     file: ""
     })
+    const {onSearch} = useFiles()
 
     let [isHidden, setIsHidden] = useState(true)
 
-    const {auth, maxUsage} = usePage().props
+    const {auth, maxUsage, files} = usePage().props
     const {url} = usePage()
 
     const currentYear = new Date().getFullYear()
@@ -112,7 +114,8 @@ export default function MobileNav()
                                     <input 
                                     type="text" 
                                     placeholder="Search by name, date, size..."
-                                    className="text-[.7rem] py-1 pl-2 rounded-sm outline-gray-300 outline-1 focus:ring-2 focus:ring-red border-none"/> 
+                                    className="text-[.7rem] py-1 pl-2 rounded-sm outline-gray-300 outline-1 focus:ring-2 focus:ring-red border-none"
+                                    onChange={(e) => onSearch(e, files)}/> 
 
 
                                     {[

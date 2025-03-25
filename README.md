@@ -37,8 +37,21 @@ I used Inertia.js to provide api-less development which greatly improves the dev
 The project is still in development phase which means that its not deployed on the internet
 
 ## Project start up
-All you have to do is either ``git clone`` or download the project. Then run the project using ``npm run dev`` and ``php artisan serve``.
-Lastly, create the SQL database named ``eternadrive`` with ``php artisan migrate``. That's all! You may run the project. In case of running tests, run ``php artisan test``
+
+Download the repo
+``git clone https://github.com/Anchiee/EternaDrive``
+``cd EternaDrive``
+
+Install dependencies
+``npm install
+ composer install``
+
+ Run the project
+ ``php artisan serve
+   npm run dev``
+
+Run the tests(optional) 
+``php artisan test``
 
 ## Contribution
 

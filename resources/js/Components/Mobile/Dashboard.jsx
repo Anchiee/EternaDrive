@@ -36,7 +36,7 @@ export default function MobileDashboard() {
                                 <button 
                                 onClick={() => setIsShown({[index] : !isShown[index]})} 
                                 className="self-end mr-4 relative">
-                                    <EllipsisVertical  size={17}/>
+                                    <EllipsisVertical  size={iconSize}/>
 
 
                                     <AnimatePresence mode="wait">

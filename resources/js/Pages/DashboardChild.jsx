@@ -5,7 +5,7 @@ import { useEffect, useState, useContext } from "react"
 import { SortableFilesContext } from "@/Contexts/Files"
 import useFiles from "@/Hooks/useFiles"
 import MobileDashboard from "@/Components/Mobile/Dashboard"
-import { Plus, Clock, Star, Columns2, Trash, Download, X, Share2,
+import { Plus, Clock, Star, Columns2, Trash, Download, X, Share2
 } from "lucide-react"
 
 
@@ -21,9 +21,8 @@ export default function DashboardChild() {
   
   const user = auth.user
   const signedUrl = flash.signedUrl
-
-
-
+  let fileRouteParam = null
+  const iconSize = 15
   let [hoveredIndex, setHoveredIndex] = useState(true)
 
 
@@ -131,6 +130,7 @@ return (
 
                     const uploadDate = getFormattedDate(file.created_at)
                     const changeDate = getFormattedDate(file.updated_at)
+                    fileRouteParam = {file: sortableFiles[index]}
 
                     return (
                       <tr key={index} className="text-white-300 border-b-[1px] border-y-grayTransparent-700 text-[.8rem] cursor-pointer"
@@ -149,23 +149,26 @@ return (
                         {hoveredIndex === index &&
                         <td className="px-6">
                           <p className="flex items-center gap-3">
-                            <Link method="delete" className="cursor-pointer" href={route("file.delete", {file: sortableFiles[index]})}>
-                              <Trash size={15}/>
-                            </Link>
 
-                            <a className="cursor-pointer" href={route("file.download", {file: sortableFiles[index]})} 
+                            {
+                              [
+                                {method: "delete", route: route("file.delete", fileRouteParam), icon: <Trash size={iconSize}/>},
+                                {method: "put", route: route("file.setFavorite", fileRouteParam), icon: file.is_favorite ? <X size={iconSize}/> : <Star size={iconSize}/>},
+                                {method: "get", route: route("file.share", fileRouteParam), icon: shareIcons[index] || <Share2 size={iconSize}/> }
+                              ].map((file, index) => (
+
+                                <Link method={file.method} className="cursor-pointer" href={file.route} key={index}>
+                                  {file.icon}
+                                </Link>
+
+                              ))
+                            }
+
+                            <a className="cursor-pointer" href={route("file.download", fileRouteParam)} 
                             download={file[index]}>
-                              <Download size={15}/>
+                              <Download size={iconSize}/>
                             </a>
 
-                            <Link method="put" className="cursor-pointer" href={route("file.setFavorite", {file: sortableFiles[index]})}>
-                              {file.is_favorite ? <X size={15}/> : <Star size={15}/>}
-                            </Link>
-
-                            <Link className="cursor-pointer" onClick={() => onShareClick(index)}
-                            href={route("file.share", {"file": sortableFiles[index]})}>
-                              {shareIcons[index] || <Share2 size={15}/>}
-                            </Link>
                           </p>
                         </td>}
                       </tr>

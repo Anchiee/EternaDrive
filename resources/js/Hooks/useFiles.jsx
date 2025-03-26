@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, ImageIcon, Video, Music2Icon, FileIcon,} from "lucide-react"
+import { ChevronDown, ChevronUp, ImageIcon, Video, Music2Icon, FileIcon, Check, } from "lucide-react"
 import { useState } from "react"
 import { useContext } from "react"
 import { SortableFilesContext } from "@/Contexts/Files"

@@ -18,7 +18,7 @@ export default function MobileDashboard() {
 
 
     return(
-        <section className="grid grid-rows-3 grid-cols-2 gap-y-10 gap-x-5 mt-10 md:hidden">
+        <section className="grid grid-rows-3 grid-cols-2 gap-y-8 gap-x-5 mt-10 overflow-y-auto md:hidden">
             {
                 sortableFiles.map((file, index) => {
                     fileRouteParam = { "file": sortableFiles[index] }
@@ -33,7 +33,7 @@ export default function MobileDashboard() {
                                 <p>{getFileSize(file.size)}</p>
                                 <p>{getFormattedDate(file.created_at)}</p>
 
-                                <button 
+                                <span
                                 onClick={() => setIsShown({[index] : !isShown[index]})} 
                                 className="self-end mr-4 relative">
                                     <EllipsisVertical  size={iconSize}/>
@@ -42,8 +42,8 @@ export default function MobileDashboard() {
                                     <AnimatePresence mode="wait">
                                         {isShown[index] &&
                                             <AnimatedComponent>
-                                                <div className="absolute right-4 bg-white-300 text-black flex flex-col gap-3 pr-9 pl-3 py-2 rounded-md 
-                                                outline-1 outline-gray-300 shadow-xl shadow-gray-300">
+                                                <div className="absolute bottom-1 right-9 bg-white-300 text-black flex flex-col gap-3 pr-9 pl-3 py-2 rounded-md 
+                                                outline-1 outline-gray-300 shadow-sm shadow-gray-300">
                                                     {
                                                         [
                                                             { page: "Delete", component: <Trash size={iconSize} />, route: route("file.delete", fileRouteParam), method: "delete"},
@@ -71,7 +71,7 @@ export default function MobileDashboard() {
                                         }
                                     </AnimatePresence>
                                     
-                                </button>
+                                </span>
 
                                 
                                 

@@ -57,7 +57,7 @@ export default function MobileNav()
 
                                 {auth.user &&
                                     <>
-                                        <div className="border-b-[1px] border-b-gray-300 pb-3">
+                                        <div>
                                             <p className="font-semibold">{auth.user.name}</p>
                                             <p className="text-[.7rem]">{auth.user.email}</p>
                                         </div>
@@ -93,64 +93,65 @@ export default function MobileNav()
                                 }
 
                             
-                            <div className="flex flex-col gap-3 border-t-[1px] border-t-gray-300 py-4">
-
+                                <section className="flex flex-col gap-3 border-t-[1px] border-t-gray-300 py-4">
                             
-                            {url.includes("/dashboard") &&
-                                <>
-                                    <label 
-                                    htmlFor="file"
-                                    className="flex items-center gap-1 bg-red py-2 pl-1 pr-5 text-white-300 rounded-sm mb-5"
-                                    >
-                                        <Plus size={15}/>
-                                        New
-                                    </label>
-                                    {errors.file && <ErrorMessage message={errors.file}/>}
+                                    {url.includes("/dashboard") &&
+                                        <>
+                                            <label 
+                                            htmlFor="file"
+                                            className="flex items-center gap-1 bg-red py-2 pl-1 pr-5 text-white-300 rounded-sm mb-5"
+                                            >
+                                                <Plus size={15}/>
+                                                New
+                                            </label>
+                                            {errors.file && <ErrorMessage message={errors.file}/>}
 
-                                    <input type="file" onChange={(e) => setData("file", e.target.files[0])} id="file"
-                                        className="fixed right-full bottom-full" />
-
-
-                                    <input 
-                                    type="text" 
-                                    placeholder="Search by name, date, size..."
-                                    className="text-[.7rem] py-1 pl-2 rounded-sm outline-gray-300 outline-1 focus:ring-2 focus:ring-red border-none"
-                                    onChange={(e) => onSearch(e, files)}/> 
+                                            <input type="file" onChange={(e) => setData("file", e.target.files[0])} id="file"
+                                                className="fixed right-full bottom-full" />
 
 
-                                    {[
-                                        { page: "All", component: <Columns2 size={15} />, route: route("file.index", { "type": "all" }), param: "all" },
-                                        { page: "Recent", component: <Clock size={15} />, route: route("file.index", { "type": "recent" }), param: "recent" },
-                                        { page: "Favorite", component: <Star size={15} />, route: route("file.index", { "type": "favorites" }), param: "favorites" },
-                                    ].map(tab => (
+                                            <input 
+                                            type="text" 
+                                            placeholder="Search by name, date, size..."
+                                            className="text-[.7rem] py-1 pl-2 rounded-sm outline-gray-300 outline-1 focus:ring-2 focus:ring-red border-none"
+                                            onChange={(e) => onSearch(e, files)}/> 
 
 
-                                        <Link key={tab.page}
-                                        className={`flex items-center gap-2
-                                            ${url === `/dashboard/${tab.param}` ? "bg-red text-white-300 pl-1 pr-5 py-2 rounded-sm" : ""}`
-                                        }
-                                        href={tab.route}>
-                                        {tab.component}
-                                        {tab.page}
-                                        </Link>
-                                    ))}    
+                                            {[
+                                                { page: "All", component: <Columns2 size={15} />, route: route("file.index", { "type": "all" }), param: "all" },
+                                                { page: "Recent", component: <Clock size={15} />, route: route("file.index", { "type": "recent" }), param: "recent" },
+                                                { page: "Favorite", component: <Star size={15} />, route: route("file.index", { "type": "favorites" }), param: "favorites" },
+                                            ].map(tab => (
 
-                                    <div className="w-full h-2 bg-gray-400 rounded-md">
-                                        <div className="bg-red h-2 rounded-md" style={{width: `${auth.user.memory_usage / maxUsage * 100}%`}}>
-                                        </div>
-                                    </div>
-                                    <p className="text-xs">{(auth.user.memory_usage / 1024 / 1024).toFixed(2)}MB used out of {maxUsage / 1024 / 1024}MB</p>
-                                </>
-                            }
-                            </div>
+
+                                                <Link key={tab.page}
+                                                className={`flex items-center gap-2
+                                                    ${url === `/dashboard/${tab.param}` ? "bg-red text-white-300 pl-1 pr-5 py-2 rounded-sm" : ""}`
+                                                }
+                                                href={tab.route}>
+                                                {tab.component}
+                                                {tab.page}
+                                                </Link>
+                                            ))}    
+
+                                            <div className="w-full h-2 bg-gray-400 rounded-md">
+                                                <div className="bg-red h-2 rounded-md" style={{width: `${auth.user.memory_usage / maxUsage * 100}%`}}>
+                                                </div>
+                                            </div>
+                                            <p className="text-xs">{(auth.user.memory_usage / 1024 / 1024).toFixed(2)}MB used out of {maxUsage / 1024 / 1024}MB</p>
+                                        </>
+                                    }
+                                </section>
+
+                                <footer className="border-t-[1px] border-t-gray-300 py-4 text-xs pb-4">
+                                    <p>EternaDrive {currentYear}</p>
+                                    <a href="https://github.com/Anchiee/EternaDrive">Get full repo here</a>
+                                </footer>
 
 
                             </section>
 
-                            <footer className="mx-4 px-4 border-t-[1px] border-t-gray-300 py-4 text-xs">
-                                <p>EternaDrive {currentYear}</p>
-                                <a href="https://github.com/Anchiee/EternaDrive" className="underline">Get full repo here</a>
-                            </footer>
+                            
 
                         </nav>
                     </AnimatedNav>         

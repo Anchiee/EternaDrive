@@ -12,7 +12,7 @@ export default function MobileDashboard() {
 
     let [isShown, setIsShown] = useState({})
 
-    const iconSize = 13
+    const iconSize = 14
     let fileRouteParam = null
 
 
@@ -26,9 +26,9 @@ export default function MobileDashboard() {
                         <div key={index} className="bg-white-300 rounded-sm text-xs py-4">
 
                             <section className="ml-4 flex flex-col">
-                                <p className="flex items-center gap-2">
-                                    {getFileIcon(file.file_type, 12)}
-                                    <span className="break-all">{file.name}</span>
+                                <p className="flex items-center gap-1 mb-2 font-medium">
+                                    {getFileIcon(file.file_type, 15)}
+                                    <span className="break-all">{file.name.substring(0,15)}</span>
                                 </p>
                                 <p>{getFileSize(file.size)}</p>
                                 <p>{getFormattedDate(file.created_at)}</p>
@@ -44,7 +44,7 @@ export default function MobileDashboard() {
                                             <AnimatedComponent>
 
                                                 {/*0 and one because they are the first two indexes, checking if index can be divided by 2 because they are the one on the left*/}
-                                                <div className={`absolute ${index == 0 || index == 1 ? "top-5" : "bottom-0"} ${index % 2 == 0 ? "right-7" : "right-9"} 
+                                                <div className={`absolute ${index == 0 || index == 1 ? "top-5" : "bottom-0"} ${index % 2 == 0 ? "right-2" : "right-9"} 
                                                     bg-white-300 text-black flex flex-col gap-3 pr-9 pl-3 py-2 rounded-md 
                                                     outline-1 outline-gray-300 shadow-sm shadow-gray-300`}>
                                                     {
@@ -55,7 +55,7 @@ export default function MobileDashboard() {
                                                         ].map(tab => (
                                         
                                         
-                                                        <Link key={tab.page} className="flex items-center gap-2 text-[.6rem]"
+                                                        <Link key={tab.page} className="flex items-center gap-2 text-[.7rem]"
                                                             href={tab.route}
                                                             method={tab.method}>
                                                             {tab.component}
@@ -64,7 +64,7 @@ export default function MobileDashboard() {
                                                         ))    
                                                     }
                                                     <a 
-                                                    className="flex items-center gap-2 text-[.6rem]"
+                                                    className="flex items-center gap-2"
                                                     href={route("file.download", fileRouteParam)}>
                                                         <Download size={iconSize}/>
                                                         Download

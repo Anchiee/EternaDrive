@@ -12,7 +12,7 @@ export default function MobileDashboard() {
 
     let [isShown, setIsShown] = useState({})
 
-    const iconSize = 15
+    const iconSize = 13
     let fileRouteParam = null
 
 
@@ -27,7 +27,7 @@ export default function MobileDashboard() {
 
                             <section className="ml-4 flex flex-col">
                                 <p className="flex items-center gap-2">
-                                    {getFileIcon(file.file_type)}
+                                    {getFileIcon(file.file_type, 12)}
                                     <span className="break-all">{file.name}</span>
                                 </p>
                                 <p>{getFileSize(file.size)}</p>
@@ -42,8 +42,11 @@ export default function MobileDashboard() {
                                     <AnimatePresence mode="wait">
                                         {isShown[index] &&
                                             <AnimatedComponent>
-                                                <div className="absolute bottom-1 right-9 bg-white-300 text-black flex flex-col gap-3 pr-9 pl-3 py-2 rounded-md 
-                                                outline-1 outline-gray-300 shadow-sm shadow-gray-300">
+
+                                                {/*0 and one because they are the first two indexes, checking if index can be divided by 2 because they are the one on the left*/}
+                                                <div className={`absolute ${index == 0 || index == 1 ? "top-5" : "bottom-0"} ${index % 2 == 0 ? "right-7" : "right-9"} 
+                                                    bg-white-300 text-black flex flex-col gap-3 pr-9 pl-3 py-2 rounded-md 
+                                                    outline-1 outline-gray-300 shadow-sm shadow-gray-300`}>
                                                     {
                                                         [
                                                             { page: "Delete", component: <Trash size={iconSize} />, route: route("file.delete", fileRouteParam), method: "delete"},
@@ -52,7 +55,7 @@ export default function MobileDashboard() {
                                                         ].map(tab => (
                                         
                                         
-                                                        <Link key={tab.page} className="flex items-center gap-2"
+                                                        <Link key={tab.page} className="flex items-center gap-2 text-[.6rem]"
                                                             href={tab.route}
                                                             method={tab.method}>
                                                             {tab.component}
@@ -61,7 +64,7 @@ export default function MobileDashboard() {
                                                         ))    
                                                     }
                                                     <a 
-                                                    className="flex items-center gap-2"
+                                                    className="flex items-center gap-2 text-[.6rem]"
                                                     href={route("file.download", fileRouteParam)}>
                                                         <Download size={iconSize}/>
                                                         Download

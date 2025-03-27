@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, ImageIcon, Video, Music2Icon, FileIcon, Check, LetterText} from "lucide-react"
+import { ChevronDown, ChevronUp, ImageIcon, Video, Music2Icon, FileIcon, Check, LetterText, icons} from "lucide-react"
 import { useState } from "react"
 import { useContext } from "react"
 import { SortableFilesContext } from "@/Contexts/Files"
@@ -121,21 +121,21 @@ export default function useFiles() {
       }
     }
 
-    const getFileIcon = (type) => {
+    const getFileIcon = (type, iconSize = 20) => {
 
       const fileType = type.split('/')[0]
   
       switch(fileType) {
         case "image":
-          return <ImageIcon size={20} />
+          return <ImageIcon size={iconSize} />
         case "video":
-          return <Video size={20} />
+          return <Video size={iconSize} />
         case "audio":
-          return <Music2Icon size={20}/>
+          return <Music2Icon size={iconSize}/>
         case "text":
-          return <LetterText size={20}/>
+          return <LetterText size={iconSize}/>
         default:
-          return <FileIcon size={20} />
+          return <FileIcon size={iconSize} />
       }
   
     }

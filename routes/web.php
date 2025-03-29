@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\OAuth2Controller;
+use App\Http\Controllers\AdminController;
+
 
 Route::get("/", function() {
     return Inertia::render("Home");
@@ -36,6 +38,9 @@ Route::middleware("guest")->group(function() {
     Route::get("/github/redirect", [OAuth2Controller::class, "githubRedirect"])->name("github.redirect");
     Route::get("/discord/redirect", [OAuth2Controller::class, "discordRedirect"])->name("discord.redirect");
 });
+
+
+Route::get("/admin/login", [AdminController::class, "index"])->middleware("blockadmin")->name("admin.index"); 
 
 require __DIR__.'/auth.php';
 require __DIR__.'/user.php';

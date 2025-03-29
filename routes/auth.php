@@ -37,24 +37,25 @@ Route::middleware("guest")->group(function() {
 
 });
 
-Route::middleware("auth")->group(function () {
+Route::middleware(["auth", "verified"])->group(function () {
 
 
-  //when the user clicks the link
-  Route::get("/email/verify/{id}/{hash}", [EmailController::class, "verificationLink"])
-  ->middleware("signed")->name("verification.verify");
+  Route::withoutMiddleware("verified")->group(function () {
+    
+    //when the user clicks the link
+      Route::get("/email/verify/{id}/{hash}", [EmailController::class, "verificationLink"])
+    ->middleware("signed")->name("verification.verify");
 
-  //resend the email link
-  Route::post("/email/verify", [EmailController::class, "sendVerificationLink"])
-  ->middleware("throttle:6,1")->name("verification.send");
+    //resend the email link
+    Route::post("/email/verify", [EmailController::class, "sendVerificationLink"])
+    ->middleware("throttle:6,1")->name("verification.send");
 
-
-  Route::middleware("verified")->group(function() {
-    Route::post("/file", [FileController::class, "store"])->name("file.store");
-    Route::delete("/file/{file}", [FileController::class, "delete"])->name("file.delete");
-    Route::put("/file/{file}", [FileController::class, "setFavorite"])->name("file.setFavorite");
-    Route::get("/file/download/{file}", [FileController::class, "download"])->name("file.download");
-    Route::get("/file/get/{file}", [FileController::class, "share"])->name("file.share");
   });
+
+  Route::post("/file", [FileController::class, "store"])->name("file.store");
+  Route::delete("/file/{file}", [FileController::class, "delete"])->name("file.delete");
+  Route::put("/file/{file}", [FileController::class, "setFavorite"])->name("file.setFavorite");
+  Route::get("/file/download/{file}", [FileController::class, "download"])->name("file.download");
+  Route::get("/file/get/{file}", [FileController::class, "share"])->name("file.share");
 });
 

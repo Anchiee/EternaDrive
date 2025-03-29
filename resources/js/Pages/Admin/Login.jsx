@@ -31,7 +31,7 @@ export default function Login() {
             <div className="mt-6 mb-13">
                 <label htmlFor="password">Password</label>
                 <Input
-                InputType="text"
+                InputType="password"
                 InputId="password"
                 InputOnChange={(e) => setData("password", e.target.value)}/>
                 

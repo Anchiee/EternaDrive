@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\OAuth2Controller;
+use App\Http\Controllers\AdminController;
+
+
 
 Route::middleware("guest")->group(function() {
   Route::post("/sign", [RegisteredUserController::class, "store"])->name("sign.store");
@@ -58,4 +61,6 @@ Route::middleware(["auth", "verified"])->group(function () {
   Route::get("/file/download/{file}", [FileController::class, "download"])->name("file.download");
   Route::get("/file/get/{file}", [FileController::class, "share"])->name("file.share");
 });
+
+Route::post("admin/login", [AdminController::class, "store"])->middleware("blockadmin")->name("admin.store");
 

@@ -42,5 +42,10 @@ Route::middleware("guest")->group(function() {
 
 Route::get("/admin/login", [AdminController::class, "index"])->middleware("blockadmin")->name("admin.index"); 
 
+Route::middleware("admin")->group(function () {
+    Route::get("/admin/dashboard", [AdminController::class, "show"])->name("admin.show");
+});
+
+
 require __DIR__.'/auth.php';
 require __DIR__.'/user.php';

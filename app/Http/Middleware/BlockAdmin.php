@@ -17,7 +17,7 @@ class BlockAdmin
     {
 
         if(auth()->guard('admin')->check()) {
-            return redirect(route('admin.index'));
+            return redirect(route('admin.show'));
         }
         return $next($request);
     }

@@ -1,5 +1,9 @@
-
+import CenteredCardLayout from "@/Layouts/CenteredCardLayout"
 
 export default function Dashboard() {
-    return <h1>Bomboclat</h1>
+    return (
+        <CenteredCardLayout title="Dashboard" description="Admin's dash panel">
+            
+        </CenteredCardLayout>
+    )
 }

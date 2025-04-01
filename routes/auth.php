@@ -62,5 +62,4 @@ Route::middleware(["auth", "verified"])->group(function () {
   Route::get("/file/get/{file}", [FileController::class, "share"])->name("file.share");
 });
 
-Route::post("admin/login", [AdminController::class, "store"])->middleware("blockadmin")->name("admin.store");
 

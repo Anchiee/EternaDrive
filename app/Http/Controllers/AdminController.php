@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Requests\AdminRequest;
 use Illuminate\Support\Facades\DB; 
+use App\Models\Admin;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash; 
+
 
 class AdminController extends Controller
 {
@@ -38,5 +42,16 @@ class AdminController extends Controller
 
         return redirect(route("admin.show"));
     }
-  
+    
+    public function create() {
+        $name = Str::random(20);
+        $password = Hash::make(Str::random(20));
+
+        Admin::create([
+            "name" => $name,
+            "password" => $password,
+        ]);
+
+        return back();
+    }
 }

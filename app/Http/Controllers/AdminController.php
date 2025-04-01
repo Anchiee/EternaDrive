@@ -15,21 +15,17 @@ class AdminController extends Controller
 
     public function show() {
         $database = DB::connection()->getPdo();
+        $status = $database == null ? "Disconnected" : "Connected";
 
         $dbInfo = [
+            "status" => $status,
             "driverName" => $database->getAttribute(\PDO::ATTR_DRIVER_NAME),
-            "serverInfo" => $database->getAttribute(\PDO::ATTR_SERVER_INFO),
             "clientVersion" => $database->getAttribute(\PDO::ATTR_CLIENT_VERSION),
             "serverVersion" => $database->getAttribute(\PDO::ATTR_SERVER_VERSION),
             "connectionStatus" => $database->getAttribute(\PDO::ATTR_CONNECTION_STATUS),
         ];
-        
-        $status = $database == null ? "Disconnected" : "Connected";
-
-   
 
         return Inertia::render("Admin/Dashboard", [
-            "databaseStatus" => $status,
             "databaseInfo" => $dbInfo,
         ]);
     }

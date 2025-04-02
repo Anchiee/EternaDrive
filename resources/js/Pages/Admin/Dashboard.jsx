@@ -1,10 +1,16 @@
 import CenteredCardLayout from "@/Layouts/CenteredCardLayout"
 import { usePage, Link } from "@inertiajs/react"
+import Input from "@/Components/Input"
+import useUser from "@/Hooks/useUser"
+import SolidButton from "@/Components/SolidButton"
 
 
 export default function Dashboard() {
 
     const {databaseInfo, flash} = usePage().props
+    const {onSubmit} = useUser({
+        id: ""
+    })
 
 
     const onCopyClick = (param) => {
@@ -36,10 +42,10 @@ export default function Dashboard() {
                 <Link  
                     as="button" 
                     href={route("admin.create")} 
-                    className="cursor-pointer text-white-300 py-1 rounded-md bg-red w-full hover:opacity-90 transition-opacity" 
+                    className="w-full" 
                     method="post">
 
-                    Generate
+                    <SolidButton ButtonType="button" ButtonText="Generate"/>
                 </Link>
 
 
@@ -78,14 +84,33 @@ export default function Dashboard() {
                     </div>
 
                 }
+
+                <form className="border-t-[1px] border-t-gray-300 my-4 py-4" onSubmit={onSubmit}>
+                    <h2 className="font-semibold mb-3">Bans</h2>
+
+
+                    <div className="mb-4">
+                        <label htmlFor="id">
+                            User's ID
+                        </label>
+
+                        <Input 
+                        InputType="number"
+                        InputPlaceholder="e.g 1"
+                        InputId="id"
+                        />
+                    </div>
+                    
+                    <SolidButton ButtonType="submit" ButtonText="Ban"/>
+                </form>
                 
-                <div className="border-t-[1px] border-t-gray-400 my-4 py-4">
+                <div className="border-t-[1px] border-t-gray-300 my-4 py-4">
                     <Link as="button"
-                    className="block w-full bg-red py-1 rounded-sm text-white-300 hover:opacity-90 cursor-pointer transition-opacity"
                     href={route("admin.destroy")}
                     method="delete"
+                    className="w-full"
                     >
-                        Log out
+                        <SolidButton ButtonText="Log out" ButtonType="button"/>
                     </Link>
 
                 </div>

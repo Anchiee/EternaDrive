@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_banned')->default(false);
             $table->unsignedBigInteger("memory_usage")->default(0);
             $table->string("github_id")->nullable()->unique();
             $table->string("github_token")->nullable();

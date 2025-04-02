@@ -23,7 +23,7 @@ Route::get("/policy", function() {
     return Inertia::render("Policy");
 });
 
-Route::middleware(["auth", "verified"])->group(function() {
+Route::middleware(["auth", "verified, CheckBanned"])->group(function() {
     Route::get("/dashboard/{type}", [FileController::class, "index"])->name("file.index");    
     Route::get("/settings", [ProfileController::class, "edit"])->name("profile.edit");
 });

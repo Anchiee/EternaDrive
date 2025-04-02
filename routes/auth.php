@@ -40,7 +40,7 @@ Route::middleware("guest")->group(function() {
 
 });
 
-Route::middleware(["auth", "verified"])->group(function () {
+Route::middleware(["auth", "verified", "CheckBanned"])->group(function () {
 
 
   Route::withoutMiddleware("verified")->group(function () {

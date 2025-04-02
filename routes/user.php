@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::middleware(["auth", "verified"])->group(function() {
+Route::middleware(["auth", "verified", "CheckBanned"])->group(function() {
   Route::delete("/user", [AuthenticatedSessionController::class, "destroy"])->name("user.destroy");
   Route::delete("/settings", [ProfileController::class, "destroy"])->name("user.delete");
   Route::put("/settings", [ProfileController::class, "update"])->name("user.update");

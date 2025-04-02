@@ -36,7 +36,7 @@ export default function Dashboard() {
                 <Link  
                     as="button" 
                     href={route("admin.create")} 
-                    className="cursor-pointer text-white-300 py-1 rounded-md bg-red w-full" 
+                    className="cursor-pointer text-white-300 py-1 rounded-md bg-red w-full opacity-90 transition-opacity" 
                     method="post">
 
                     Generate
@@ -53,7 +53,7 @@ export default function Dashboard() {
                                 <p className="flex items-center gap-2">
                                 {flash.adminName && <p className="text-xs">{flash.adminName}</p>}
                                 <button 
-                                className="bg-red px-2 py-1 text-xs text-white-300 rounded-sm cursor-pointer"
+                                className="bg-red px-2 py-1 text-xs text-white-300 rounded-sm cursor-pointer opacity-90 transition-opacity"
                                 onClick={() => onCopyClick(flash.adminName)}
                                 >
                                     Copy
@@ -65,7 +65,8 @@ export default function Dashboard() {
                             flash.adminPass && 
                                 <p className="flex items-center gap-2">
                                     {flash.adminPass && <p className="text-[.8rem]">{flash.adminPass}</p>}
-                                    <button className="bg-red px-2 py-1 text-xs text-white-300 rounded-sm cursor-pointer"
+                                    <button 
+                                    className="bg-red px-2 py-1 text-xs text-white-300 rounded-sm cursor-pointer opacity-90 transition-opacity"
                                     onClick={() => onCopyClick(flash.adminPass)}
                                     >
                                         Copy
@@ -80,7 +81,7 @@ export default function Dashboard() {
                 
                 <div className="border-t-[1px] border-t-gray-400 my-4 py-4">
                     <Link as="button"
-                    className="block w-full bg-red py-1 rounded-sm text-white-300"
+                    className="block w-full bg-red py-1 rounded-sm text-white-300 hover:opacity-90 transition-opacity"
                     href={route("admin.destroy")}
                     method="delete"
                     >

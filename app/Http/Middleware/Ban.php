@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class Ban
 {
     /**
@@ -18,7 +19,7 @@ class Ban
         $user = auth()->user();
 
         if($user && $user->is_banned) {
-            return Inertia::render("Banned");
+            return redirect('/banned');
         }
         return $next($request);
     }

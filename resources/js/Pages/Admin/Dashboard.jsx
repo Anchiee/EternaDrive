@@ -3,12 +3,14 @@ import { usePage, Link } from "@inertiajs/react"
 import Input from "@/Components/Input"
 import useUser from "@/Hooks/useUser"
 import SolidButton from "@/Components/SolidButton"
+import ErrorMessage from "@/Components/ErrorMessage"
+import { useEffect } from "react"
 
 
 export default function Dashboard() {
 
     const {databaseInfo, flash} = usePage().props
-    const {onSubmit} = useUser({
+    const {onSubmit, setData, errors, data} = useUser({
         id: ""
     })
 
@@ -16,6 +18,7 @@ export default function Dashboard() {
     const onCopyClick = (param) => {
         navigator.clipboard.writeText(param)
     }
+
 
     return (
         <CenteredCardLayout title="Dashboard" description="Admin's dash panel">
@@ -42,10 +45,11 @@ export default function Dashboard() {
                 <Link  
                     as="button" 
                     href={route("admin.create")} 
-                    className="w-full" 
+                     className="w-full bg-red-800 text-white-300 rounded-md py-2 cursor-pointer text-lg
+                    hover:bg-red-600 transition-all"
                     method="post">
 
-                    <SolidButton ButtonType="button" ButtonText="Generate"/>
+                    Generate
                 </Link>
 
 
@@ -85,7 +89,7 @@ export default function Dashboard() {
 
                 }
 
-                <form className="border-t-[1px] border-t-gray-300 my-4 py-4" onSubmit={onSubmit}>
+                <form className="border-t-[1px] border-t-gray-300 my-4 py-4" onSubmit={(e) => onSubmit(e, route("admin.ban"), "put")}>
                     <h2 className="font-semibold mb-3">Bans</h2>
 
 
@@ -98,19 +102,24 @@ export default function Dashboard() {
                         InputType="number"
                         InputPlaceholder="e.g 1"
                         InputId="id"
+                        InputOnChange={(e) => setData("id", e.target.value)}
                         />
+
+                        {flash.banStatus && <p className="text-xs text-red">{flash.banStatus}</p>}
+                        {errors.id && <ErrorMessage message={errors.id}/>}
                     </div>
                     
                     <SolidButton ButtonType="submit" ButtonText="Ban"/>
                 </form>
                 
                 <div className="border-t-[1px] border-t-gray-300 my-4 py-4">
-                    <Link as="button"
+                    <Link
                     href={route("admin.destroy")}
                     method="delete"
-                    className="w-full"
+                     className="w-full bg-red-800 text-white-300 rounded-md py-2 cursor-pointer text-lg
+                            hover:bg-red-600 transition-all"
                     >
-                        <SolidButton ButtonText="Log out" ButtonType="button"/>
+                        Log out
                     </Link>
 
                 </div>

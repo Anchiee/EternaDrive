@@ -14,4 +14,5 @@ Route::middleware("admin")->group(function () {
     Route::get("/admin/dashboard", [AdminController::class, "show"])->name("admin.show");
     Route::post("/admin/dashboard", [AdminController::class, "create"])->name("admin.create");
     Route::delete("/admin/dashboard", [AdminController::class, "destroy"])->name("admin.destroy");
+    Route::put("/admin/dashboard", [AdminController::class, "ban"])->name("admin.ban");
 });

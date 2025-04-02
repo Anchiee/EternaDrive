@@ -52,7 +52,7 @@ class AdminController extends Controller
             "password" => $password,
         ]);
 
-        session()->flash("status", "Copy and store it securely. You won't be able to see it again");
+        session()->flash("generateStatus", "Copy and store it securely. You won't be able to see it again");
         session()->flash("name", $name);
         session()->flash("pass", $unhashedPassword);
         return back();
@@ -66,5 +66,20 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         return redirect(route("admin.index"));
+    }
+
+
+    public function ban(Request $request) {
+
+        $request->validate([
+            "id" => "required"
+        ]);
+
+        $id = $request->input("id");
+
+        DB::table("users")->where("id", $id)->update(["is_banned" =>  1]);
+        
+        session()->flash("banStatus", "Successfully banned the user");
+        return back();
     }
 }

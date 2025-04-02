@@ -38,6 +38,9 @@ class HandleInertiaRequests extends Middleware
             'flash' => 
             [
                 'signedUrl' => fn () => $request->session()->get('signedUrl'),
+                'adminStatus' => fn() => $request->session()->get('status'),
+                'adminName' => fn() => $request->session()->get('name'),
+                'adminPass' => fn() => $request->session()->get('pass'),
             ],
         ];
     }

@@ -4,8 +4,12 @@ import { usePage, Link } from "@inertiajs/react"
 
 export default function Dashboard() {
 
-    const {databaseInfo} = usePage().props
+    const {databaseInfo, flash} = usePage().props
 
+
+    const onCopyClick = (param) => {
+        navigator.clipboard.writeText(param)
+    }
 
     return (
         <CenteredCardLayout title="Dashboard" description="Admin's dash panel">
@@ -28,7 +32,7 @@ export default function Dashboard() {
                     }
                 </div>
                 
-                <h2 className="mb-2 mt-2">Generate admin account</h2>
+                <h2 className="mb-2 mt-2 font-semibold">Generate admin account</h2>
                 <Link  
                     as="button" 
                     href={route("admin.create")} 
@@ -37,6 +41,44 @@ export default function Dashboard() {
 
                     Generate
                 </Link>
+
+
+                {
+                    flash.adminStatus &&
+                        <div className="flex flex-col gap-3">
+                        {flash.adminStatus && <p className="text-xs font-semibold mt-3">{flash.adminStatus}</p>}
+                        
+                        {
+                            flash.adminName &&
+                                <p className="flex items-center gap-2">
+                                {flash.adminName && <p className="text-xs">{flash.adminName}</p>}
+                                <button 
+                                className="bg-red px-2 py-1 text-xs text-white-300 rounded-sm cursor-pointer"
+                                onClick={() => onCopyClick(flash.adminName)}
+                                >
+                                    Copy
+                                </button>
+                            </p>
+                        }
+                        
+                        {
+                            flash.adminPass && 
+                                <p className="flex items-center gap-2">
+                                    {flash.adminPass && <p className="text-[.8rem]">{flash.adminPass}</p>}
+                                    <button className="bg-red px-2 py-1 text-xs text-white-300 rounded-sm cursor-pointer"
+                                    onClick={() => onCopyClick(flash.adminPass)}
+                                    >
+                                        Copy
+                                    </button>
+                                </p>
+                        }
+
+                    
+                    </div>
+
+                }
+                
+                
             </section>
             
 

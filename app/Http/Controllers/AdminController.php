@@ -45,13 +45,17 @@ class AdminController extends Controller
     
     public function create() {
         $name = Str::random(20);
-        $password = Hash::make(Str::random(20));
+        $unhashedPassword = Str::random(20);
+        $password = Hash::make($unhashedPassword);
 
         Admin::create([
             "name" => $name,
             "password" => $password,
         ]);
 
+        session()->flash("status", "Copy and store it securely. You won't be able to see it again");
+        session()->flash("name", $name);
+        session()->flash("pass", $unhashedPassword);
         return back();
     }
 }

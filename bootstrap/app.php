@@ -6,7 +6,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\BlockAdmin;
 use App\Http\Middleware\Ban;
-
+use App\Http\Middleware\NoBan;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -24,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => Admin::class,
             'blockadmin' => BlockAdmin::class,
             'CheckBanned' => Ban::class,
+            'RedirectIfNotBanned' => NoBan::class,
         ]);
 
         //

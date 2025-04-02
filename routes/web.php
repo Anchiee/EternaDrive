@@ -22,8 +22,11 @@ Route::get("/terms", function() {
 Route::get("/policy", function() {
     return Inertia::render("Policy");
 });
+Route::get("/banned", function() {
+    return Inertia::render("Banned");
+})->middleware("RedirectIfNotBanned");
 
-Route::middleware(["auth", "verified, CheckBanned"])->group(function() {
+Route::middleware(["auth", "verified", "CheckBanned"])->group(function() {
     Route::get("/dashboard/{type}", [FileController::class, "index"])->name("file.index");    
     Route::get("/settings", [ProfileController::class, "edit"])->name("profile.edit");
 });

@@ -10,7 +10,6 @@ use App\Models\Admin;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash; 
 
-
 class AdminController extends Controller
 {
     public function index() {
@@ -57,5 +56,15 @@ class AdminController extends Controller
         session()->flash("name", $name);
         session()->flash("pass", $unhashedPassword);
         return back();
+    }
+
+
+    public function destroy(Request $request) {
+        auth()->guard("admin")->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect(route("admin.index"));
     }
 }

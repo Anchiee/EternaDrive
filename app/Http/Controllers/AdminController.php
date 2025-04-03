@@ -10,6 +10,9 @@ use App\Models\Admin;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash; 
 use App\Models\User;
+use Carbon\Carbon;
+
+
 
 class AdminController extends Controller
 {
@@ -73,24 +76,37 @@ class AdminController extends Controller
     public function ban(Request $request) {
 
         $request->validate([
-            "id" => "required"
+            "id" => "required",
+            "duration" => "max:365|integer|nullable"
         ]);
 
         $id = $request->input("id");
+        $duration = $request->input("duration");
 
         $user = User::where("id", $id)->first();
-        $newBanStatus = !$user->is_banned;
 
-        User::where("id", $id)->update(["is_banned" => $newBanStatus]);
-        
+        if(!$user) {
+            session()->flash("banStatus", "User not found");
+            return back();
+        } 
+
+        $newBanStatus = !$user->is_banned;
+        $banExpiration = $duration === null ? null : Carbon::now()->addDays((int)$duration)->format("Y-m-d");
+
         switch($newBanStatus) {
             case 0:
                 session()->flash("banStatus", "Successfully unbanned the user");
+                $banExpiration = null;
                 break;
             case 1:
                 session()->flash("banStatus", "Successfully banned the user");
                 break;
         }
+
+        $user->update([
+            "is_banned" => $newBanStatus,
+            "ban_expires_at" => $banExpiration,
+        ]);
        
         return back();
     }

@@ -32,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'github_refresh_token',
         'memory_usage',
         'is_banned',
+        'ban_expires_at',
     ];
 
     /**

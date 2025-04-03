@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash; 
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -77,9 +78,20 @@ class AdminController extends Controller
 
         $id = $request->input("id");
 
-        DB::table("users")->where("id", $id)->update(["is_banned" =>  1]);
+        $user = User::where("id", $id)->first();
+        $newBanStatus = !$user->is_banned;
+
+        User::where("id", $id)->update(["is_banned" => $newBanStatus]);
         
-        session()->flash("banStatus", "Successfully banned the user");
+        switch($newBanStatus) {
+            case 0:
+                session()->flash("banStatus", "Successfully unbanned the user");
+                break;
+            case 1:
+                session()->flash("banStatus", "Successfully banned the user");
+                break;
+        }
+       
         return back();
     }
 }

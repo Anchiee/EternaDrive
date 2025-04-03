@@ -110,12 +110,12 @@ export default function Dashboard() {
                     <div className="my-4">
 
                         <label htmlFor="id">
-                            Ban's duration(no input is a permament ban)
+                            Expiration date(no input is a permament ban)
                         </label>
 
                         <Input 
                         InputType="text"
-                        InputPlaceholder="e.g 15 seconds, 1 month"
+                        InputPlaceholder="DD/MM/YY e.g 04/05/2025"
                         InputId="id"
                         InputOnChange={(e) => setData("duration", e.target.value)}
                         />

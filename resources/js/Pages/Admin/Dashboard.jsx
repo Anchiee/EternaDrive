@@ -4,14 +4,14 @@ import Input from "@/Components/Input"
 import useUser from "@/Hooks/useUser"
 import SolidButton from "@/Components/SolidButton"
 import ErrorMessage from "@/Components/ErrorMessage"
-import { useEffect } from "react"
 
 
 export default function Dashboard() {
 
     const {databaseInfo, flash} = usePage().props
     const {onSubmit, setData, errors, data} = useUser({
-        id: ""
+        id: "",
+        duration: ""
     })
 
 
@@ -104,12 +104,28 @@ export default function Dashboard() {
                         InputId="id"
                         InputOnChange={(e) => setData("id", e.target.value)}
                         />
-
-                        {flash.banStatus && <p className="text-xs text-red">{flash.banStatus}</p>}
-                        {errors.id && <ErrorMessage message={errors.id}/>}
+                        
                     </div>
+
+                    <div className="my-4">
+
+                        <label htmlFor="id">
+                            Ban's duration(no input is a permament ban)
+                        </label>
+
+                        <Input 
+                        InputType="text"
+                        InputPlaceholder="e.g 15 seconds, 1 month"
+                        InputId="id"
+                        InputOnChange={(e) => setData("duration", e.target.value)}
+                        />
+                    </div>
+
                     
-                    <SolidButton ButtonType="submit" ButtonText="Ban"/>
+
+                    {flash.banStatus && <p className="text-xs text-red">{flash.banStatus}</p>}
+                    {errors.id && <ErrorMessage message={errors.id}/>}
+                    <SolidButton ButtonType="submit" ButtonText="Set ban status"/>
                 </form>
                 
                 <div className="border-t-[1px] border-t-gray-300 my-4 py-4">

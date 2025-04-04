@@ -35,7 +35,7 @@ test("admin can ban and unban users", function() {
 
     $response->assertRedirect();
 
-    $this->assertEquals(1, $user->is_banned);
+    $this->assertTrue($user->is_banned);
 
     $response = $this->actingAs($admin, "admin")->put(route("admin.ban"), [
         "id" => $user->id,
@@ -45,7 +45,7 @@ test("admin can ban and unban users", function() {
 
     $response->assertRedirect();
 
-    $this->assertEquals(0, $user->is_banned);
+    $this->assertFalse($user->is_banned);
 
 });
 
@@ -58,4 +58,40 @@ test("admins can log out", function() {
     $response = $this->actingAs($user, "admin")->delete(route("admin.destroy"));
 
     $this->assertFalse(auth()->guard("admin")->check());
+});
+
+
+test("users get unbanned after hitting expiration date", function() {
+    $user = User::factory()->create([
+        "is_banned" => 1,
+        "ban_expires_at" => now(),
+    ]);
+
+
+    $this->travel(5)->years();
+    $response = $this->actingAs($user)->get("/settings");
+
+    $user->refresh();
+
+    $this->assertFalse($user->is_banned);
+    $this->assertNull($user->ban_expires_at);
+
+});
+
+
+test("users get perma banned when no expiration date given", function() {
+    $user = User::factory()->create([
+        "is_banned" => 1,
+        "ban_expires_at" => null
+    ]);
+
+
+    $this->travel(5)->years();
+    $response = $this->actingAs($user)->get("/settings");
+
+    $user->refresh();
+
+    $response->assertRedirect("/banned");
+    $this->assertTrue($user->is_banned);
+    $this->assertNull($user->ban_expires_at);
 });

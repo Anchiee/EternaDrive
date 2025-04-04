@@ -33,6 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'memory_usage',
         'is_banned',
         'ban_expires_at',
+        'ban_reason',
     ];
 
     /**

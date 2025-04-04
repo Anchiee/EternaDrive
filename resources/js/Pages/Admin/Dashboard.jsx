@@ -11,7 +11,8 @@ export default function Dashboard() {
     const {databaseInfo, flash} = usePage().props
     const {onSubmit, setData, errors, data} = useUser({
         id: "",
-        duration: ""
+        duration: "",
+        reason: "",
     })
 
 
@@ -109,14 +110,28 @@ export default function Dashboard() {
 
                     <div className="my-4">
 
-                        <label htmlFor="id">
+                        <label htmlFor="duration">
                             Duration(in days)
                         </label>
 
                         <Input 
                         InputType="number"
                         InputPlaceholder="e.g 8"
-                        InputId="id"
+                        InputId="duration"
+                        InputOnChange={(e) => setData("duration", e.target.value)}
+                        />
+                    </div>
+
+                    <div className="my-4">
+
+                        <label htmlFor="reason">
+                            Reason
+                        </label>
+
+                        <Input 
+                        InputType="text"
+                        InputPlaceholder="Inappropriate behaviour"
+                        InputId="reason"
                         InputOnChange={(e) => setData("duration", e.target.value)}
                         />
                     </div>

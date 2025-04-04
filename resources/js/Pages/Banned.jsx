@@ -19,6 +19,7 @@ export default function Banned() {
         description="Unfortunately you have been banned. If it's a mistake by our side contact us immediately.">
             <h1 className="font-semibold">You have been banned.</h1>
             <p>Expires at {formattedDate}</p>
+            <p>Banned for: {auth.user.ban_reason}</p>
             <p>For either more info or contact message us.</p>
         </CenteredCardLayout>
     )

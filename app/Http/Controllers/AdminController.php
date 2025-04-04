@@ -77,11 +77,13 @@ class AdminController extends Controller
 
         $request->validate([
             "id" => "required",
-            "duration" => "max:365|integer|nullable"
+            "duration" => "max:365|integer|nullable",
+            "reason" => "max:40|required",
         ]);
 
         $id = $request->input("id");
         $duration = $request->input("duration");
+        $reason = $request->input("reason");
 
         $user = User::where("id", $id)->first();
 
@@ -106,6 +108,7 @@ class AdminController extends Controller
         $user->update([
             "is_banned" => $newBanStatus,
             "ban_expires_at" => $banExpiration,
+            "ban_reason" => $reason
         ]);
        
         return back();

@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash; 
 use App\Models\User;
 use Carbon\Carbon;
-
+use Illuminate\Validation\ValidationException;
 
 
 class AdminController extends Controller
@@ -78,7 +78,7 @@ class AdminController extends Controller
         $request->validate([
             "id" => "required",
             "duration" => "max:365|integer|nullable",
-            "reason" => "max:40|required",
+            "reason" => "max:40",
         ]);
 
         $id = $request->input("id");
@@ -91,6 +91,12 @@ class AdminController extends Controller
             session()->flash("banStatus", "User not found");
             return back();
         } 
+
+        else if(!$user->is_banned && empty($reason)) {
+            throw ValidationException::withMessages([
+                "reason" => "Reason is required.",
+            ]);
+        }
 
         $newBanStatus = !$user->is_banned;
         $banExpiration = $duration === null ? null : Carbon::now()->addDays((int)$duration)->format("Y-m-d");

@@ -132,7 +132,7 @@ export default function Dashboard() {
                         InputType="text"
                         InputPlaceholder="Inappropriate behaviour"
                         InputId="reason"
-                        InputOnChange={(e) => setData("duration", e.target.value)}
+                        InputOnChange={(e) => setData("reason", e.target.value)}
                         />
                     </div>
 
@@ -140,6 +140,7 @@ export default function Dashboard() {
 
                     {flash.banStatus && <p className="text-xs text-red">{flash.banStatus}</p>}
                     {errors.id && <ErrorMessage message={errors.id}/>}
+                    {errors.reason && <ErrorMessage message={errors.reason}/>}
                     <SolidButton ButtonType="submit" ButtonText="Set ban status"/>
                 </form>
                 

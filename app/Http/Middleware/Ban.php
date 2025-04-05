@@ -24,6 +24,7 @@ class Ban
             if($user->ban_expires_at && $user->ban_expires_at->lt($todayDate)) {
                 $user->is_banned = 0;
                 $user->ban_expires_at = null;
+                $user->ban_reason = null;
 
                 $user->save();
 

@@ -29,6 +29,7 @@ test("admin can ban and unban users", function() {
 
     $response = $this->actingAs($admin, "admin")->put(route("admin.ban"), [
         "id" => $user->id,
+        "reason" => "test"
     ]);
 
     $user->refresh();
@@ -39,6 +40,7 @@ test("admin can ban and unban users", function() {
 
     $response = $this->actingAs($admin, "admin")->put(route("admin.ban"), [
         "id" => $user->id,
+        "reason" => "test",
     ]);
 
     $user->refresh();

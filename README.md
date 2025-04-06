@@ -37,22 +37,22 @@ EternaDrive leverages Inertia.js for API-less development, significantly improvi
 ## Project start up and configuration
 
 #### Download the repo
-``git clone https://github.com/Anchiee/EternaDrive``
+``git clone https://github.com/Anchiee/EternaDrive`` ||
 ``cd EternaDrive``
 
 #### Install dependencies
-``npm install
- composer install``
+``npm install`` ||
+ ``composer install``
 
 #### Generate .env keys
-``cp .env.example .env``
+``cp .env.example .env`` ||
 ``php artisan key:generate``
 
 **NOTE THAT FOR THINGS LIKE OAUTH2 ETC YOU WILL HAVE TO SET UP ENV KEYS MANUALLY**
 
  #### Run the project
- ``php artisan serve
-   npm run dev``
+ ``php artisan serve`` ||
+  `` npm run dev``
 
 #### Run the tests(optional) 
 ``php artisan test``

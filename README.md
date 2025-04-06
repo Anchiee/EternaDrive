@@ -76,16 +76,22 @@ Do the same with RedirectIfAuthenticated.php
     }
 ```
 
+Create a database named eternadrive and run
+```bash
+php artisan migrate
+```
+
  #### Run the project
 ```bash
 php artisan serve
-  npm run dev
+npm run dev
 ```
 
 #### Run the tests(optional) 
 ```bash
 cd tests
 mkdir Unit
+cd ..
 php artisan test
 ```
 

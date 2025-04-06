@@ -55,6 +55,8 @@ EternaDrive leverages Inertia.js for API-less development, significantly improvi
   `` npm run dev``
 
 #### Run the tests(optional) 
+``cd tests``
+``mkdir Unit``
 ``php artisan test``
 
 ## Contribution

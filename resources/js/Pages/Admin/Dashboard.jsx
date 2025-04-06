@@ -24,25 +24,32 @@ export default function Dashboard() {
     return (
         <CenteredCardLayout title="Dashboard" description="Admin's dash panel">
 
-            <h2 className="flex gap-2 items-center font-semibold mb-3 mt-5">
-                Database status 
-                <span className={`${databaseInfo.status ? "bg-green-800" : "bg-red"} px-2 py-2 rounded-3xl text-white-300 text-xs`}>
-                    {databaseInfo.status}
-                </span>
-            </h2>
+        <section className="grid grid-cols-2 grid-rows-1 gap-x-10">
 
             <section>
-                <div className="border-b-[1px] border-b-gray-300 mb-3">
-                    {
-                        Object.entries(databaseInfo).map(([key, value], index) => (
-                            <div key={index} className="mb-2">
-                                <p className="font-medium">{key.replace(/([A-Z])/g, ' $1').trim()}: <span className="text-gray-800">{value}</span></p>
-                            </div>
-                        ))
-                    }
-                </div>
+                <h2 className="font-bold text-red-800 mb-4">DATABASE</h2>
+                <p className="flex gap-2 items-center font-semibold">
+                    Database status 
+                    <span className={`${databaseInfo.status ? "bg-green-800" : "bg-red"} px-2 py-2 rounded-3xl text-white-300 text-xs`}>
+                        {databaseInfo.status}
+                    </span>
+                </p>
+                    <div className="border-b-[1px] border-b-gray-300 mb-3">
+                        {
+                            Object.entries(databaseInfo).map(([key, value], index) => (
+                                <div key={index} className="mb-2">
+                                    <p className="font-medium">{key.replace(/([A-Z])/g, ' $1').trim()}: <span className="text-gray-800">{value}</span></p>
+                                </div>
+                            ))
+                        }
+                    </div>
+            </section>
+            <section>
+
                 
-                <h2 className="mb-2 mt-2 font-semibold">Generate admin account</h2>
+                <h2 className="font-bold text-red-800 mb-4">ADMIN ACCOUNT</h2>
+
+                <p className="mb-2">Generate an admin account</p>
                 <Link  
                     as="button" 
                     href={route("admin.create")} 
@@ -52,46 +59,45 @@ export default function Dashboard() {
 
                     Generate
                 </Link>
-
-
-                {
-                    flash.adminStatus &&
+                    {
+                        flash.adminStatus &&
                         <div className="flex flex-col gap-3">
-                        {flash.adminStatus && <p className="text-xs font-semibold mt-3">{flash.adminStatus}</p>}
-                        
-                        {
-                            flash.adminName &&
-                                <p className="flex items-center gap-2">
-                                {flash.adminName && <p className="text-xs">{flash.adminName}</p>}
-                                <button 
-                                className="bg-red px-2 py-1 text-xs text-white-300 rounded-sm cursor-pointer hover:opacity-90 transition-opacity"
-                                onClick={() => onCopyClick(flash.adminName)}
-                                >
-                                    Copy
-                                </button>
-                            </p>
-                        }
-                        
-                        {
-                            flash.adminPass && 
-                                <p className="flex items-center gap-2">
-                                    {flash.adminPass && <p className="text-[.8rem]">{flash.adminPass}</p>}
+                            {flash.adminStatus && <p className="text-xs font-semibold mt-3">{flash.adminStatus}</p>}
+                            
+                            {
+                                flash.adminName &&
+                                    <p className="flex items-center gap-2">
+                                    {flash.adminName && <p className="text-xs">{flash.adminName}</p>}
                                     <button 
                                     className="bg-red px-2 py-1 text-xs text-white-300 rounded-sm cursor-pointer hover:opacity-90 transition-opacity"
-                                    onClick={() => onCopyClick(flash.adminPass)}
+                                    onClick={() => onCopyClick(flash.adminName)}
                                     >
                                         Copy
                                     </button>
                                 </p>
-                        }
+                            }
+                            
+                            {
+                                flash.adminPass && 
+                                    <p className="flex items-center gap-2">
+                                        {flash.adminPass && <p className="text-[.8rem]">{flash.adminPass}</p>}
+                                        <button 
+                                        className="bg-red px-2 py-1 text-xs text-white-300 rounded-sm cursor-pointer hover:opacity-90 transition-opacity"
+                                        onClick={() => onCopyClick(flash.adminPass)}
+                                        >
+                                            Copy
+                                        </button>
+                                    </p>
+                            }
 
-                    
-                    </div>
+                        
+                        </div>
 
-                }
+                    }
+                </section>
 
-                <form className="border-t-[1px] border-t-gray-300 my-4 py-4" onSubmit={(e) => onSubmit(e, route("admin.ban"), "put")}>
-                    <h2 className="font-semibold mb-3">Bans</h2>
+                <form className="" onSubmit={(e) => onSubmit(e, route("admin.ban"), "put")}>
+                    <h2 className="font-bold mb-3 text-red-800">USER MANAGEMENT</h2>
 
 
                     <div className="mb-4">
@@ -144,7 +150,9 @@ export default function Dashboard() {
                     <SolidButton ButtonType="submit" ButtonText="Set ban status"/>
                 </form>
                 
-                <div className="border-t-[1px] border-t-gray-300 my-4 py-4">
+            </section>
+
+            <div className="border-t-[1px] border-t-gray-300 my-4 py-4">
                     <Link
                     href={route("admin.destroy")}
                     method="delete"
@@ -154,12 +162,7 @@ export default function Dashboard() {
                         Log out
                     </Link>
 
-                </div>
-                
-                
-            </section>
-            
-
+            </div>
                 
         </CenteredCardLayout>
     )

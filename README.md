@@ -33,8 +33,6 @@ Frontend:
 
 EternaDrive leverages Inertia.js for API-less development, significantly improving the developer experience.
 
-## Phase
-The project is currently in development and has not yet been deployed.
 
 ## Project start up and configuration
 

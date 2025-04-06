@@ -37,38 +37,76 @@ EternaDrive leverages Inertia.js for API-less development, significantly improvi
 ## Project start up and configuration
 
 #### Download the repo
-``git clone https://github.com/Anchiee/EternaDrive`` ||
-``cd EternaDrive``
+```bash
+git clone https://github.com/Anchiee/EternaDrive
+cd EternaDrive
+```
 
 #### Install dependencies
-``npm install`` ||
- ``composer install``
+```bash
+npm install
+composer install
+```
 
 #### Generate .env keys
-``cp .env.example .env`` ||
-``php artisan key:generate``
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
 **NOTE THAT FOR THINGS LIKE OAUTH2 ETC YOU WILL HAVE TO SET UP ENV KEYS MANUALLY**
 
+
+#### Before running the project
+Locate Authenticate.php file inside ``/vendor/laravel/framework/src/Illuminate/Auth/Middleware/`` and change the ``redirectTo`` method to this
+
+```php
+    protected function redirectTo(Request $request)
+    {
+        return route("session.create");
+    }
+```
+
+Do the same with RedirectIfAuthenticated.php
+
+```php
+    protected function redirectTo(Request $request): ?string
+    {
+        return route("file.index", ["type" => "all"]);
+    }
+```
+
  #### Run the project
- ``php artisan serve`` ||
-  `` npm run dev``
+```bash
+php artisan serve
+  npm run dev
+```
 
 #### Run the tests(optional) 
-``cd tests``
-``mkdir Unit``
-``php artisan test``
+```bash
+cd tests
+mkdir Unit
+php artisan test
+```
 
 ## Contribution
 
 #### Fork the repository
 #### Clone your fork
-``git clone https://github.com/YOUR_USERNAME/EternaDrive.git``
+```bash
+git clone https://github.com/YOUR_USERNAME/EternaDrive.git
+```
 #### Create a new branch for changes
-``git checkout -b feature-branch``
+```bash
+git checkout -b feature-branch
+```
 #### Make your changes and push them
-``git commit -m "Describe your changes"``
-``git push origin feature-branch``
+```bash
+git commit -m "Describe your changes"
+```
+```bash
+git push origin feature-branch
+```
 #### Open a pull request
 
 
